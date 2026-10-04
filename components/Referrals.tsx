@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { referrals, referralGroups, referralDisclosure, X_URL, type Referral } from "@/lib/content";
+import { referrals, referralGroups, referralDisclosure, type Referral } from "@/lib/content";
 import CopyCode from "./CopyCode";
-import { Arrow, Check, XLogo } from "./Icons";
+import { Arrow, Check } from "./Icons";
 
 const sponsored = { target: "_blank", rel: "noopener sponsored" } as const;
 
@@ -209,29 +209,6 @@ function ReferralCard({ r, index }: { r: Referral; index: number }) {
   );
 }
 
-function ComingSoon() {
-  return (
-    <a href={X_URL} target="_blank" rel="noopener noreferrer" className="group flex h-full flex-col items-start justify-between gap-5 border border-dashed border-ink/30 bg-transparent p-5 transition hover:border-ink/60 hover:bg-white/50 sm:flex-row sm:items-center sm:p-6">
-      <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
-        <div className="flex shrink-0 -space-x-2" aria-hidden>
-          {["Amex", "Chase", "Citi"].map((n, i) => (
-            <span key={n} className="grid h-11 w-16 place-items-center rounded-md border border-ink/20 bg-paper font-mono text-[10px] font-bold text-ink/40 shadow-sm" style={{ transform: `rotate(${(i - 1) * 6}deg)` }}>
-              {n}
-            </span>
-          ))}
-        </div>
-        <div>
-          <h3 className="text-lg font-extrabold">更多卡片邀请陆续添加</h3>
-          <p className="mt-1 text-sm leading-6 text-muted">其他卡和账户的入口整理好后会放在这里，新增时会在 X 上同步。</p>
-        </div>
-      </div>
-      <span className="inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap text-sm font-bold">
-        <XLogo className="h-3.5 w-3.5" /> 在 X 上关注更新 <Arrow className="h-3.5 w-3.5" />
-      </span>
-    </a>
-  );
-}
-
 function GroupLabel({ label, count }: { label: string; count: number }) {
   return (
     <div className="mb-3 flex items-center gap-3">
@@ -251,7 +228,7 @@ export default function Referrals() {
   const others = referralGroups.filter((g) => g.id !== "bank").map((g) => ({ ...g, items: referrals.filter((r) => r.group === g.id) })).filter((g) => g.items.length);
 
   return (
-    <section id="referrals" aria-labelledby="referrals-title" className="scroll-mt-20 pb-16">
+    <section id="referrals" aria-labelledby="referrals-title" className="scroll-mt-20 pb-10">
       <div className="mb-6 flex flex-col justify-between gap-3 border-t border-line pt-8 sm:flex-row sm:items-end">
         <div>
           <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">美卡 / 账户 / 工具 · 我的邀请入口</p>
@@ -307,10 +284,6 @@ export default function Referrals() {
             </div>
           </div>
         ))}
-      </div>
-
-      <div className="mt-4">
-        <ComingSoon />
       </div>
     </section>
   );

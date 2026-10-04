@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { X_URL, profile, lines, guides } from "@/lib/content";
+import { X_URL, X_FOLLOWERS_LABEL, featuredTweet, profile, lines, guides } from "@/lib/content";
+import TweetEmbed from "@/components/TweetEmbed";
 import Referrals from "@/components/Referrals";
 import { Arrow, XLogo } from "@/components/Icons";
 
@@ -35,27 +36,37 @@ export default function Home() {
         {/* Hero */}
         <section className="grid items-end gap-10 pb-12 pt-12 sm:pt-20 md:grid-cols-[minmax(0,1fr)_240px] md:gap-12 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-16">
           <div>
-            <p className="mb-6 inline-flex items-center gap-2 font-mono text-xs font-bold tracking-[0.12em] text-muted">
+            <p className="mb-5 inline-flex items-center gap-2 font-mono text-xs font-bold tracking-[0.12em] text-muted">
               <span className="h-1.5 w-1.5 rounded-full bg-ink shadow-[0_0_0_4px_#11121418]" />
-              {profile.handle} · {profile.mascot}
+              ITIN · Capital One · 实战记录
             </p>
-            <h1 className="text-[52px] font-extrabold leading-[1.04] tracking-[-0.04em] sm:text-[76px] md:text-[60px] lg:text-[92px] xl:text-[112px]">
-              你好，我是
+            <h1 className="text-[33px] font-extrabold leading-[1.2] tracking-[-0.03em] min-[400px]:text-[36px] sm:text-[54px] md:text-[44px] lg:text-[62px] xl:text-[70px]">
+              我用 ITIN<span className="hidden sm:inline"> 办下了</span>
               <br />
-              <span className="inline-block translate-x-[0.12em] bg-ink px-3 text-paper">李天才。</span>
+              <span className="sm:hidden">办下了</span>美国信用卡，
+              <br />
+              <span className="mt-2 inline-block bg-ink px-2.5 py-0.5 text-paper sm:px-3">踩过的坑都写在 X。</span>
             </h1>
-            <p className="mt-8 max-w-xl text-[17px] leading-8 text-muted">
-              {profile.bio}。<br className="hidden sm:block" />
-              {profile.bio2}。也会分享我自己用 ITIN 办美卡的真实经历。
+            <p className="mt-7 max-w-xl text-[16px] leading-7 text-muted sm:text-[17px] sm:leading-8">
+              我是<strong className="font-bold text-ink">李天才</strong>（{profile.handle}），{profile.bio}。
+              <br className="hidden sm:block" />
+              {profile.bio2}。
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-5">
-              <a href={X_URL} {...ext} className="group inline-flex items-center gap-3 bg-ink px-6 py-4 text-base font-bold text-paper transition hover:-translate-y-0.5 hover:shadow-[0_14px_30px_#11121440]">
-                <XLogo className="h-5 w-5" />
-                在 X 上关注我
-                <Arrow className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <div className="mt-8">
+              <a href={X_URL} {...ext} className="group inline-flex min-h-14 w-full items-center justify-center gap-3 bg-ink px-6 py-4 text-base font-bold text-paper transition hover:-translate-y-0.5 hover:shadow-[0_14px_30px_#11121440] sm:w-auto">
+                <XLogo className="h-5 w-5 shrink-0" />
+                在 X 看我更新美卡 / ITIN 实战
+                <Arrow className="h-4 w-4 shrink-0 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
-              <a href="#referrals" className="inline-flex min-h-11 items-center border-b border-ink/50 text-sm font-bold hover:border-ink">美卡邀请专区 ↓</a>
-              <a href="#guides" className="inline-flex min-h-11 items-center border-b border-ink/30 text-sm font-bold text-muted hover:border-ink hover:text-ink">新手指南</a>
+              <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-muted">
+                {/* 关注者数来源见 lib/content.ts 注释 */}
+                <span className="inline-flex items-center gap-1.5 font-mono text-xs">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#1d9bf0]" />X 关注者 {X_FOLLOWERS_LABEL}
+                </span>
+                <span aria-hidden className="text-ink/20">|</span>
+                <a href="#referrals" className="inline-flex min-h-10 items-center underline decoration-ink/25 underline-offset-4 hover:text-ink hover:decoration-ink">美卡邀请专区</a>
+                <a href="#guides" className="inline-flex min-h-10 items-center underline decoration-ink/25 underline-offset-4 hover:text-ink hover:decoration-ink">新手指南</a>
+              </div>
             </div>
           </div>
 
@@ -85,7 +96,7 @@ export default function Home() {
               <div>
                 <p className="font-mono text-xs tracking-[0.14em] text-paper/60">主要阵地 · X</p>
                 <h2 className="mt-1 text-2xl font-extrabold tracking-tight sm:text-3xl">关注我 on X</h2>
-                <p className="mt-1 text-sm text-paper/70">美卡 / ITIN、AI、独立开发与小程序的更新，都会第一时间发在 X。</p>
+                <p className="mt-1 text-sm text-paper/70">美卡 / ITIN、AI、独立开发与小程序的更新，都会第一时间发在 X · {X_FOLLOWERS_LABEL} 人在看。</p>
               </div>
             </div>
             <span className="inline-flex items-center justify-center gap-2 self-start bg-paper px-5 py-3 text-sm font-bold text-ink sm:self-auto">
@@ -94,8 +105,24 @@ export default function Home() {
           </a>
         </section>
 
-        {/* Referral zone */}
-        <Referrals />
+        {/* Latest real tweet */}
+        <section aria-labelledby="tweet-title" className="pb-16">
+          <div className="grid items-center gap-8 border border-line bg-[#fffffcb3] p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,550px)] lg:gap-12 lg:p-10">
+            <div>
+              <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">来自我的 X · 正在进行</p>
+              <h2 id="tweet-title" className="mt-2 text-2xl font-extrabold leading-snug tracking-tight [text-wrap:balance] sm:text-3xl">
+                从 300 分往上爬，<br />我每一步都发出来。
+              </h2>
+              <p className="mt-3 max-w-md text-sm leading-6 text-muted">ITIN → Capital One → 等首期账单上报 → 建立信用记录。想看后续，就在 X 上跟着我。</p>
+              <a href={featuredTweet.url} {...ext} className="mt-5 inline-flex min-h-11 items-center gap-2 border-b border-ink/40 text-sm font-bold hover:border-ink">
+                在 X 上看原帖和评论 <Arrow className="h-3.5 w-3.5" />
+              </a>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <TweetEmbed url={featuredTweet.url} text={featuredTweet.text} date={featuredTweet.date} />
+            </div>
+          </div>
+        </section>
 
         {/* Lines */}
         <section id="lines" className="scroll-mt-20 pb-16">
@@ -104,7 +131,7 @@ export default function Home() {
               <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">我在做什么</p>
               <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">四条内容线</h2>
             </div>
-            <p className="max-w-sm text-sm leading-6 text-muted">点击卡片会在新标签页打开我的 X 主页，相关内容都在那里持续更新。</p>
+            <p className="max-w-sm text-sm leading-6 text-muted">美卡 / ITIN 直达下方邀请专区，其余内容都在我的 X 上持续更新。</p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {lines.map((l, i) => (
@@ -159,10 +186,15 @@ export default function Home() {
               </a>
             ))}
           </div>
-          <p className="mt-6 border border-dashed border-line p-4 text-xs leading-5 text-muted">
-            说明：本站内容为个人经验分享，不构成任何金融、税务或法律建议。本站不是银行或金融机构；信用卡、ITIN 等申请条件与结果以官方机构为准。
-          </p>
         </section>
+
+        {/* Referral zone */}
+        <Referrals />
+
+        {/* Disclaimer */}
+        <p className="mb-12 border border-dashed border-line p-4 text-xs leading-5 text-muted">
+          说明：本站内容为个人经验分享，不构成任何金融、税务或法律建议。本站不是银行或金融机构；信用卡、ITIN 等申请条件与结果以官方机构为准。部分链接为我的邀请链接。
+        </p>
       </div>
 
       {/* Footer */}

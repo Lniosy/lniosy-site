@@ -6,6 +6,17 @@ export const X_URL = "https://x.com/Lniosytest";
 // TODO: 上线后替换为正式域名（用于 OG / canonical）
 export const SITE_URL = "https://litiancai.vercel.app";
 
+// 关注者数：2026-10-04 17:22 (UTC+8) 从 https://api.fxtwitter.com/Lniosytest 读取 followers=2642，向下取整展示。
+// 更新时重新核对，不要凭空填数。
+export const X_FOLLOWERS_LABEL = "2,600+";
+
+// 嵌入的真实推文（2026-10-04 从 api.fxtwitter.com 读取，原文照录）
+export const featuredTweet = {
+  url: "https://x.com/Lniosytest/status/2106623293746971005",
+  date: "2026年10月4日",
+  text: "拿到 ITIN 以后，我打给 Equifax 建了信用档案。\n查出来 300 分。\n\n不是我信用差，是一条记录都没有，美国银行眼里我就是张白纸。\n9/29 开了 C1，现在等第一期账单报上去。\n从 300 分往上爬，我每一步都发出来。",
+};
+
 export const profile = {
   name: "李天才",
   nameEn: "TianCai",
@@ -96,9 +107,9 @@ export const guides: Guide[] = [
   },
   {
     tag: "美卡入门",
-    title: "用 ITIN 申请 Capital One 的个人记录",
-    desc: "以我自己的申请经历为例，分享流程和心得，仅供参考。",
-    href: X_URL,
+    title: "新 ITIN 下号后：C1 → Equifax → X Money 踩坑记录",
+    desc: "我自己走过的路线：C1 激活、等首期账单上报、Equifax 建档，一条说清。",
+    href: "https://x.com/Lniosytest/status/2105998264612897199",
   },
   {
     tag: "独立开发",
