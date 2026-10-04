@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f2f1ec;
+  --color-ink: #111214;
+  --color-muted: #5a6168;
+  --color-line: #1112142b;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: #111214; color: #f2f1ec; }
+a:focus-visible { outline: 3px solid #111214; outline-offset: 3px; }
+
+.grid-texture {
+  background-image: linear-gradient(#11121407 1px, transparent 1px),
+    linear-gradient(90deg, #11121407 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+.card-accent::before {
+  content: "";
+  position: absolute;
+  top: -1px; left: -1px; right: -1px;
+  height: 5px;
+  background: var(--accent);
+}
+.fuzz {
+  box-shadow: 0 0 0 6px #f2f1ec, 0 0 0 7px #11121433, 0 18px 40px #11121433;
+}

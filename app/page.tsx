@@ -1,0 +1,195 @@
+import Image from "next/image";
+import { X_URL, profile, lines, guides } from "@/lib/content";
+
+function XLogo({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
+
+function Arrow({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 7h10v10" />
+      <path d="M7 17 17 7" />
+    </svg>
+  );
+}
+
+const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
+
+export default function Home() {
+  return (
+    <main className="relative min-h-screen overflow-hidden">
+      <div aria-hidden className="grid-texture pointer-events-none absolute inset-0" />
+      <div aria-hidden className="pointer-events-none absolute -right-36 top-28 h-80 w-80 rounded-full bg-[#c9cbd1] opacity-40 blur-2xl" />
+      <div aria-hidden className="pointer-events-none absolute -left-32 top-[60%] h-56 w-56 rounded-full bg-[#e5d9c8] opacity-40 blur-2xl" />
+
+      {/* Header */}
+      <header className="relative z-10 border-b border-line">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
+          <a href="#top" className="flex items-center gap-3 font-mono text-xs font-bold tracking-[0.08em]">
+            <Image src="/avatar.jpg" alt="" width={28} height={28} className="h-7 w-7 -rotate-6 rounded-full ring-2 ring-ink" />
+            <span>李天才 <em className="not-italic text-muted">/ TianCai</em></span>
+          </a>
+          <nav className="flex items-center gap-4 sm:gap-6">
+            <a href="#lines" className="hidden font-mono text-xs font-bold tracking-wide text-muted hover:text-ink sm:inline">内容</a>
+            <a href="#guides" className="hidden font-mono text-xs font-bold tracking-wide text-muted hover:text-ink sm:inline">新手指南</a>
+            <a href={X_URL} {...ext} className="inline-flex items-center gap-2 bg-ink px-3.5 py-2 text-[13px] font-semibold text-paper transition hover:-translate-y-0.5">
+              <XLogo className="h-3.5 w-3.5" />
+              关注
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <div id="top" className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
+        {/* Hero */}
+        <section className="grid items-end gap-10 pb-12 pt-12 sm:pt-20 md:grid-cols-[minmax(0,1fr)_280px] md:gap-16">
+          <div>
+            <p className="mb-6 inline-flex items-center gap-2 font-mono text-xs font-bold tracking-[0.12em] text-muted">
+              <span className="h-1.5 w-1.5 rounded-full bg-ink shadow-[0_0_0_4px_#11121418]" />
+              {profile.handle} · {profile.mascot}
+            </p>
+            <h1 className="text-[56px] font-extrabold leading-[1.02] tracking-[-0.04em] sm:text-[88px] lg:text-[112px]">
+              你好，我是
+              <br />
+              <span className="inline-block translate-x-[0.12em] bg-ink px-3 text-paper">李天才。</span>
+            </h1>
+            <p className="mt-8 max-w-xl text-[17px] leading-8 text-muted">
+              {profile.bio}。<br className="hidden sm:block" />
+              {profile.bio2}。也会分享我自己用 ITIN 办美卡的真实经历。
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-5">
+              <a href={X_URL} {...ext} className="group inline-flex items-center gap-3 bg-ink px-6 py-4 text-base font-bold text-paper transition hover:-translate-y-0.5 hover:shadow-[0_14px_30px_#11121440]">
+                <XLogo className="h-5 w-5" />
+                在 X 上关注我
+                <Arrow className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+              <a href="#guides" className="border-b border-ink/50 py-1 text-sm font-bold hover:border-ink">先看新手指南</a>
+            </div>
+          </div>
+
+          {/* Mascot ticket */}
+          <a href={X_URL} {...ext} aria-label="天才毛球 — 在 X 上关注 @Lniosytest" className="group relative mx-auto block w-64 rotate-3 bg-ink p-5 text-paper transition hover:rotate-1 md:w-full">
+            <div className="flex items-start justify-between">
+              <span className="border border-paper/35 px-2 py-1.5 font-mono text-[10px] leading-4 tracking-[0.14em]">天才<br />毛球</span>
+              <XLogo className="h-5 w-5 opacity-80" />
+            </div>
+            <div className="my-5 overflow-hidden rounded-full border-4 border-paper">
+              <Image src="/avatar.jpg" alt="天才毛球头像：一只黑色毛球" width={400} height={400} priority className="aspect-square w-full object-cover grayscale transition group-hover:scale-105" />
+            </div>
+            <div className="border-t border-dashed border-paper/30 pt-3 font-mono text-xs tracking-[0.1em]">
+              <div className="text-paper/60">X / TWITTER</div>
+              <div className="mt-1 text-base font-bold tracking-normal">{profile.handle}</div>
+            </div>
+          </a>
+        </section>
+
+        {/* Primary CTA card */}
+        <section aria-label="关注我" className="pb-14">
+          <a href={X_URL} {...ext} className="group relative flex flex-col gap-6 overflow-hidden bg-ink p-7 text-paper transition hover:-translate-y-1 hover:shadow-[0_20px_40px_#11121440] sm:flex-row sm:items-center sm:justify-between sm:p-10">
+            <div className="flex items-center gap-5">
+              <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-paper text-ink">
+                <XLogo className="h-7 w-7" />
+              </div>
+              <div>
+                <p className="font-mono text-xs tracking-[0.14em] text-paper/60">主要阵地 · X</p>
+                <h2 className="mt-1 text-2xl font-extrabold tracking-tight sm:text-3xl">关注我 on X</h2>
+                <p className="mt-1 text-sm text-paper/70">美卡 / ITIN、AI、独立开发与小程序的更新，都会第一时间发在 X。</p>
+              </div>
+            </div>
+            <span className="inline-flex items-center justify-center gap-2 self-start bg-paper px-5 py-3 text-sm font-bold text-ink sm:self-auto">
+              x.com/Lniosytest <Arrow />
+            </span>
+          </a>
+        </section>
+
+        {/* Lines */}
+        <section id="lines" className="scroll-mt-6 pb-16">
+          <div className="mb-7 flex flex-col justify-between gap-3 border-t border-line pt-8 sm:flex-row sm:items-end">
+            <div>
+              <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">我在做什么</p>
+              <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">四条内容线</h2>
+            </div>
+            <p className="max-w-sm text-sm leading-6 text-muted">点击卡片会在新标签页打开我的 X 主页，相关内容都在那里持续更新。</p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {lines.map((l, i) => (
+              <a
+                key={l.id}
+                id={l.id}
+                href={l.href}
+                {...ext}
+                style={{ ["--accent" as string]: l.accent }}
+                className="card-accent group relative flex min-h-[300px] flex-col border border-line bg-[#fffffce6] p-5 transition hover:-translate-y-1 hover:border-ink/40 hover:bg-white hover:shadow-[0_13px_30px_#1112141a]"
+              >
+                <div className="flex items-center justify-between font-mono text-[11px] tracking-[0.1em] text-muted">
+                  <span>{l.kicker}</span>
+                  <span>/0{i + 1}</span>
+                </div>
+                <div className="mt-5 grid h-12 w-12 place-items-center bg-ink font-mono text-sm font-bold text-paper" style={{ boxShadow: `4px 4px 0 ${l.accent}` }}>
+                  {l.mark}
+                </div>
+                <h3 className="mt-5 text-xl font-extrabold leading-snug tracking-tight">{l.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted">{l.desc}</p>
+                {l.note && <p className="mt-3 border-l-2 border-ink/20 pl-3 text-xs leading-5 text-muted">{l.note}</p>}
+                <span className="mt-auto flex items-center justify-between pt-5 text-sm font-bold">
+                  {l.cta}
+                  <Arrow className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        {/* Guides */}
+        <section id="guides" className="scroll-mt-6 pb-16">
+          <div className="mb-7 flex flex-col justify-between gap-3 border-t border-line pt-8 sm:flex-row sm:items-end">
+            <div>
+              <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">新手指南</p>
+              <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">先看懂，再动手</h2>
+            </div>
+            <p className="max-w-sm text-sm leading-6 text-muted">文章正在整理中，目前内容先发在 X 上。均为个人经验，具体规则请以官方信息为准。</p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {guides.map((g, i) => (
+              <a key={g.title} href={g.href} {...ext} className="group flex gap-5 border border-line bg-[#fffffcb3] p-5 transition hover:border-ink/40 hover:bg-white">
+                <span className="font-mono text-3xl font-extrabold text-ink/15 group-hover:text-ink">{String(i + 1).padStart(2, "0")}</span>
+                <div className="flex-1">
+                  <span className="inline-block bg-ink px-2 py-0.5 font-mono text-[11px] font-bold tracking-wide text-paper">{g.tag}</span>
+                  <h3 className="mt-2 text-lg font-bold leading-snug">{g.title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-muted">{g.desc}</p>
+                  <span className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-muted group-hover:text-ink">
+                    在 X 上查看 <Arrow className="h-3 w-3" />
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+          <p className="mt-6 border border-dashed border-line p-4 text-xs leading-5 text-muted">
+            说明：本站内容为个人经验分享，不构成任何金融、税务或法律建议。本站不是银行或金融机构；信用卡、ITIN 等申请条件与结果以官方机构为准。
+          </p>
+        </section>
+      </div>
+
+      {/* Footer */}
+      <footer className="relative z-10 border-t border-line">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-5 py-8 sm:flex-row sm:items-center sm:px-8">
+          <div className="flex items-center gap-3">
+            <Image src="/avatar.jpg" alt="" width={36} height={36} className="h-9 w-9 rounded-full" />
+            <div>
+              <div className="text-sm font-bold">李天才 · 天才毛球</div>
+              <div className="font-mono text-xs text-muted">© {new Date().getFullYear()} {profile.handle}</div>
+            </div>
+          </div>
+          <a href={X_URL} {...ext} className="inline-flex items-center gap-2 text-sm font-bold hover:underline">
+            <XLogo /> x.com/Lniosytest
+          </a>
+        </div>
+      </footer>
+    </main>
+  );
+}
