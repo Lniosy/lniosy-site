@@ -34,3 +34,9 @@ a:focus-visible { outline: 3px solid #111214; outline-offset: 3px; }
 .fuzz {
   box-shadow: 0 0 0 6px #f2f1ec, 0 0 0 7px #11121433, 0 18px 40px #11121433;
 }
+.grid-texture-dark {
+  background-image: linear-gradient(#ffffff08 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff08 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+html, body { overflow-x: clip; }

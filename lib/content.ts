@@ -36,8 +36,8 @@ export const lines: Line[] = [
     title: "我用 ITIN 办下了 Capital One",
     desc: "我自己申请了美国 ITIN，并用它办下了 Capital One 信用卡。把一路踩过的坑和真实流程，慢慢整理分享出来。",
     note: "个人经验分享，不构成金融建议；规则以银行官方为准。",
-    href: X_URL, // TODO: 有专门的美卡合集页 / 推文串后替换
-    cta: "看我的美卡分享",
+    href: "#referrals",
+    cta: "去美卡邀请专区",
     accent: "#c8f04a",
     mark: "C1",
     todo: true,
@@ -107,3 +107,162 @@ export const guides: Guide[] = [
     href: X_URL,
   },
 ];
+
+// ---------------- 美卡 / 账户邀请专区 ----------------
+// 只放真实的邀请链接；不写奖励金额、APR 或任何未经核实的条款。
+// 以后新增（Amex、Chase…）直接往 referrals 里追加一项即可。
+
+export type CardArt = { src: string; alt: string };
+
+export const referralGroups = [
+  { id: "bank", label: "美卡 / 银行账户" },
+  { id: "crypto", label: "加密卡" },
+  { id: "ai", label: "工具 / AI" },
+  { id: "network", label: "网络环境" },
+] as const;
+export type ReferralGroup = (typeof referralGroups)[number]["id"];
+
+export type Referral = {
+  id: string;
+  issuer: string;
+  category: string; // 小标签：信用卡 / 跨境账户…
+  title: string;
+  tagline: string;
+  points: string[]; // 只写官方页面或用户本人确认过的内容
+  href: string; // 真实邀请链接
+  cta: string;
+  accent: string;
+  group: ReferralGroup;
+  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "muse" | "cliproxy";
+  badge?: string;
+  art?: CardArt[];
+  code?: { label: string; value: string; hint?: string };
+  quote?: string;
+  featured?: boolean;
+  footnote?: string;
+};
+
+export const referrals: Referral[] = [
+  {
+    id: "capital-one",
+    issuer: "Capital One",
+    category: "信用卡 · 预审批",
+    title: "Capital One 预审批通道",
+    tagline: "不影响信用分，先查能批哪张卡",
+    points: [
+      "我自己用 ITIN 办下了 Capital One，这是我的邀请入口",
+      "进入 Capital One 官方选卡 / 预审工具，不是某一张固定的卡",
+      "先看自己可能获批的卡，再决定申请哪张",
+    ],
+    // 跳转到 capitalone.com/credit-cards/lp/referrals/?referralCode=F0JFG8JY…
+    href: "https://i.capitalone.com/Jf9f7s1cs",
+    cta: "去 Capital One 预审",
+    accent: "#c8f04a",
+    group: "bank",
+    visual: "capital-one",
+    art: [
+      { src: "/cards/quicksilver.png", alt: "Capital One Quicksilver 卡面" },
+      { src: "/cards/venture-x.png", alt: "Capital One Venture X 卡面" },
+      { src: "/cards/savor.png", alt: "Capital One Savor 卡面" },
+    ],
+    quote:
+      "Hey there! I'm loving my card from Capital One. Their tool makes it easy to see what cards you'll be approved for with no impact to your credit score.",
+    featured: true,
+    footnote: "卡面来自 Capital One 官网，仅作示意；可申请的卡和结果以官网预审为准。",
+  },
+  {
+    id: "wise",
+    issuer: "Wise",
+    category: "跨境转账 · 多币种账户",
+    title: "Wise 跨境转账 / 多币种账户",
+    tagline: "跨境收付、换汇和多币种余额，一个账户搞定",
+    points: [
+      "官网介绍：在全球范围内收款、汇款和消费，可向 50+ 种货币汇款",
+      "支持多币种余额与 Wise 借记卡",
+    ],
+    href: "https://wise.com/invite/ahpc/l1ulth3",
+    cta: "通过邀请注册 Wise",
+    accent: "#9fe870",
+    group: "bank",
+    visual: "wise",
+    footnote: "费率与可用功能因地区而异，以 Wise 官网为准。",
+  },
+  {
+    id: "starryblu",
+    issuer: "StarryBlu",
+    category: "新加坡 · 多币种账户",
+    title: "StarryBlu（新加坡）",
+    tagline: "多币种全球账户，支持 Mastercard 虚拟卡 / 实体卡",
+    points: [
+      "官网介绍：Starryblu Singapore 持有新加坡 MAS 监管的 MPI 牌照",
+      "官网介绍：管理 USD、HKD、EUR、GBP、SGD、JPY、AUD 等多种货币",
+    ],
+    // 跳转到 www.starryblu.com/launchIndex?inviteCode=MSHK00O
+    href: "https://sg.starryblu.com/x/1noORvTX",
+    cta: "通过邀请注册 StarryBlu",
+    accent: "#3ad6ff",
+    group: "bank",
+    visual: "starryblu",
+    code: { label: "白名单推荐码", value: "MSHK00O", hint: "M S H K + 数字 0 0 + 字母 O" },
+    footnote: "注册时如需填写推荐码，请使用上面的白名单推荐码。",
+  },
+  {
+    id: "bybit",
+    issuer: "Bybit",
+    category: "加密卡 · Bybit Card",
+    title: "Bybit Card",
+    // 官方邀请文案原文
+    tagline: "申请 Bybit Card，解锁 10% 返现和 10 USDT 体验金",
+    points: [
+      "以上为 Bybit 官方邀请文案，活动规则以官方活动为准",
+      "可申请地区、资格与返现规则以 Bybit 官方页面为准",
+    ],
+    href: "https://www.bybit.com/cards/?ref=0LL34JO&source=applet_invite",
+    cta: "申请 Bybit Card",
+    accent: "#f7a600",
+    group: "crypto",
+    visual: "bybit",
+    footnote: "加密资产波动大、有风险；Bybit 服务在部分国家/地区不可用。",
+  },
+  {
+    id: "muse",
+    issuer: "Muse",
+    category: "个人 AI 智能体",
+    title: "Muse 个人 AI 智能体",
+    tagline: "给它一个目标或日常任务，它来帮你搞定",
+    points: [
+      "官网介绍：Muse 是你的个人 AI 智能体（Muse from Meta）",
+      "加入后 48 小时内在「设置」里兑现邀请码，双方各得 10 亿个 Muse 词元",
+    ],
+    href: "https://muse.ai/join",
+    cta: "加入 Muse",
+    accent: "#2f6bff",
+    group: "ai",
+    visual: "muse",
+    badge: "from Meta",
+    code: { label: "邀请码", value: "WZW03J", hint: "W Z W + 数字 0 3 + J" },
+    footnote: "邀请奖励以 Muse 官方活动为准。",
+  },
+  {
+    id: "cliproxy",
+    issuer: "CliProxy",
+    category: "网络环境 · 住宅 IP",
+    title: "CliProxy 住宅 IP",
+    tagline: "我买 IP 的地方",
+    points: [
+      "我是配合比特浏览器（BitBrowser）一起用的，注册 X 也在比特里注册，比较稳",
+      "这个 IP 我用着挺不错：挂 X、挂 C1 App、Muse、美区 PayPal 都可以",
+      "官网介绍：动态住宅 IP，覆盖 180+ 国家和地区",
+    ],
+    // 跳转到 cliproxy.com/?code=8i9xuktqq
+    href: "https://share.cliproxy.com/share/8i9xuktqq",
+    cta: "去 CliProxy 看看",
+    accent: "#8b5cf6",
+    group: "network",
+    visual: "cliproxy",
+    footnote: "以上是我个人的使用心得，不代表任何保证；请遵守各平台规则与当地法律法规。",
+  },
+];
+
+export const referralDisclosure =
+  "含我的邀请链接，通过链接申请我可能获得奖励；个人经验不构成金融建议。";

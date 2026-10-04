@@ -1,22 +1,7 @@
 import Image from "next/image";
 import { X_URL, profile, lines, guides } from "@/lib/content";
-
-function XLogo({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  );
-}
-
-function Arrow({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M7 7h10v10" />
-      <path d="M7 17 17 7" />
-    </svg>
-  );
-}
+import Referrals from "@/components/Referrals";
+import { Arrow, XLogo } from "@/components/Icons";
 
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -28,16 +13,17 @@ export default function Home() {
       <div aria-hidden className="pointer-events-none absolute -left-32 top-[60%] h-56 w-56 rounded-full bg-[#e5d9c8] opacity-40 blur-2xl" />
 
       {/* Header */}
-      <header className="relative z-10 border-b border-line">
+      <header className="sticky top-0 z-30 border-b border-line bg-paper/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
-          <a href="#top" className="flex items-center gap-3 font-mono text-xs font-bold tracking-[0.08em]">
+          <a href="#top" className="flex min-h-10 items-center gap-3 font-mono text-xs font-bold tracking-[0.08em]">
             <Image src="/avatar.jpg" alt="" width={28} height={28} className="h-7 w-7 -rotate-6 rounded-full ring-2 ring-ink" />
-            <span>李天才 <em className="not-italic text-muted">/ TianCai</em></span>
+            <span>李天才 <em className="hidden not-italic text-muted sm:inline">/ TianCai</em></span>
           </a>
-          <nav className="flex items-center gap-4 sm:gap-6">
-            <a href="#lines" className="hidden font-mono text-xs font-bold tracking-wide text-muted hover:text-ink sm:inline">内容</a>
-            <a href="#guides" className="hidden font-mono text-xs font-bold tracking-wide text-muted hover:text-ink sm:inline">新手指南</a>
-            <a href={X_URL} {...ext} className="inline-flex items-center gap-2 bg-ink px-3.5 py-2 text-[13px] font-semibold text-paper transition hover:-translate-y-0.5">
+          <nav className="flex items-center gap-3 sm:gap-6">
+            <a href="#referrals" className="inline-flex min-h-10 items-center font-mono text-xs font-bold tracking-wide text-ink hover:underline sm:text-muted sm:hover:text-ink sm:hover:no-underline">美卡邀请</a>
+            <a href="#lines" className="hidden min-h-10 items-center font-mono text-xs font-bold tracking-wide text-muted hover:text-ink sm:inline-flex">内容</a>
+            <a href="#guides" className="hidden min-h-10 items-center font-mono text-xs font-bold tracking-wide text-muted hover:text-ink sm:inline-flex">新手指南</a>
+            <a href={X_URL} {...ext} className="inline-flex min-h-10 items-center gap-2 bg-ink px-3.5 py-2 text-[13px] font-semibold text-paper transition hover:-translate-y-0.5">
               <XLogo className="h-3.5 w-3.5" />
               关注
             </a>
@@ -47,13 +33,13 @@ export default function Home() {
 
       <div id="top" className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
         {/* Hero */}
-        <section className="grid items-end gap-10 pb-12 pt-12 sm:pt-20 md:grid-cols-[minmax(0,1fr)_280px] md:gap-16">
+        <section className="grid items-end gap-10 pb-12 pt-12 sm:pt-20 md:grid-cols-[minmax(0,1fr)_240px] md:gap-12 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-16">
           <div>
             <p className="mb-6 inline-flex items-center gap-2 font-mono text-xs font-bold tracking-[0.12em] text-muted">
               <span className="h-1.5 w-1.5 rounded-full bg-ink shadow-[0_0_0_4px_#11121418]" />
               {profile.handle} · {profile.mascot}
             </p>
-            <h1 className="text-[56px] font-extrabold leading-[1.02] tracking-[-0.04em] sm:text-[88px] lg:text-[112px]">
+            <h1 className="text-[52px] font-extrabold leading-[1.04] tracking-[-0.04em] sm:text-[76px] md:text-[60px] lg:text-[92px] xl:text-[112px]">
               你好，我是
               <br />
               <span className="inline-block translate-x-[0.12em] bg-ink px-3 text-paper">李天才。</span>
@@ -68,7 +54,8 @@ export default function Home() {
                 在 X 上关注我
                 <Arrow className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
-              <a href="#guides" className="border-b border-ink/50 py-1 text-sm font-bold hover:border-ink">先看新手指南</a>
+              <a href="#referrals" className="inline-flex min-h-11 items-center border-b border-ink/50 text-sm font-bold hover:border-ink">美卡邀请专区 ↓</a>
+              <a href="#guides" className="inline-flex min-h-11 items-center border-b border-ink/30 text-sm font-bold text-muted hover:border-ink hover:text-ink">新手指南</a>
             </div>
           </div>
 
@@ -107,8 +94,11 @@ export default function Home() {
           </a>
         </section>
 
+        {/* Referral zone */}
+        <Referrals />
+
         {/* Lines */}
-        <section id="lines" className="scroll-mt-6 pb-16">
+        <section id="lines" className="scroll-mt-20 pb-16">
           <div className="mb-7 flex flex-col justify-between gap-3 border-t border-line pt-8 sm:flex-row sm:items-end">
             <div>
               <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">我在做什么</p>
@@ -122,7 +112,7 @@ export default function Home() {
                 key={l.id}
                 id={l.id}
                 href={l.href}
-                {...ext}
+                {...(l.href.startsWith("#") ? {} : ext)}
                 style={{ ["--accent" as string]: l.accent }}
                 className="card-accent group relative flex min-h-[300px] flex-col border border-line bg-[#fffffce6] p-5 transition hover:-translate-y-1 hover:border-ink/40 hover:bg-white hover:shadow-[0_13px_30px_#1112141a]"
               >
@@ -146,7 +136,7 @@ export default function Home() {
         </section>
 
         {/* Guides */}
-        <section id="guides" className="scroll-mt-6 pb-16">
+        <section id="guides" className="scroll-mt-20 pb-16">
           <div className="mb-7 flex flex-col justify-between gap-3 border-t border-line pt-8 sm:flex-row sm:items-end">
             <div>
               <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">新手指南</p>
@@ -185,7 +175,7 @@ export default function Home() {
               <div className="font-mono text-xs text-muted">© {new Date().getFullYear()} {profile.handle}</div>
             </div>
           </div>
-          <a href={X_URL} {...ext} className="inline-flex items-center gap-2 text-sm font-bold hover:underline">
+          <a href={X_URL} {...ext} className="inline-flex min-h-11 items-center gap-2 text-sm font-bold hover:underline">
             <XLogo /> x.com/Lniosytest
           </a>
         </div>
