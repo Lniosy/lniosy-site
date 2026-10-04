@@ -10,13 +10,6 @@ export const SITE_URL = "https://litiancai.vercel.app";
 // 更新时重新核对，不要凭空填数。
 export const X_FOLLOWERS_LABEL = "2,600+";
 
-// 嵌入的真实推文（2026-10-04 从 api.fxtwitter.com 读取，原文照录）
-export const featuredTweet = {
-  url: "https://x.com/Lniosytest/status/2106623293746971005",
-  date: "2026年10月4日",
-  text: "拿到 ITIN 以后，我打给 Equifax 建了信用档案。\n查出来 300 分。\n\n不是我信用差，是一条记录都没有，美国银行眼里我就是张白纸。\n9/29 开了 C1，现在等第一期账单报上去。\n从 300 分往上爬，我每一步都发出来。",
-};
-
 export const profile = {
   name: "李天才",
   nameEn: "TianCai",
@@ -27,95 +20,107 @@ export const profile = {
   bio2: "微信小程序从 0 到 1 全链路｜自媒体实战分享",
 };
 
-export type Line = {
+// ---------------- 我在写什么：只放真实发过的 X 帖子 ----------------
+// 数据来源：2026-10-04 17:45 (UTC+8) 从 api.fxtwitter.com 读取 @Lniosytest 公开时间线 / status 接口。
+// 标题与摘录均为原文（仅做断行合并），日期为 UTC+8。不要添加没发过的帖子。
+
+export const topics = [
+  { id: "card", label: "美卡 / ITIN", line: "我自己用 ITIN 办下了 Capital One，从 300 分往上爬的每一步。" },
+  { id: "ai", label: "AI", line: "AI 编程和工具的实用信息。" },
+  { id: "indie", label: "独立开发", line: "一个人折腾产品、服务器和脚本的记录。" },
+  { id: "miniapp", label: "微信小程序", line: "我做的「拼豆图纸生成神器」，在微信里搜索名字就能找到。" },
+] as const;
+export type TopicId = (typeof topics)[number]["id"];
+
+export type Post = {
   id: string;
-  kicker: string;
+  url: string;
+  topic: TopicId;
+  date: string; // UTC+8
+  kind: "post" | "thread" | "article" | "image";
   title: string;
-  desc: string;
-  note?: string;
-  href: string;
-  cta: string;
-  accent: string;
-  mark: string;
-  todo?: boolean;
+  excerpt?: string;
+  image?: string;
+  imageBg?: string; // 图片留白处的底色（取自图片边缘）
+  featured?: boolean;
 };
 
-export const lines: Line[] = [
+export const posts: Post[] = [
   {
-    id: "us-card",
-    kicker: "美卡 / ITIN",
-    title: "我用 ITIN 办下了 Capital One",
-    desc: "我自己申请了美国 ITIN，并用它办下了 Capital One 信用卡。把一路踩过的坑和真实流程，慢慢整理分享出来。",
-    note: "个人经验分享，不构成金融建议；规则以银行官方为准。",
-    href: "#referrals",
-    cta: "去美卡邀请专区",
-    accent: "#c8f04a",
-    mark: "C1",
-    todo: true,
+    id: "2106623293746971005",
+    url: "https://x.com/Lniosytest/status/2106623293746971005",
+    topic: "card",
+    date: "2026.10.04",
+    kind: "image",
+    title: "拿到 ITIN 以后，我打给 Equifax 建了信用档案。查出来 300 分。",
+    excerpt: "不是我信用差，是一条记录都没有，美国银行眼里我就是张白纸。9/29 开了 C1，现在等第一期账单报上去。从 300 分往上爬，我每一步都发出来。",
+    image: "/posts/2106623293746971005.jpg",
+    imageBg: "#fff8e8",
+    featured: true,
   },
   {
-    id: "ai",
-    kicker: "AI",
-    title: "AI 工具与实战",
-    desc: "日常在用的 AI 工具、工作流和折腾记录，偏实用，不吹概念。",
-    href: X_URL, // TODO
-    cta: "看 AI 相关内容",
-    accent: "#b6ccff",
-    mark: "AI",
-    todo: true,
+    id: "2106681699539018222",
+    url: "https://x.com/Lniosytest/status/2106681699539018222",
+    topic: "indie",
+    date: "2026.10.04",
+    kind: "article",
+    title: "用中国移动 5G 消息，给服务器脚本加个免费短信报警推送服务（附开通步骤）",
+    excerpt: "我有几个脚本常年挂在服务器上跑。平时不出声，挂了也不吱声……这两天折腾出一个白嫖的法子，现在它一挂，我手机直接来条短信。",
+    image: "/posts/2106681699539018222.jpg",
+    imageBg: "#fff9ef",
+    featured: true,
   },
   {
-    id: "indie",
-    kicker: "独立开发",
-    title: "一个人做产品",
-    desc: "从想法到上线的独立开发过程，记录做产品、做自媒体的实战心得。",
-    href: X_URL, // TODO
-    cta: "看独立开发日志",
-    accent: "#ffb56b",
-    mark: "</>",
-    todo: true,
+    id: "2106642310981361682",
+    url: "https://x.com/Lniosytest/status/2106642310981361682",
+    topic: "ai",
+    date: "2026.10.04",
+    kind: "post",
+    title: "国庆刷 X，一半人在晒旅游，一半人在哭 Claude Code 被封",
+    excerpt: "刷到有人给的解法是整套环境直接搬到海外 VPS，IP、系统、时区一点中国味都不留。",
   },
   {
-    id: "miniapp",
-    kicker: "微信小程序",
-    title: "拼豆图纸生成神器",
-    desc: "我做的微信小程序：把图片变成拼豆图纸。小程序从 0 到 1 的全链路，也会在 X 上持续分享。",
-    note: "在微信中搜索「拼豆图纸生成神器」即可找到。", // TODO: 补充小程序码图片
-    href: X_URL, // TODO: 替换为小程序介绍页 / 小程序码
-    cta: "了解这个小程序",
-    accent: "#f2db55",
-    mark: "拼",
-    todo: true,
-  },
-];
-
-export type Guide = { tag: string; title: string; desc: string; href: string };
-
-// TODO: 文章写好后把 href 换成真实文章链接
-export const guides: Guide[] = [
-  {
-    tag: "ITIN",
-    title: "ITIN 申请经验：我是怎么一步步办下来的",
-    desc: "我自己申请 ITIN 的过程整理：需要准备什么、要注意哪些地方。",
-    href: X_URL,
+    id: "2106435472993992995",
+    url: "https://x.com/Lniosytest/status/2106435472993992995",
+    topic: "ai",
+    date: "2026.10.04",
+    kind: "post",
+    title: "OpenCode 把 DeepSeek Flash 的额度永久提到了每月 60 刀。",
+    excerpt: "便宜模型干杂活，贵模型干难活。小白入门 AI 编程，现在是最便宜的时候。",
   },
   {
-    tag: "美卡入门",
-    title: "美卡入门：第一张美国信用卡怎么开始",
-    desc: "写给新手的基础概念：信用记录、ITIN 与 SSN 的区别、申请前要了解什么。",
-    href: X_URL,
+    id: "2106433621519192418",
+    url: "https://x.com/Lniosytest/status/2106433621519192418",
+    topic: "card",
+    date: "2026.10.04",
+    kind: "image",
+    title: "为什么C1信用卡刷完，不用急着隔天就还清？",
   },
   {
-    tag: "美卡入门",
-    title: "新 ITIN 下号后：C1 → Equifax → X Money 踩坑记录",
-    desc: "我自己走过的路线：C1 激活、等首期账单上报、Equifax 建档，一条说清。",
-    href: "https://x.com/Lniosytest/status/2105998264612897199",
+    id: "2106426556973306148",
+    url: "https://x.com/Lniosytest/status/2106426556973306148",
+    topic: "card",
+    date: "2026.10.04",
+    kind: "image",
+    title: "为什么C1首卡下来以后，我劝你别急着冲SoFi？",
   },
   {
-    tag: "独立开发",
-    title: "微信小程序从 0 到 1：拼豆图纸生成神器",
-    desc: "一个小工具从想法、开发到上线的过程复盘。",
-    href: X_URL,
+    id: "2105998264612897199",
+    url: "https://x.com/Lniosytest/status/2105998264612897199",
+    topic: "card",
+    date: "2026.10.02",
+    kind: "thread",
+    title: "新ITIN下号后，C1→EQ→X Money 我踩完的坑，一条说清",
+    excerpt: "C1激活后，信用记录不会马上有，要等第一期账单出来，再过1-2周才报给信用局……ITIN用户最大的门槛不是分数，是“系统认不认得你”。",
+  },
+  {
+    id: "2105566896724545611",
+    url: "https://x.com/Lniosytest/status/2105566896724545611",
+    topic: "card",
+    date: "2026.10.01",
+    kind: "post",
+    title: "有ITIN的注意了：新泽西是最容易拿美国驾照的州之一",
+    excerpt: "要准备：中国护照 · 中国驾照 · ITIN · 新泽西居住地址证明（要有你名字）……但注意：必须真的住在新泽西。",
   },
 ];
 

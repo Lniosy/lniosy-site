@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { X_URL, X_FOLLOWERS_LABEL, featuredTweet, profile, lines, guides } from "@/lib/content";
-import TweetEmbed from "@/components/TweetEmbed";
+import { X_URL, X_FOLLOWERS_LABEL, profile } from "@/lib/content";
+import Writing from "@/components/Writing";
 import Referrals from "@/components/Referrals";
 import { Arrow, XLogo } from "@/components/Icons";
 
@@ -22,8 +22,7 @@ export default function Home() {
           </a>
           <nav className="flex items-center gap-3 sm:gap-6">
             <a href="#referrals" className="inline-flex min-h-10 items-center font-mono text-xs font-bold tracking-wide text-ink hover:underline sm:text-muted sm:hover:text-ink sm:hover:no-underline">美卡邀请</a>
-            <a href="#lines" className="hidden min-h-10 items-center font-mono text-xs font-bold tracking-wide text-muted hover:text-ink sm:inline-flex">内容</a>
-            <a href="#guides" className="hidden min-h-10 items-center font-mono text-xs font-bold tracking-wide text-muted hover:text-ink sm:inline-flex">新手指南</a>
+            <a href="#writing" className="hidden min-h-10 items-center font-mono text-xs font-bold tracking-wide text-muted hover:text-ink sm:inline-flex">文章</a>
             <a href={X_URL} {...ext} className="inline-flex min-h-10 items-center gap-2 bg-ink px-3.5 py-2 text-[13px] font-semibold text-paper transition hover:-translate-y-0.5">
               <XLogo className="h-3.5 w-3.5" />
               关注
@@ -65,7 +64,7 @@ export default function Home() {
                 </span>
                 <span aria-hidden className="text-ink/20">|</span>
                 <a href="#referrals" className="inline-flex min-h-10 items-center underline decoration-ink/25 underline-offset-4 hover:text-ink hover:decoration-ink">美卡邀请专区</a>
-                <a href="#guides" className="inline-flex min-h-10 items-center underline decoration-ink/25 underline-offset-4 hover:text-ink hover:decoration-ink">新手指南</a>
+                <a href="#writing" className="inline-flex min-h-10 items-center underline decoration-ink/25 underline-offset-4 hover:text-ink hover:decoration-ink">我在写什么</a>
               </div>
             </div>
           </div>
@@ -105,88 +104,8 @@ export default function Home() {
           </a>
         </section>
 
-        {/* Latest real tweet */}
-        <section aria-labelledby="tweet-title" className="pb-16">
-          <div className="grid items-center gap-8 border border-line bg-[#fffffcb3] p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,550px)] lg:gap-12 lg:p-10">
-            <div>
-              <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">来自我的 X · 正在进行</p>
-              <h2 id="tweet-title" className="mt-2 text-2xl font-extrabold leading-snug tracking-tight [text-wrap:balance] sm:text-3xl">
-                从 300 分往上爬，<br />我每一步都发出来。
-              </h2>
-              <p className="mt-3 max-w-md text-sm leading-6 text-muted">ITIN → Capital One → 等首期账单上报 → 建立信用记录。想看后续，就在 X 上跟着我。</p>
-              <a href={featuredTweet.url} {...ext} className="mt-5 inline-flex min-h-11 items-center gap-2 border-b border-ink/40 text-sm font-bold hover:border-ink">
-                在 X 上看原帖和评论 <Arrow className="h-3.5 w-3.5" />
-              </a>
-            </div>
-            <div className="flex justify-center lg:justify-end">
-              <TweetEmbed url={featuredTweet.url} text={featuredTweet.text} date={featuredTweet.date} />
-            </div>
-          </div>
-        </section>
-
-        {/* Lines */}
-        <section id="lines" className="scroll-mt-20 pb-16">
-          <div className="mb-7 flex flex-col justify-between gap-3 border-t border-line pt-8 sm:flex-row sm:items-end">
-            <div>
-              <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">我在做什么</p>
-              <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">四条内容线</h2>
-            </div>
-            <p className="max-w-sm text-sm leading-6 text-muted">美卡 / ITIN 直达下方邀请专区，其余内容都在我的 X 上持续更新。</p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {lines.map((l, i) => (
-              <a
-                key={l.id}
-                id={l.id}
-                href={l.href}
-                {...(l.href.startsWith("#") ? {} : ext)}
-                style={{ ["--accent" as string]: l.accent }}
-                className="card-accent group relative flex min-h-[300px] flex-col border border-line bg-[#fffffce6] p-5 transition hover:-translate-y-1 hover:border-ink/40 hover:bg-white hover:shadow-[0_13px_30px_#1112141a]"
-              >
-                <div className="flex items-center justify-between font-mono text-[11px] tracking-[0.1em] text-muted">
-                  <span>{l.kicker}</span>
-                  <span>/0{i + 1}</span>
-                </div>
-                <div className="mt-5 grid h-12 w-12 place-items-center bg-ink font-mono text-sm font-bold text-paper" style={{ boxShadow: `4px 4px 0 ${l.accent}` }}>
-                  {l.mark}
-                </div>
-                <h3 className="mt-5 text-xl font-extrabold leading-snug tracking-tight">{l.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted">{l.desc}</p>
-                {l.note && <p className="mt-3 border-l-2 border-ink/20 pl-3 text-xs leading-5 text-muted">{l.note}</p>}
-                <span className="mt-auto flex items-center justify-between pt-5 text-sm font-bold">
-                  {l.cta}
-                  <Arrow className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </span>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        {/* Guides */}
-        <section id="guides" className="scroll-mt-20 pb-16">
-          <div className="mb-7 flex flex-col justify-between gap-3 border-t border-line pt-8 sm:flex-row sm:items-end">
-            <div>
-              <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">新手指南</p>
-              <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">先看懂，再动手</h2>
-            </div>
-            <p className="max-w-sm text-sm leading-6 text-muted">文章正在整理中，目前内容先发在 X 上。均为个人经验，具体规则请以官方信息为准。</p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {guides.map((g, i) => (
-              <a key={g.title} href={g.href} {...ext} className="group flex gap-5 border border-line bg-[#fffffcb3] p-5 transition hover:border-ink/40 hover:bg-white">
-                <span className="font-mono text-3xl font-extrabold text-ink/15 group-hover:text-ink">{String(i + 1).padStart(2, "0")}</span>
-                <div className="flex-1">
-                  <span className="inline-block bg-ink px-2 py-0.5 font-mono text-[11px] font-bold tracking-wide text-paper">{g.tag}</span>
-                  <h3 className="mt-2 text-lg font-bold leading-snug">{g.title}</h3>
-                  <p className="mt-1 text-sm leading-6 text-muted">{g.desc}</p>
-                  <span className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-muted group-hover:text-ink">
-                    在 X 上查看 <Arrow className="h-3 w-3" />
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
+        {/* 我在写什么 */}
+        <Writing />
 
         {/* Referral zone */}
         <Referrals />
