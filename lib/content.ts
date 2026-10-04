@@ -4,7 +4,7 @@
 export const X_URL = "https://x.com/Lniosytest";
 
 // TODO: 上线后替换为正式域名（用于 OG / canonical）
-export const SITE_URL = "https://example.com";
+export const SITE_URL = "https://litiancai.vercel.app";
 
 export const profile = {
   name: "李天才",
