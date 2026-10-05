@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { referrals, referralGroups, referralDisclosure, type Referral } from "@/lib/content";
+import { goHref, referrals, referralGroups, referralDisclosure, type Referral } from "@/lib/content";
 import CopyCode from "./CopyCode";
 import { Arrow, Check } from "./Icons";
 
@@ -153,7 +153,7 @@ function FeaturedCard({ r }: { r: Referral }) {
           </blockquote>
         )}
         <div className="mt-8 flex flex-col gap-3 lg:flex-row lg:items-center">
-          <a href={r.href} {...sponsored} className="inline-flex min-h-[52px] items-center justify-center gap-2 whitespace-nowrap bg-[#c8f04a] px-6 sm:self-start text-base font-extrabold text-ink transition hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_14px_30px_-8px_#c8f04a99]">
+          <a href={goHref(r.id)} {...sponsored} className="inline-flex min-h-[52px] items-center justify-center gap-2 whitespace-nowrap bg-[#c8f04a] px-6 sm:self-start text-base font-extrabold text-ink transition hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_14px_30px_-8px_#c8f04a99]">
             {r.cta}
             <Arrow />
           </a>
@@ -165,7 +165,7 @@ function FeaturedCard({ r }: { r: Referral }) {
           <span className="font-mono text-[11px] tracking-wide text-paper/50">新标签页打开 · capitalone.com</span>
         </div>
       </div>
-      <a href={r.href} {...sponsored} aria-label={`${r.title}：${r.tagline}`} className="relative order-1 flex flex-col justify-center border-b border-paper/10 px-6 pb-5 pt-9 sm:px-10 md:order-2 md:border-b-0 md:border-l md:px-6 md:py-10 lg:px-10">
+      <a href={goHref(r.id)} {...sponsored} aria-label={`${r.title}：${r.tagline}`} className="relative order-1 flex flex-col justify-center border-b border-paper/10 px-6 pb-5 pt-9 sm:px-10 md:order-2 md:border-b-0 md:border-l md:px-6 md:py-10 lg:px-10">
         <CapitalOneFan r={r} />
         <div className="mt-4 hidden flex-wrap justify-center gap-1.5 font-mono sm:flex text-[10px] tracking-[0.1em] text-paper/55">
           {["Savor", "Quicksilver", "QuicksilverOne", "Venture", "Venture X"].map((n) => (
@@ -182,7 +182,7 @@ function ReferralCard({ r, index }: { r: Referral; index: number }) {
   const n = String(index).padStart(2, "0");
   return (
     <article className="card-accent group relative flex flex-col overflow-hidden border border-line bg-[#fffffce6] transition hover:-translate-y-1 hover:border-ink/40 hover:bg-white hover:shadow-[0_16px_34px_-10px_#11121433]" style={{ ["--accent" as string]: r.accent }}>
-      <a href={r.href} {...sponsored} aria-label={`${r.title}（邀请链接）`} className="block h-44 sm:h-48">
+      <a href={goHref(r.id)} {...sponsored} aria-label={`${r.title}（邀请链接）`} className="block h-44 sm:h-48">
         {(() => { const V = visuals[r.visual]; return V ? <V /> : null; })()}
       </a>
       <div className="flex flex-1 flex-col p-5 sm:p-6">
@@ -205,7 +205,7 @@ function ReferralCard({ r, index }: { r: Referral; index: number }) {
           </div>
         )}
         {r.footnote && <p className="mt-3 text-xs leading-5 text-muted">{r.footnote}</p>}
-        <a href={r.href} {...sponsored} className="mt-auto inline-flex min-h-12 items-center justify-between gap-2 border-t border-line pt-4 text-sm font-extrabold transition hover:text-[#1d2a6b]">
+        <a href={goHref(r.id)} {...sponsored} className="mt-auto inline-flex min-h-12 items-center justify-between gap-2 border-t border-line pt-4 text-sm font-extrabold transition hover:text-[#1d2a6b]">
           <span className="pt-1">{r.cta}</span>
           <span className="mt-1 grid h-9 w-9 place-items-center bg-ink text-paper transition group-hover:translate-x-0.5"><Arrow /></span>
         </a>

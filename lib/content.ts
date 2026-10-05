@@ -297,3 +297,7 @@ export const referrals: Referral[] = [
 
 export const referralDisclosure =
   "含我的邀请链接，通过链接申请我可能获得奖励；个人经验不构成金融建议。";
+
+// 点击统计：/go/<slug>/ 静态跳转页（Vercel Web Analytics 记一次 pageview 后跳转）
+export const goSlug = (id: string) => (id === "capital-one" ? "c1" : id);
+export const goHref = (id: string) => `/go/${goSlug(id)}/`;

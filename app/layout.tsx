@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { SITE_URL, X_URL } from "@/lib/content";
 
 const title = "李天才 @Lniosytest｜美卡 ITIN · AI · 独立开发";
@@ -38,7 +39,10 @@ export const viewport: Viewport = { themeColor: "#111111" };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-CN">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
