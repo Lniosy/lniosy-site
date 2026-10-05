@@ -162,7 +162,7 @@ export type Referral = {
   cta: string;
   accent: string;
   group: ReferralGroup;
-  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "muse" | "cliproxy" | "redpocket";
+  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "savo" | "mexc" | "muse" | "cliproxy" | "redpocket";
   badge?: string;
   art?: CardArt[];
   code?: { label: string; value: string; hint?: string };
@@ -254,6 +254,40 @@ export const referrals: Referral[] = [
     group: "crypto",
     visual: "bybit",
     footnote: "加密资产波动大、有风险；Bybit 服务在部分国家/地区不可用。",
+  },
+  {
+    id: "savo",
+    issuer: "Savo",
+    category: "加密卡 · Savo",
+    title: "Savo U卡",
+    tagline: "用 USDT 等加密资产充值消费的 U 卡，这是我的邀请入口",
+    points: [
+      "通过我的邀请链接注册，邀请返利以 Savo 官方活动为准",
+      "可申请地区、开卡费用与使用规则以 Savo 官方页面为准",
+    ],
+    href: "https://sv.me/r/SCVQG",
+    cta: "通过邀请注册 Savo",
+    accent: "#22c55e",
+    group: "crypto",
+    visual: "savo",
+    footnote: "规则以 Savo 官网为准；加密资产波动大、有风险，请遵守当地法律法规。",
+  },
+  {
+    id: "mexc",
+    issuer: "MEXC",
+    category: "加密卡 · MEXC",
+    title: "MEXC U卡 / 交易所",
+    tagline: "MEXC 交易所注册入口，也可在站内申请 U 卡",
+    points: [
+      "通过我的邀请链接注册 MEXC，邀请返利以 MEXC 官方活动为准",
+      "U 卡可申请地区、资格与费用以 MEXC 官方页面为准",
+    ],
+    href: "https://s.mexc.com/referral/soPlwdQEbb",
+    cta: "通过邀请注册 MEXC",
+    accent: "#2f7cf6",
+    group: "crypto",
+    visual: "mexc",
+    footnote: "规则以 MEXC 官网为准；加密资产波动大、有风险，MEXC 服务在部分国家/地区不可用。",
   },
   {
     id: "muse",

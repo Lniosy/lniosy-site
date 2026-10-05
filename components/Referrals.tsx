@@ -80,6 +80,40 @@ function BybitVisual() {
   );
 }
 
+function SavoVisual() {
+  // 品牌色卡面示意（非官方卡面图）
+  return (
+    <div className="relative flex h-full items-center justify-center overflow-hidden bg-[radial-gradient(120%_120%_at_100%_0%,#0f3d25_0%,#0d1a14_55%,#070b09_100%)]">
+      <div aria-hidden className="absolute -left-8 bottom-0 h-36 w-36 rounded-full bg-[#22c55e] opacity-20 blur-2xl" />
+      <div className="relative aspect-[1.586] w-[62%] max-w-[230px] rotate-[-5deg] rounded-[6%] bg-[linear-gradient(140deg,#1f3a2c_0%,#12201a_55%,#060a08_100%)] p-[7%] shadow-[0_18px_30px_-10px_rgba(0,0,0,0.8)] ring-1 ring-white/15 transition duration-500 group-hover:rotate-[-1deg] group-hover:scale-105">
+        <div className="text-[clamp(13px,4.2vw,18px)] font-black tracking-[0.06em] text-white">
+          SAV<span className="text-[#22c55e]">O</span>
+        </div>
+        <div className="absolute bottom-[14%] left-[7%] h-[18%] w-[15%] rounded-[18%] bg-gradient-to-br from-[#f4d27a] to-[#b98a2c]" />
+        <span className="absolute bottom-[12%] right-[7%] font-mono text-[10px] tracking-[0.12em] text-white/60">U CARD</span>
+      </div>
+      <span className="absolute left-3 top-3 font-mono text-[10px] tracking-[0.12em] text-white/40">卡面示意</span>
+    </div>
+  );
+}
+
+function MexcVisual() {
+  // 品牌色卡面示意（非官方卡面图）
+  return (
+    <div className="relative flex h-full items-center justify-center overflow-hidden bg-[radial-gradient(120%_120%_at_100%_0%,#0b2a5c_0%,#0c1424_55%,#06090f_100%)]">
+      <div aria-hidden className="absolute -left-8 bottom-0 h-36 w-36 rounded-full bg-[#2f7cf6] opacity-20 blur-2xl" />
+      <div className="relative aspect-[1.586] w-[62%] max-w-[230px] rotate-[5deg] rounded-[6%] bg-[linear-gradient(140deg,#1d2b45_0%,#111a2b_55%,#05080f_100%)] p-[7%] shadow-[0_18px_30px_-10px_rgba(0,0,0,0.8)] ring-1 ring-white/15 transition duration-500 group-hover:rotate-[1deg] group-hover:scale-105">
+        <div className="text-[clamp(13px,4.2vw,18px)] font-black tracking-[0.06em] text-white">
+          ME<span className="text-[#2f7cf6]">X</span>C
+        </div>
+        <div className="absolute bottom-[14%] left-[7%] h-[18%] w-[15%] rounded-[18%] bg-gradient-to-br from-[#f4d27a] to-[#b98a2c]" />
+        <span className="absolute bottom-[12%] right-[7%] font-mono text-[10px] tracking-[0.12em] text-white/60">U CARD</span>
+      </div>
+      <span className="absolute left-3 top-3 font-mono text-[10px] tracking-[0.12em] text-white/40">卡面示意</span>
+    </div>
+  );
+}
+
 function MuseVisual() {
   return (
     <div className="relative flex h-full items-center justify-center overflow-hidden bg-[radial-gradient(110%_110%_at_50%_0%,#1b2a66_0%,#0b0f24_60%,#05070f_100%)]">
@@ -126,6 +160,8 @@ const visuals: Record<string, () => React.JSX.Element> = {
   wise: WiseVisual,
   starryblu: StarryBluVisual,
   bybit: BybitVisual,
+  savo: SavoVisual,
+  mexc: MexcVisual,
   muse: MuseVisual,
   cliproxy: CliProxyVisual,
   redpocket: RedPocketVisual,
