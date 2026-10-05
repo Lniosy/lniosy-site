@@ -114,6 +114,23 @@ function MexcVisual() {
   );
 }
 
+function PlasmaVisual() {
+  // 品牌色卡面示意（非官方卡面图）
+  return (
+    <div className="relative flex h-full items-center justify-center overflow-hidden bg-[radial-gradient(120%_120%_at_100%_0%,#2c3a0c_0%,#121410_55%,#080907_100%)]">
+      <div aria-hidden className="absolute -left-8 bottom-0 h-36 w-36 rounded-full bg-[#a3e635] opacity-20 blur-2xl" />
+      <div className="relative aspect-[1.586] w-[62%] max-w-[230px] rotate-[-4deg] rounded-[6%] bg-[linear-gradient(140deg,#2a2d24_0%,#16180f_55%,#050604_100%)] p-[7%] shadow-[0_18px_30px_-10px_rgba(0,0,0,0.8)] ring-1 ring-white/15 transition duration-500 group-hover:rotate-[0deg] group-hover:scale-105">
+        <div className="text-[clamp(13px,4.2vw,18px)] font-black tracking-[0.06em] text-white">
+          PLASMA <span className="text-[#a3e635]">ONE</span>
+        </div>
+        <div className="absolute bottom-[14%] left-[7%] h-[18%] w-[15%] rounded-[18%] bg-gradient-to-br from-[#f4d27a] to-[#b98a2c]" />
+        <span className="absolute bottom-[11%] right-[7%] text-[clamp(11px,3.4vw,15px)] font-black italic tracking-tight text-white/80">VISA</span>
+      </div>
+      <span className="absolute left-3 top-3 font-mono text-[10px] tracking-[0.12em] text-white/40">卡面示意</span>
+    </div>
+  );
+}
+
 function MuseVisual() {
   return (
     <div className="relative flex h-full items-center justify-center overflow-hidden bg-[radial-gradient(110%_110%_at_50%_0%,#1b2a66_0%,#0b0f24_60%,#05070f_100%)]">
@@ -162,6 +179,7 @@ const visuals: Record<string, () => React.JSX.Element> = {
   bybit: BybitVisual,
   savo: SavoVisual,
   mexc: MexcVisual,
+  plasma: PlasmaVisual,
   muse: MuseVisual,
   cliproxy: CliProxyVisual,
   redpocket: RedPocketVisual,

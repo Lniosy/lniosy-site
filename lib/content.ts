@@ -162,7 +162,7 @@ export type Referral = {
   cta: string;
   accent: string;
   group: ReferralGroup;
-  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "savo" | "mexc" | "muse" | "cliproxy" | "redpocket";
+  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "savo" | "mexc" | "plasma" | "muse" | "cliproxy" | "redpocket";
   badge?: string;
   art?: CardArt[];
   code?: { label: string; value: string; hint?: string };
@@ -260,10 +260,11 @@ export const referrals: Referral[] = [
     issuer: "Savo",
     category: "加密卡 · Savo",
     title: "Savo U卡",
-    tagline: "用 USDT 等加密资产充值消费的 U 卡，这是我的邀请入口",
+    tagline: "全能钱包 + U 卡，这是我的邀请入口",
     points: [
-      "通过我的邀请链接注册，邀请返利以 Savo 官方活动为准",
-      "可申请地区、开卡费用与使用规则以 Savo 官方页面为准",
+      "全能钱包，可开虚拟卡和实体 Visa 卡",
+      "支持加密货币充值，可绑定 Apple Pay / Google Pay",
+      "开通地区与费率以官网为准",
     ],
     href: "https://sv.me/r/SCVQG",
     cta: "通过邀请注册 Savo",
@@ -279,15 +280,35 @@ export const referrals: Referral[] = [
     title: "MEXC U卡 / 交易所",
     tagline: "MEXC 交易所注册入口，也可在站内申请 U 卡",
     points: [
-      "通过我的邀请链接注册 MEXC，邀请返利以 MEXC 官方活动为准",
-      "U 卡可申请地区、资格与费用以 MEXC 官方页面为准",
+      "官方申请黑名单含中国大陆和美国，资格看地址证明国家，大陆地址申请不了",
+      "0 手续费活动已于 9 月 30 日结束；10 月 1 日起每笔消费收 1% 手续费",
+      "消费返现 4–10% USDT，上限 800 USDT",
     ],
     href: "https://s.mexc.com/referral/soPlwdQEbb",
     cta: "通过邀请注册 MEXC",
     accent: "#2f7cf6",
     group: "crypto",
     visual: "mexc",
-    footnote: "规则以 MEXC 官网为准；加密资产波动大、有风险，MEXC 服务在部分国家/地区不可用。",
+    footnote: "返现与费率规则以 MEXC 官网为准；加密资产波动大、有风险，MEXC 服务在部分国家/地区不可用。",
+  },
+  {
+    id: "plasma",
+    issuer: "Plasma",
+    category: "加密卡 · Plasma",
+    title: "Plasma One",
+    tagline: "稳定币 Visa 卡，非托管钱包，这是我的邀请入口",
+    points: [
+      "稳定币 Visa 卡；钱包非托管，私钥在用户手里",
+      "免费档基础返现 2%；Core 档每年 199 美元，或锁仓 20,000 XPL",
+      "被邀请人须完成身份认证并激活卡，邀请才算数",
+      "支持国家以官网为准",
+    ],
+    href: "https://plasma.org/download/A3BZAC",
+    cta: "通过邀请注册 Plasma One",
+    accent: "#a3e635",
+    group: "crypto",
+    visual: "plasma",
+    footnote: "返现与档位规则以 Plasma 官网为准；加密资产波动大、有风险，请遵守当地法律法规。",
   },
   {
     id: "muse",
