@@ -280,7 +280,6 @@ export const referrals: Referral[] = [
     title: "MEXC U卡 / 交易所",
     tagline: "MEXC 交易所注册入口，也可在站内申请 U 卡",
     points: [
-      "官方申请黑名单含中国大陆和美国，资格看地址证明国家，大陆地址申请不了",
       "0 手续费活动已于 9 月 30 日结束；10 月 1 日起每笔消费收 1% 手续费",
       "消费返现 4–10% USDT，上限 800 USDT",
     ],
@@ -289,7 +288,7 @@ export const referrals: Referral[] = [
     accent: "#2f7cf6",
     group: "crypto",
     visual: "mexc",
-    footnote: "返现与费率规则以 MEXC 官网为准；加密资产波动大、有风险，MEXC 服务在部分国家/地区不可用。",
+    footnote: "返现与费率规则以 MEXC 官网为准；加密资产波动大、有风险。",
   },
   {
     id: "plasma",
