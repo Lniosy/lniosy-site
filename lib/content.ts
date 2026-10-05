@@ -301,7 +301,8 @@ export const referrals: Referral[] = [
     tagline: "美国实体手机号卡",
     points: [
       "美国实体手机号卡，我自己用的就是这张",
-      "我用它收 C1 等美国服务的短信验证码",
+      "eBay 官方店 30 美元 360 天，折合每月 2.5 刀",
+      "电话短信不限，每 30 天 200MB 高速流量，可选 eSIM",
     ],
     // 邀请链接：跳转到 RedPocket 官方页面
     href: "https://ebay.io/m/kAae1p",
@@ -309,7 +310,7 @@ export const referrals: Referral[] = [
     accent: "#e11d48",
     group: "network",
     visual: "redpocket",
-    footnote: "以上是我个人的使用心得，套餐与价格以 RedPocket 官方页面为准。",
+    footnote: "套餐与价格以 eBay 官方店页面为准；官方要求在美国境内激活。",
   },
 ];
 
