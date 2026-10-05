@@ -110,12 +110,25 @@ function CliProxyVisual() {
   );
 }
 
+function RedPocketVisual() {
+  return (
+    <div className="relative flex h-full items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#b3122e_0%,#7a0a1f_60%,#3d0510_100%)]">
+      <div aria-hidden className="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-[#ffcc4d] opacity-20 blur-3xl" />
+      <div className="relative flex flex-col items-center gap-3 transition duration-500 group-hover:scale-105">
+        <span className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">RedPocket</span>
+        <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] tracking-[0.12em] text-[#ffe4a3] ring-1 ring-white/15">红包卡 · US SIM</span>
+      </div>
+    </div>
+  );
+}
+
 const visuals: Record<string, () => React.JSX.Element> = {
   wise: WiseVisual,
   starryblu: StarryBluVisual,
   bybit: BybitVisual,
   muse: MuseVisual,
   cliproxy: CliProxyVisual,
+  redpocket: RedPocketVisual,
 };
 
 function Points({ items, dark = false }: { items: string[]; dark?: boolean }) {

@@ -162,7 +162,7 @@ export type Referral = {
   cta: string;
   accent: string;
   group: ReferralGroup;
-  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "muse" | "cliproxy";
+  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "muse" | "cliproxy" | "redpocket";
   badge?: string;
   art?: CardArt[];
   code?: { label: string; value: string; hint?: string };
@@ -292,6 +292,24 @@ export const referrals: Referral[] = [
     group: "network",
     visual: "cliproxy",
     footnote: "以上是我个人的使用心得，不代表任何保证；请遵守各平台规则与当地法律法规。",
+  },
+  {
+    id: "redpocket",
+    issuer: "RedPocket",
+    category: "网络环境 · 美国手机号",
+    title: "RedPocket 红包卡",
+    tagline: "美国实体手机号卡",
+    points: [
+      "美国实体手机号卡，我自己用的就是这张",
+      "我用它收 C1 等美国服务的短信验证码",
+    ],
+    // 邀请链接：跳转到 RedPocket 官方页面
+    href: "https://ebay.io/m/kAae1p",
+    cta: "去 RedPocket 看看",
+    accent: "#e11d48",
+    group: "network",
+    visual: "redpocket",
+    footnote: "以上是我个人的使用心得，套餐与价格以 RedPocket 官方页面为准。",
   },
 ];
 
