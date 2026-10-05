@@ -43,9 +43,22 @@ export type Post = {
   image?: string;
   imageBg?: string; // 图片留白处的底色（取自图片边缘）
   featured?: boolean;
+  lead?: boolean; // 置顶长文：整行展示，不需要配图
 };
 
+export const C1_ARTICLE_URL = "https://x.com/Lniosytest/status/2106961582370537803";
+
 export const posts: Post[] = [
+  {
+    id: "2106961582370537803",
+    url: C1_ARTICLE_URL,
+    topic: "card",
+    date: "2026.10.05",
+    kind: "article",
+    title: "ITIN 没 SSN，我是怎么下第一张美卡 C1 的（8 个环节，每个都有坑）",
+    featured: true,
+    lead: true,
+  },
   {
     id: "2106623293746971005",
     url: "https://x.com/Lniosytest/status/2106623293746971005",
@@ -156,6 +169,7 @@ export type Referral = {
   quote?: string;
   featured?: boolean;
   footnote?: string;
+  story?: { label: string; href: string }; // 次要链接：我的真实经历
 };
 
 export const referrals: Referral[] = [
@@ -184,6 +198,7 @@ export const referrals: Referral[] = [
     quote:
       "Hey there! I'm loving my card from Capital One. Their tool makes it easy to see what cards you'll be approved for with no impact to your credit score.",
     featured: true,
+    story: { label: "看我的真实经历", href: C1_ARTICLE_URL },
     footnote: "卡面来自 Capital One 官网，仅作示意；可申请的卡和结果以官网预审为准。",
   },
   {

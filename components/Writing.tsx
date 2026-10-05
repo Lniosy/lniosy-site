@@ -11,13 +11,14 @@ const topicLabel = Object.fromEntries(topics.map((t) => [t.id, t.label])) as Rec
 const topicAccent: Record<TopicId, string> = { card: "#c8f04a", ai: "#b6ccff", indie: "#ffb56b", miniapp: "#f2db55" };
 
 function PostCard({ p, layout }: { p: Post; layout: boolean }) {
+  const lead = layout && !!p.lead;
   const big = layout && p.featured && !!p.image;
   return (
     <a
       href={p.url}
       {...ext}
       className={`group relative flex flex-col overflow-hidden border border-line bg-[#fffffce6] transition hover:-translate-y-1 hover:border-ink/40 hover:bg-white hover:shadow-[0_14px_30px_-10px_#11121433] ${
-        big ? "md:col-span-1 lg:col-span-3" : "lg:col-span-2"
+        lead ? "border-ink md:col-span-2 lg:col-span-6" : big ? "md:col-span-1 lg:col-span-3" : "lg:col-span-2"
       }`}
     >
       {p.image && (
@@ -25,20 +26,26 @@ function PostCard({ p, layout }: { p: Post; layout: boolean }) {
           <img src={p.image} alt="" className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.03]" />
         </div>
       )}
-      <div className="flex flex-1 flex-col p-5">
+      {lead && <span aria-hidden className="absolute inset-y-0 left-0 w-1.5" style={{ background: topicAccent[p.topic] }} />}
+      <div className={`flex flex-1 flex-col p-5 ${lead ? "pl-6 sm:p-7 sm:pl-8" : ""}`}>
         <div className="flex items-center gap-2 font-mono text-[11px] tracking-wide">
           <span className="inline-flex items-center gap-1.5 font-bold text-ink">
             <span className="h-2 w-2" style={{ background: topicAccent[p.topic] }} aria-hidden />
             {topicLabel[p.topic]}
           </span>
           <span className="text-ink/25">/</span>
-          <span className="text-muted">{kindLabel[p.kind]}</span>
+          {p.lead ? (
+            <span className="bg-ink px-1.5 py-0.5 font-bold text-paper">{kindLabel[p.kind]}</span>
+          ) : (
+            <span className="text-muted">{kindLabel[p.kind]}</span>
+          )}
+          {lead && <span className="hidden border border-ink/20 px-1.5 py-0.5 font-bold text-ink sm:inline">最新</span>}
           <time className="ml-auto text-muted">{p.date}</time>
         </div>
-        <h3 className={`mt-3 font-extrabold leading-snug tracking-tight ${big ? "text-xl sm:text-[22px]" : "text-[17px]"}`}>{p.title}</h3>
+        <h3 className={`mt-3 font-extrabold leading-snug tracking-tight ${lead ? "text-xl [text-wrap:balance] sm:text-2xl lg:text-[28px]" : big ? "text-xl sm:text-[22px]" : "text-[17px]"}`}>{p.title}</h3>
         {p.excerpt && <p className="mt-2 line-clamp-3 text-sm leading-6 text-muted">{p.excerpt}</p>}
         <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-xs font-bold text-muted group-hover:text-ink">
-          在 X 上看原帖 <Arrow className="h-3.5 w-3.5" />
+          {p.lead ? "在 X 上读全文" : "在 X 上看原帖"} <Arrow className="h-3.5 w-3.5" />
         </span>
       </div>
     </a>

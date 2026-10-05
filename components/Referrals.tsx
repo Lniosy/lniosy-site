@@ -157,6 +157,11 @@ function FeaturedCard({ r }: { r: Referral }) {
             {r.cta}
             <Arrow />
           </a>
+          {r.story && (
+            <a href={r.story.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap border border-paper/30 px-4 text-sm font-bold text-paper/85 transition hover:border-[#c8f04a] hover:text-[#c8f04a] sm:self-start">
+              {r.story.label} <Arrow className="h-3.5 w-3.5" />
+            </a>
+          )}
           <span className="font-mono text-[11px] tracking-wide text-paper/50">新标签页打开 · capitalone.com</span>
         </div>
       </div>
