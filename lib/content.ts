@@ -357,6 +357,7 @@ export const referrals: Referral[] = [
       "美国实体手机号卡，我自己用的就是这张",
       "eBay 官方店 30 美元 360 天，折合每月 2.5 刀",
       "电话短信不限，每 30 天 200MB 高速流量，可选 eSIM",
+      "我人在国内连 Wi-Fi、开 Wi-Fi 通话就激活成功了；漫游流量被砍到 100MB",
     ],
     // 邀请链接：跳转到 RedPocket 官方页面
     href: "https://ebay.io/m/kAae1p",
@@ -364,7 +365,7 @@ export const referrals: Referral[] = [
     accent: "#e11d48",
     group: "network",
     visual: "redpocket",
-    footnote: "套餐与价格以 eBay 官方店页面为准；官方要求在美国境内激活。",
+    footnote: "套餐与价格以 eBay 官方店页面为准；官方写 SIM 只能在美国境内激活、eBay 套餐不含漫游，国内激活和漫游是我个人实测，官方不保证；买后 90 天内要激活。",
   },
 ];
 
