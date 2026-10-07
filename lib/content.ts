@@ -148,7 +148,7 @@ export const referralGroups = [
   { id: "crypto", label: "加密卡" },
   { id: "ai", label: "工具 / AI" },
   { id: "network", label: "网络环境" },
-  { id: "x", label: "X / 蓝V" },
+  // { id: "x", label: "X / 蓝V" }, // 蓝V卡暂时下架，恢复时一起取消注释
 ] as const;
 export type ReferralGroup = (typeof referralGroups)[number]["id"];
 
@@ -369,25 +369,26 @@ export const referrals: Referral[] = [
     visual: "redpocket",
     footnote: "套餐与价格以 eBay 官方店页面为准；官方写 SIM 只能在美国境内激活、eBay 套餐不含漫游，国内激活和漫游是我个人实测，官方不保证；买后 90 天内要激活。",
   },
-  {
-    id: "ronvip",
-    issuer: "RON Premium",
-    category: "X / 蓝V · 代开通",
-    title: "低价开推特蓝V",
-    tagline: "我有返利，这是我的推广入口",
-    points: [
-      "可开 X Premium（蓝V），也有 Telegram Premium",
-      "下单只填公开的 X 用户名，不用给密码",
-      "下单后可以用 X 用户名查订单进度",
-      "实时价格以页面为准",
-    ],
-    href: "https://ronvip.pages.dev/?ref=RP6Q302D4M1U2J215G",
-    cta: "去开蓝V",
-    accent: "#1d9bf0",
-    group: "x",
-    visual: "ronvip",
-    footnote: "第三方代开通平台，不是 X 官方；会员功能和资格以 X 平台规则为准。",
-  },
+  // 蓝V代开卡暂时下架（2026-10-07 老板要求），等创作者收益审核通过、老板通知后再取消注释
+  // {
+  //   id: "ronvip",
+  //   issuer: "RON Premium",
+  //   category: "X / 蓝V · 代开通",
+  //   title: "低价开推特蓝V",
+  //   tagline: "我有返利，这是我的推广入口",
+  //   points: [
+  //     "可开 X Premium（蓝V），也有 Telegram Premium",
+  //     "下单只填公开的 X 用户名，不用给密码",
+  //     "下单后可以用 X 用户名查订单进度",
+  //     "实时价格以页面为准",
+  //   ],
+  //   href: "https://ronvip.pages.dev/?ref=RP6Q302D4M1U2J215G",
+  //   cta: "去开蓝V",
+  //   accent: "#1d9bf0",
+  //   group: "x",
+  //   visual: "ronvip",
+  //   footnote: "第三方代开通平台，不是 X 官方；会员功能和资格以 X 平台规则为准。",
+  // },
 ];
 
 export const referralDisclosure =
