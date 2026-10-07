@@ -176,6 +176,18 @@ function RedPocketVisual() {
   );
 }
 
+function RonVipVisual() {
+  return (
+    <div className="relative flex h-full items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#0f1419_0%,#0b2a44_60%,#1d9bf0_140%)]">
+      <div aria-hidden className="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-[#1d9bf0] opacity-30 blur-3xl" />
+      <div className="relative flex flex-col items-center gap-3 transition duration-500 group-hover:scale-105">
+        <span className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">X Premium</span>
+        <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] tracking-[0.12em] text-[#bfe3ff] ring-1 ring-white/15">蓝V · 低价开通</span>
+      </div>
+    </div>
+  );
+}
+
 const visuals: Record<string, () => React.JSX.Element> = {
   wise: WiseVisual,
   starryblu: StarryBluVisual,
@@ -186,6 +198,7 @@ const visuals: Record<string, () => React.JSX.Element> = {
   muse: MuseVisual,
   cliproxy: CliProxyVisual,
   redpocket: RedPocketVisual,
+  ronvip: RonVipVisual,
 };
 
 function Points({ items, dark = false }: { items: string[]; dark?: boolean }) {
