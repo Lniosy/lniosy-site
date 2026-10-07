@@ -245,6 +245,20 @@ function FeaturedCard({ r }: { r: Referral }) {
   );
 }
 
+function CopyBlock({ r }: { r: Referral }) {
+  return (
+    <div className="mt-5 space-y-3">
+      <CopyCode label="邀请链接" value={r.href} variant="link" />
+      {r.code && (
+        <div>
+          <span className="mb-1.5 inline-block bg-[#c8f04a] px-2 py-0.5 text-xs font-extrabold text-ink">我有返利</span>
+          <CopyCode label={r.code.label} value={r.code.value} hint={r.code.hint} />
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ReferralCard({ r, index }: { r: Referral; index: number }) {
   const n = String(index).padStart(2, "0");
   return (
@@ -266,11 +280,7 @@ function ReferralCard({ r, index }: { r: Referral; index: number }) {
         <div className="mt-4">
           <Points items={r.points} />
         </div>
-        {r.code && (
-          <div className="mt-5">
-            <CopyCode label={r.code.label} value={r.code.value} hint={r.code.hint} />
-          </div>
-        )}
+        <CopyBlock r={r} />
         {r.footnote && <p className="mt-3 text-xs leading-5 text-muted">{r.footnote}</p>}
         <a href={goHref(r.id)} {...sponsored} className="mt-auto inline-flex min-h-12 items-center justify-between gap-2 border-t border-line pt-4 text-sm font-extrabold transition hover:text-[#1d2a6b]">
           <span className="pt-1">{r.cta}</span>

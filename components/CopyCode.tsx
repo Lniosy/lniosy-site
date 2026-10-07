@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 
-export default function CopyCode({ label, value, hint }: { label: string; value: string; hint?: string }) {
+export default function CopyCode({ label, value, hint, variant = "code" }: { label: string; value: string; hint?: string; variant?: "code" | "link" }) {
   const [copied, setCopied] = useState(false);
 
   async function copy() {
     try {
+      if (!navigator.clipboard || !window.isSecureContext) throw new Error("no clipboard");
       await navigator.clipboard.writeText(value);
     } catch {
       const t = document.createElement("textarea");
@@ -14,8 +15,13 @@ export default function CopyCode({ label, value, hint }: { label: string; value:
       t.setAttribute("readonly", "");
       t.style.position = "fixed";
       t.style.opacity = "0";
+      t.style.top = "0";
+      t.style.left = "0";
+      t.style.fontSize = "16px";
       document.body.appendChild(t);
+      t.focus();
       t.select();
+      t.setSelectionRange(0, value.length);
       document.execCommand("copy");
       document.body.removeChild(t);
     }
@@ -28,7 +34,11 @@ export default function CopyCode({ label, value, hint }: { label: string; value:
     <div className="flex items-stretch overflow-hidden border border-ink/80 bg-white">
       <div className="min-w-0 flex-1 px-3.5 py-2">
         <div className="font-mono text-[10px] font-bold tracking-[0.14em] text-muted">{label}</div>
-        <div className="truncate font-mono text-xl font-extrabold tracking-[0.18em] text-ink slashed-zero">{value}</div>
+        {variant === "link" ? (
+          <div className="select-all break-all font-mono text-[13px] font-semibold leading-5 text-ink">{value}</div>
+        ) : (
+          <div className="select-all break-all font-mono text-xl font-extrabold tracking-[0.18em] text-ink slashed-zero">{value}</div>
+        )}
       </div>
       <button
         type="button"
@@ -50,7 +60,7 @@ export default function CopyCode({ label, value, hint }: { label: string; value:
           </>
         )}
       </button>
-      <span className="sr-only" aria-live="polite">{copied ? "已复制推荐码" : ""}</span>
+      <span className="sr-only" aria-live="polite">{copied ? `已复制${label}` : ""}</span>
     </div>
     {hint && <p className="mt-1.5 font-mono text-[11px] text-muted">{hint}</p>}
     </div>

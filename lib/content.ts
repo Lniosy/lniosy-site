@@ -173,34 +173,35 @@ export type Referral = {
 };
 
 export const referrals: Referral[] = [
-  {
-    id: "capital-one",
-    issuer: "Capital One",
-    category: "信用卡 · 预审批",
-    title: "Capital One 预审批通道",
-    tagline: "不影响信用分，先查能批哪张卡",
-    points: [
-      "我自己用 ITIN 办下了 Capital One，这是我的邀请入口",
-      "进入 Capital One 官方选卡 / 预审工具，不是某一张固定的卡",
-      "先看自己可能获批的卡，再决定申请哪张",
-    ],
-    // 跳转到 capitalone.com/credit-cards/lp/referrals/?referralCode=F0JFG8JY…
-    href: "https://i.capitalone.com/Jf9f7s1cs",
-    cta: "去 Capital One 预审",
-    accent: "#c8f04a",
-    group: "bank",
-    visual: "capital-one",
-    art: [
-      { src: "/cards/quicksilver.png", alt: "Capital One Quicksilver 卡面" },
-      { src: "/cards/venture-x.png", alt: "Capital One Venture X 卡面" },
-      { src: "/cards/savor.png", alt: "Capital One Savor 卡面" },
-    ],
-    quote:
-      "Hey there! I'm loving my card from Capital One. Their tool makes it easy to see what cards you'll be approved for with no impact to your credit score.",
-    featured: true,
-    story: { label: "看我的真实经历", href: C1_ARTICLE_URL },
-    footnote: "卡面来自 Capital One 官网，仅作示意；可申请的卡和结果以官网预审为准。",
-  },
+  // C1 暂时下架（2026-10-07 用户要求），恢复时取消注释即可
+  // {
+  //   id: "capital-one",
+  //   issuer: "Capital One",
+  //   category: "信用卡 · 预审批",
+  //   title: "Capital One 预审批通道",
+  //   tagline: "不影响信用分，先查能批哪张卡",
+  //   points: [
+  //     "我自己用 ITIN 办下了 Capital One，这是我的邀请入口",
+  //     "进入 Capital One 官方选卡 / 预审工具，不是某一张固定的卡",
+  //     "先看自己可能获批的卡，再决定申请哪张",
+  //   ],
+  //   // 跳转到 capitalone.com/credit-cards/lp/referrals/?referralCode=F0JFG8JY…
+  //   href: "https://i.capitalone.com/Jf9f7s1cs",
+  //   cta: "去 Capital One 预审",
+  //   accent: "#c8f04a",
+  //   group: "bank",
+  //   visual: "capital-one",
+  //   art: [
+  //     { src: "/cards/quicksilver.png", alt: "Capital One Quicksilver 卡面" },
+  //     { src: "/cards/venture-x.png", alt: "Capital One Venture X 卡面" },
+  //     { src: "/cards/savor.png", alt: "Capital One Savor 卡面" },
+  //   ],
+  //   quote:
+  //     "Hey there! I'm loving my card from Capital One. Their tool makes it easy to see what cards you'll be approved for with no impact to your credit score.",
+  //   featured: true,
+  //   story: { label: "看我的真实经历", href: C1_ARTICLE_URL },
+  //   footnote: "卡面来自 Capital One 官网，仅作示意；可申请的卡和结果以官网预审为准。",
+  // },
   {
     id: "wise",
     issuer: "Wise",
