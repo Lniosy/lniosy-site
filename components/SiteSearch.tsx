@@ -40,7 +40,7 @@ export default function SiteSearch() {
             enterKeyHint="search"
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="搜卡片、邀请码、链接、文章…  如 U卡 / Wise"
+            placeholder="搜卡片 / 邀请码 / 文章"
             aria-label="搜索全站邀请卡片和文章"
             className="h-14 w-full border-2 border-ink bg-white pl-12 pr-24 text-base font-semibold text-ink shadow-[4px_4px_0_#111214] outline-none placeholder:font-normal placeholder:text-muted focus:shadow-[4px_4px_0_#3ad6ff] [&::-webkit-search-cancel-button]:hidden"
           />
