@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { posts, topics, X_URL, type Post, type TopicId } from "@/lib/content";
 import { Arrow } from "./Icons";
+import { matches, postText } from "@/lib/search";
 
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 const kindLabel: Record<Post["kind"], string> = { post: "帖子", thread: "长帖", article: "长文", image: "图文" };
@@ -52,11 +53,13 @@ function PostCard({ p, layout }: { p: Post; layout: boolean }) {
   );
 }
 
-export default function Writing() {
+export default function Writing({ q = "" }: { q?: string }) {
   const [active, setActive] = useState<TopicId | "all">("all");
-  const list = active === "all" ? posts : posts.filter((p) => p.topic === active);
+  const searching = q.trim().length > 0;
+  const base = searching ? posts.filter((p) => matches(postText(p), q)) : posts;
+  const list = active === "all" ? base : base.filter((p) => p.topic === active);
   const activeTopic = topics.find((t) => t.id === active);
-  const count = (id: TopicId) => posts.filter((p) => p.topic === id).length;
+  const count = (id: TopicId) => base.filter((p) => p.topic === id).length;
 
   const chip = (id: TopicId | "all", label: string, n: number) => {
     const on = active === id;
@@ -87,7 +90,7 @@ export default function Writing() {
       </div>
 
       <div role="group" aria-label="按话题筛选" className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
-        <div className="col-span-2 sm:col-span-1">{chip("all", "全部", posts.length)}</div>
+        <div className="col-span-2 sm:col-span-1">{chip("all", "全部", base.length)}</div>
         {topics.map((t) => chip(t.id, t.label, count(t.id)))}
       </div>
 
@@ -98,7 +101,7 @@ export default function Writing() {
       {list.length > 0 ? (
         <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-6">
           {list.map((p) => (
-            <PostCard key={p.id} p={p} layout={active === "all"} />
+            <PostCard key={p.id} p={p} layout={active === "all" && !searching} />
           ))}
         </div>
       ) : (

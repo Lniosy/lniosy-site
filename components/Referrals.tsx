@@ -1,6 +1,9 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
-import { goHref, referrals, referralGroups, referralDisclosure, type Referral } from "@/lib/content";
+import { goHref, referrals as allReferrals, referralGroups, referralDisclosure, type Referral } from "@/lib/content";
 import CopyCode from "./CopyCode";
+import { matches, referralText } from "@/lib/search";
 import { Arrow, Check } from "./Icons";
 
 const sponsored = { target: "_blank", rel: "noopener sponsored" } as const;
@@ -302,8 +305,9 @@ function GroupLabel({ label, count }: { label: string; count: number }) {
   );
 }
 
-export default function Referrals() {
-  const order = new Map(referrals.map((r, i) => [r.id, i + 1]));
+export default function Referrals({ q = "" }: { q?: string }) {
+  const referrals = q.trim() ? allReferrals.filter((r) => matches(referralText(r), q)) : allReferrals;
+  const order = new Map(allReferrals.map((r, i) => [r.id, i + 1]));
   const bank = referrals.filter((r) => r.group === "bank");
   const featured = bank.filter((r) => r.featured);
   const bankRest = bank.filter((r) => !r.featured);
@@ -341,6 +345,7 @@ export default function Referrals() {
         <span>{referralDisclosure}</span>
       </p>
 
+      {bank.length > 0 && (
       <div id="ref-bank" className="scroll-mt-24">
         <GroupLabel label="美卡 / 银行账户" count={bank.length} />
         <div className="space-y-4">
@@ -354,6 +359,7 @@ export default function Referrals() {
           </div>
         </div>
       </div>
+      )}
 
       <div className="mt-10 grid gap-x-4 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
         {others.map((g) => (

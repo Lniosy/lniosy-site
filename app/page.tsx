@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { X_URL, X_FOLLOWERS_LABEL, profile } from "@/lib/content";
-import Writing from "@/components/Writing";
-import Referrals from "@/components/Referrals";
+import SiteSearch from "@/components/SiteSearch";
 import { Arrow, XLogo } from "@/components/Icons";
 
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
@@ -104,11 +103,8 @@ export default function Home() {
           </a>
         </section>
 
-        {/* 我在写什么 */}
-        <Writing />
-
-        {/* Referral zone */}
-        <Referrals />
+        {/* 全站搜索 + 我在写什么 + 邀请专区 */}
+        <SiteSearch />
 
         {/* Disclaimer */}
         <p className="mb-12 border border-dashed border-line p-4 text-xs leading-5 text-muted">
