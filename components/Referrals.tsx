@@ -230,6 +230,7 @@ function FeaturedCard({ r }: { r: Referral }) {
         <div className="mt-6">
           <Points items={r.points} dark />
         </div>
+        <CopyBlock r={r} badgeOnLink className="mt-6 max-w-xl text-ink" />
         {r.quote && (
           <blockquote className="mt-6 border-l-2 border-[#c8f04a] pl-4 text-[13px] italic leading-6 text-paper/60">
             “{r.quote}”
@@ -282,11 +283,11 @@ function ReferralCard({ r, index }: { r: Referral; index: number }) {
         <div className="mt-4">
           <Points items={r.points} />
         </div>
-        <CopyBlock r={r} />
+        <CopyBlock r={r} badgeOnLink={r.group === "bank"} />
         {r.footnote && <p className="mt-3 text-xs leading-5 text-muted">{r.footnote}</p>}
         {r.guide ? (
           <div className="mt-auto flex items-center gap-3 border-t border-line pt-4">
-            <a href={r.guide.href} className="inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap border border-ink/25 bg-white px-3.5 text-sm font-extrabold transition hover:border-ink hover:bg-ink hover:text-paper">
+            <a href={r.guide.href} {...(/^https?:/.test(r.guide.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap border border-ink/25 bg-white px-3.5 text-sm font-extrabold transition hover:border-ink hover:bg-ink hover:text-paper">
               <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z" /><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z" /></svg>
               {r.guide.label}
             </a>

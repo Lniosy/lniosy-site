@@ -171,7 +171,7 @@ export type Referral = {
   featured?: boolean;
   footnote?: string;
   story?: { label: string; href: string }; // 次要链接：我的真实经历
-  guide?: { label: string; href: string; keywords?: string }; // 站内教程页入口（卡片上的「查看教程」按钮）
+  guide?: { label: string; href: string; keywords?: string }; // 卡片上的「查看教程」按钮：站内路径或外链（http 开头自动新标签页打开）
 };
 
 export const referrals: Referral[] = [
@@ -329,7 +329,7 @@ export const referrals: Referral[] = [
     visual: "muse",
     badge: "from Meta",
     code: { label: "邀请码", value: "WZW03J", hint: "W Z W + 数字 0 3 + J" },
-    guide: { label: "查看教程", href: "/guides/muse/", keywords: "Muse 注册教程 Gemini Spark 远程浏览器 年龄验证 兑换邀请码 教程" },
+    guide: { label: "查看教程", href: "https://x.com/Lniosytest/status/2108838659763908886", keywords: "Muse 注册教程 Gemini Spark 远程浏览器 年龄验证 兑换邀请码 教程" },
   },
   {
     id: "cliproxy",
