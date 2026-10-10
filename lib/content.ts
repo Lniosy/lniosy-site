@@ -171,6 +171,7 @@ export type Referral = {
   featured?: boolean;
   footnote?: string;
   story?: { label: string; href: string }; // 次要链接：我的真实经历
+  guide?: { label: string; href: string; keywords?: string }; // 站内教程页入口（卡片上的「查看教程」按钮）
 };
 
 export const referrals: Referral[] = [
@@ -328,6 +329,7 @@ export const referrals: Referral[] = [
     visual: "muse",
     badge: "from Meta",
     code: { label: "邀请码", value: "WZW03J", hint: "W Z W + 数字 0 3 + J" },
+    guide: { label: "查看教程", href: "/guides/muse/", keywords: "Muse 注册教程 Gemini Spark 远程浏览器 年龄验证 兑换邀请码 教程" },
     footnote: "据公开资料，Muse 目前只对美国和加拿大开放，登录会核对账号地区，不在开放地区使用有封号风险。邀请奖励以 Muse 官方活动为准。",
   },
   {

@@ -4,7 +4,7 @@ export const norm = (s: string) => s.normalize("NFKC").toLowerCase().replace(/\s
 const topicLabel = Object.fromEntries(topics.map((t) => [t.id, t.label])) as Record<string, string>;
 
 export const referralText = (r: Referral) =>
-  norm([r.issuer, r.category, r.title, r.tagline, ...r.points, r.href, r.cta, r.badge, r.code?.label, r.code?.value, r.footnote, r.group].filter(Boolean).join(" "));
+  norm([r.issuer, r.category, r.title, r.tagline, ...r.points, r.href, r.cta, r.badge, r.code?.label, r.code?.value, r.footnote, r.group, r.guide?.label, r.guide?.keywords].filter(Boolean).join(" "));
 export const postText = (p: Post) => norm([p.title, p.excerpt, topicLabel[p.topic], p.url, p.date].filter(Boolean).join(" "));
 
 /** 空格分词，所有词都要命中（不区分大小写，中英文均可） */
