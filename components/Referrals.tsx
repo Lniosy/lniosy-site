@@ -298,7 +298,7 @@ function ReferralCard({ r, index }: { r: Referral; index: number }) {
               {r.guide.label}
             </a>
             <a href={goHref(r.id)} {...sponsored} className="inline-flex min-h-12 min-w-0 flex-1 items-center justify-end gap-2 text-sm font-extrabold transition hover:text-[#1d2a6b]">
-              <span className="truncate">{r.cta}</span>
+              <span className="text-right leading-snug">{r.cta}</span>
               <span className="grid h-9 w-9 shrink-0 place-items-center bg-ink text-paper transition group-hover:translate-x-0.5"><Arrow /></span>
             </a>
           </div>
