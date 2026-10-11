@@ -365,7 +365,7 @@ export default function Referrals({ q = "" }: { q?: string }) {
           {featured.map((r) => (
             <FeaturedCard key={r.id} r={r} />
           ))}
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid items-start gap-4 md:grid-cols-2">
             {bankRest.map((r) => (
               <ReferralCard key={r.id} r={r} index={order.get(r.id)!} />
             ))}
@@ -374,11 +374,11 @@ export default function Referrals({ q = "" }: { q?: string }) {
       </div>
       )}
 
-      <div className="mt-10 grid gap-x-4 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid items-start gap-x-4 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
         {others.map((g) => (
-          <div key={g.id} id={`ref-${g.id}`} className="flex scroll-mt-24 flex-col">
+          <div key={g.id} id={`ref-${g.id}`} className="scroll-mt-24">
             <GroupLabel label={g.label} count={g.items.length} />
-            <div className="grid flex-1 gap-4">
+            <div className="grid content-start gap-4">
               {g.items.map((r) => (
                 <ReferralCard key={r.id} r={r} index={order.get(r.id)!} />
               ))}
