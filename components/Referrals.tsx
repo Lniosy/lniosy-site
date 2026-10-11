@@ -241,7 +241,13 @@ function FeaturedCard({ r }: { r: Referral }) {
             {r.cta}
             <Arrow />
           </a>
-          {r.story && (
+          {r.guide && (
+            <a href={r.guide.href} {...(/^https?:/.test(r.guide.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap border border-paper/30 px-4 text-sm font-bold text-paper/85 transition hover:border-[#c8f04a] hover:text-[#c8f04a] sm:self-start">
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z" /><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z" /></svg>
+              {r.guide.label} <Arrow className="h-3.5 w-3.5" />
+            </a>
+          )}
+          {r.story && r.story.href !== r.guide?.href && (
             <a href={r.story.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap border border-paper/30 px-4 text-sm font-bold text-paper/85 transition hover:border-[#c8f04a] hover:text-[#c8f04a] sm:self-start">
               {r.story.label} <Arrow className="h-3.5 w-3.5" />
             </a>

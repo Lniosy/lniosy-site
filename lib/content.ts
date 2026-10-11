@@ -202,6 +202,8 @@ export const referrals: Referral[] = [
       "Hey there! I'm loving my card from Capital One. Their tool makes it easy to see what cards you'll be approved for with no impact to your credit score.",
     featured: true,
     story: { label: "看我的真实经历", href: C1_ARTICLE_URL },
+    // 「查看相关教程」：我在 X 发的 C1 申卡长文（与 story 同一篇，卡上只显示这一个按钮）
+    guide: { label: "查看相关教程", href: C1_ARTICLE_URL, keywords: "C1 申卡 教程 ITIN Capital One" },
     footnote: "卡面来自 Capital One 官网，仅作示意；可申请的卡和结果以官网预审为准。",
   },
   {
@@ -329,7 +331,7 @@ export const referrals: Referral[] = [
     visual: "muse",
     badge: "from Meta",
     code: { label: "邀请码", value: "WZW03J", hint: "W Z W + 数字 0 3 + J" },
-    guide: { label: "查看教程", href: "https://x.com/Lniosytest/status/2108838659763908886", keywords: "Muse 注册教程 Gemini Spark 远程浏览器 年龄验证 兑换邀请码 教程" },
+    guide: { label: "查看相关教程", href: "https://x.com/Lniosytest/status/2108838659763908886", keywords: "Muse 注册教程 Gemini Spark 远程浏览器 年龄验证 兑换邀请码 教程" },
   },
   {
     id: "cliproxy",
@@ -365,6 +367,8 @@ export const referrals: Referral[] = [
     // 邀请链接：跳转到 RedPocket 官方页面
     href: "https://ebay.io/m/kAae1p",
     cta: "去 RedPocket 看看",
+    // 「查看相关教程」：10/05 X 长文《美国号码到底怎么选》，含红包卡购买、激活、保号步骤
+    guide: { label: "查看相关教程", href: "https://x.com/Lniosytest/status/2107024662123225129", keywords: "红包卡 RedPocket 美国手机号 激活 保号 教程" },
     accent: "#e11d48",
     group: "network",
     visual: "redpocket",
