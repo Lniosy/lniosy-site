@@ -6,9 +6,9 @@ export const X_URL = "https://x.com/Lniosytest";
 // TODO: 上线后替换为正式域名（用于 OG / canonical）
 export const SITE_URL = "https://litiancai.vercel.app";
 
-// 关注者数：2026-10-04 17:22 (UTC+8) 从 https://api.fxtwitter.com/Lniosytest 读取 followers=2642，向下取整展示。
+// 关注者数：2026-10-13 19:19 (UTC+8) 从 X API get_users_by_username 读取 followers=4975，向下取整展示。
 // 更新时重新核对，不要凭空填数。
-export const X_FOLLOWERS_LABEL = "2,600+";
+export const X_FOLLOWERS_LABEL = "4,900+";
 
 export const profile = {
   name: "李天才",
