@@ -177,6 +177,19 @@ function IPEqualVisual() {
   );
 }
 
+function AntBankVisual() {
+  return (
+    <div className="relative flex h-full items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#1677ff_0%,#0b4fd1_60%,#062a78_100%)]">
+      <div aria-hidden className="absolute inset-0 opacity-30 [background-image:radial-gradient(#ffffff55_1px,transparent_1px)] [background-size:16px_16px]" />
+      <div aria-hidden className="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-[#60a5fa] opacity-40 blur-3xl" />
+      <div className="relative flex flex-col items-center gap-3 transition duration-500 group-hover:scale-105">
+        <span className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">Ant Bank</span>
+        <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] tracking-[0.12em] text-[#bfdbfe] ring-1 ring-white/15">澳门蚂蚁银行</span>
+      </div>
+    </div>
+  );
+}
+
 function RedPocketVisual() {
   return (
     <div className="relative flex h-full items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#b3122e_0%,#7a0a1f_60%,#3d0510_100%)]">
@@ -211,6 +224,7 @@ const visuals: Record<string, () => React.JSX.Element> = {
   muse: MuseVisual,
   cliproxy: CliProxyVisual,
   ipequal: IPEqualVisual,
+  antbank: AntBankVisual,
   redpocket: RedPocketVisual,
   ronvip: RonVipVisual,
 };

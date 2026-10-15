@@ -163,7 +163,7 @@ export type Referral = {
   cta: string;
   accent: string;
   group: ReferralGroup;
-  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "savo" | "mexc" | "plasma" | "muse" | "cliproxy" | "ipequal" | "redpocket" | "ronvip";
+  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "savo" | "mexc" | "plasma" | "muse" | "cliproxy" | "ipequal" | "antbank" | "redpocket" | "ronvip";
   badge?: string;
   art?: CardArt[];
   code?: { label: string; value: string; hint?: string };
@@ -241,6 +241,25 @@ export const referrals: Referral[] = [
     visual: "starryblu",
     code: { label: "白名单推荐码", value: "MSHK00O", hint: "M S H K + 数字 0 0 + 字母 O" },
     footnote: "注册时如需填写推荐码，请使用上面的白名单推荐码。",
+  },
+  {
+    id: "antbank",
+    issuer: "Ant Bank Macau",
+    category: "银行 · 港澳",
+    title: "澳门蚂蚁银行",
+    tagline: "Ant Bank Macau 邀请开户",
+    points: [
+      "需本人到澳门开户",
+      "入金 3000 港币、开财富账户并把余额转进去才算激活，可领 2 股阿里 + 600 免佣卡",
+      "资金存满 30 天再加 2 股小米",
+    ],
+    href: "https://render.alipay.com/p/c/180020570000149153/index.html?invite-code=LPH9BZQY",
+    cta: "通过邀请开户蚂蚁银行",
+    accent: "#1677ff",
+    group: "bank",
+    visual: "antbank",
+    code: { label: "邀请码", value: "LPH9BZQY" },
+    footnote: "奖励以官方活动页为准。",
   },
   {
     id: "bybit",
