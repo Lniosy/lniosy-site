@@ -164,6 +164,19 @@ function CliProxyVisual() {
   );
 }
 
+function IPEqualVisual() {
+  return (
+    <div className="relative flex h-full items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#064e3b_0%,#052e24_60%,#021712_100%)]">
+      <div aria-hidden className="absolute inset-0 opacity-30 [background-image:radial-gradient(#6ee7b766_1px,transparent_1px)] [background-size:16px_16px]" />
+      <div aria-hidden className="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-[#10b981] opacity-30 blur-3xl" />
+      <div className="relative flex flex-col items-center gap-3 transition duration-500 group-hover:scale-105">
+        <span className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">IPEqual</span>
+        <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] tracking-[0.12em] text-[#a7f3d0] ring-1 ring-white/15">AI 住宅 IP</span>
+      </div>
+    </div>
+  );
+}
+
 function RedPocketVisual() {
   return (
     <div className="relative flex h-full items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#b3122e_0%,#7a0a1f_60%,#3d0510_100%)]">
@@ -197,6 +210,7 @@ const visuals: Record<string, () => React.JSX.Element> = {
   plasma: PlasmaVisual,
   muse: MuseVisual,
   cliproxy: CliProxyVisual,
+  ipequal: IPEqualVisual,
   redpocket: RedPocketVisual,
   ronvip: RonVipVisual,
 };
@@ -289,7 +303,7 @@ function ReferralCard({ r, index }: { r: Referral; index: number }) {
         <div className="mt-4">
           <Points items={r.points} />
         </div>
-        <CopyBlock r={r} badgeOnLink={r.group === "bank"} />
+        <CopyBlock r={r} badgeOnLink={r.group === "bank" || r.id === "ipequal"} />
         {r.footnote && <p className="mt-3 text-xs leading-5 text-muted">{r.footnote}</p>}
         {r.guide ? (
           <div className="mt-auto flex items-center gap-3 border-t border-line pt-4">

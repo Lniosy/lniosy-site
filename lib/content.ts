@@ -163,7 +163,7 @@ export type Referral = {
   cta: string;
   accent: string;
   group: ReferralGroup;
-  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "savo" | "mexc" | "plasma" | "muse" | "cliproxy" | "redpocket" | "ronvip";
+  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "savo" | "mexc" | "plasma" | "muse" | "cliproxy" | "ipequal" | "redpocket" | "ronvip";
   badge?: string;
   art?: CardArt[];
   code?: { label: string; value: string; hint?: string };
@@ -351,6 +351,24 @@ export const referrals: Referral[] = [
     group: "network",
     visual: "cliproxy",
     footnote: "以上是我个人的使用心得，不代表任何保证；请遵守各平台规则与当地法律法规。",
+  },
+  {
+    id: "ipequal",
+    issuer: "IPEqual",
+    category: "网络环境 · 住宅 IP",
+    title: "IPEqual 住宅 IP",
+    tagline: "专给 ChatGPT / Claude 用的住宅节点",
+    points: [
+      "官网定位：针对访问 ChatGPT 的住宅 IP 和网络加速（EqualDCDN 旗下）",
+      "官网介绍：ISP 静态住宅节点，独享带宽，主打解决 ChatGPT 降智、Claude 封号",
+      "官网写：通过邀请链接购买可享 20% 折扣",
+    ],
+    href: "https://www.ipequal.com/?ref=9a08d94e8b",
+    cta: "去 IPEqual 看看",
+    accent: "#10b981",
+    group: "network",
+    visual: "ipequal",
+    footnote: "套餐与价格以 IPEqual 官网为准；请遵守各平台规则与当地法律法规。",
   },
   {
     id: "redpocket",
