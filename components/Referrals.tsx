@@ -178,14 +178,49 @@ function IPEqualVisual() {
 }
 
 function AntBankVisual() {
+  // 配色取自官方十月新客海报（深青绿 + 青色高亮），代码绘制，非海报原图
   return (
-    <div className="relative flex h-full items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#1677ff_0%,#0b4fd1_60%,#062a78_100%)]">
-      <div aria-hidden className="absolute inset-0 opacity-30 [background-image:radial-gradient(#ffffff55_1px,transparent_1px)] [background-size:16px_16px]" />
-      <div aria-hidden className="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-[#60a5fa] opacity-40 blur-3xl" />
-      <div className="relative flex flex-col items-center gap-3 transition duration-500 group-hover:scale-105">
+    <div className="relative flex h-full items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#0b3b40_0%,#0a2a33_55%,#061a22_100%)]">
+      <div aria-hidden className="absolute inset-0 opacity-25 [background-image:radial-gradient(#5eead455_1px,transparent_1px)] [background-size:16px_16px]" />
+      <div aria-hidden className="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-[#14b8a6] opacity-35 blur-3xl" />
+      <div className="relative flex flex-col items-center gap-2.5 transition duration-500 group-hover:scale-105">
         <span className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">Ant Bank</span>
-        <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] tracking-[0.12em] text-[#bfdbfe] ring-1 ring-white/15">澳门蚂蚁银行</span>
+        <span className="text-[15px] font-bold text-[#99f6e4]">交易 <span className="text-2xl font-black text-[#facc15]">0</span> 佣金 · 送阿里 + 小米股</span>
+        <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] tracking-[0.12em] text-[#ccfbf1] ring-1 ring-white/15">澳门蚂蚁银行 · 十月新客礼</span>
       </div>
+    </div>
+  );
+}
+
+function AntBankInfo({ r }: { r: Referral }) {
+  return (
+    <div className="space-y-3">
+      {r.tiers && (
+        <ol className="overflow-hidden border border-[#0f766e]/25">
+          {r.tiers.map((t, i) => (
+            <li key={t.when} className={`flex gap-3 px-3 py-2.5 ${i ? "border-t border-[#0f766e]/15" : ""} bg-[#f0fdfa]`}>
+              <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#0f766e] font-mono text-[11px] font-bold text-white">{i + 1}</span>
+              <div className="min-w-0 text-sm leading-6">
+                <p className="font-mono text-[11px] font-bold tracking-wide text-[#0f766e]">{t.when}</p>
+                <p className="font-extrabold text-ink">{t.reward}</p>
+                {t.note && <p className="text-xs leading-5 text-muted">{t.note}</p>}
+              </div>
+            </li>
+          ))}
+        </ol>
+      )}
+      {r.feeHighlight && (
+        <div className="border-l-2 border-[#facc15] bg-[#fefce8] px-3 py-2">
+          <p className="font-mono text-[11px] font-bold tracking-wide text-[#a16207]">{r.feeHighlight.title}</p>
+          {r.feeHighlight.lines.map((l) => <p key={l} className="text-[13px] leading-6 text-ink/85">{l}</p>)}
+        </div>
+      )}
+      {r.abilities && (
+        <div className="flex flex-wrap gap-1.5">
+          {r.abilities.map((a) => <span key={a} className="border border-ink/15 bg-white px-2 py-0.5 text-xs font-semibold text-ink/75">{a}</span>)}
+        </div>
+      )}
+      <Points items={r.points} />
     </div>
   );
 }
@@ -315,7 +350,7 @@ function ReferralCard({ r, index }: { r: Referral; index: number }) {
         <h3 className="mt-2 text-xl font-extrabold leading-snug tracking-tight">{r.title}</h3>
         <p className="mt-1 text-sm font-semibold leading-6 text-ink/80">{r.tagline}</p>
         <div className="mt-4">
-          <Points items={r.points} />
+          {r.tiers ? <AntBankInfo r={r} /> : <Points items={r.points} />}
         </div>
         <CopyBlock r={r} badgeOnLink={r.group === "bank" || r.id === "ipequal"} />
         {r.footnote && <p className="mt-3 text-xs leading-5 text-muted">{r.footnote}</p>}

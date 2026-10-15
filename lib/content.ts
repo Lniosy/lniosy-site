@@ -172,6 +172,10 @@ export type Referral = {
   footnote?: string;
   story?: { label: string; href: string }; // 次要链接：我的真实经历
   guide?: { label: string; href: string; keywords?: string }; // 卡片上的「查看教程」按钮：站内路径或外链（http 开头自动新标签页打开）
+  // 结构化信息卡（目前仅 antbank 使用）：数字均取自官方素材图
+  tiers?: { when: string; reward: string; note?: string }[];
+  feeHighlight?: { title: string; lines: string[] };
+  abilities?: string[];
 };
 
 export const referrals: Referral[] = [
@@ -247,19 +251,25 @@ export const referrals: Referral[] = [
     issuer: "Ant Bank Macau",
     category: "银行 · 港澳",
     title: "澳门蚂蚁银行",
-    tagline: "Ant Bank Macau 邀请开户",
-    points: [
-      "需本人到澳门开户",
-      "入金 3000 港币、开财富账户并把余额转进去才算激活，可领 2 股阿里 + 600 免佣卡",
-      "资金存满 30 天再加 2 股小米",
+    // 以下数字全部来自官方素材图（10 月新客海报 / 港美股费率对比 / 三家功能对比 / 产品能力）
+    tagline: "十月新客礼：入金达标即享交易 0 佣金",
+    points: ["需本人到澳门开户，开通财富账户并入金才算达标"],
+    tiers: [
+      { when: "净存入 HKD 3,000", reward: "2 股阿里巴巴-W + HKD 600 费率优惠", note: "0 佣交易礼包，当月最高抵扣 HKD 200" },
+      { when: "资产达标满 30 天", reward: "再领 2 股小米集团-W" },
     ],
+    feeHighlight: {
+      title: "费率亮点",
+      lines: ["港股 0.02% × 成交额，美股每股 USD 0.0088", "用 200 港币费率优惠卡，11 月至 2027 年 1 月每单最低 0 元"],
+    },
+    abilities: ["美股期权", "碎股交易", "9 类 12 种订单", "22 项行情", "49 项研究工具"],
     href: "https://render.alipay.com/p/c/180020570000149153/index.html?invite-code=LPH9BZQY",
     cta: "通过邀请开户蚂蚁银行",
-    accent: "#1677ff",
+    accent: "#0f766e",
     group: "bank",
     visual: "antbank",
     code: { label: "邀请码", value: "LPH9BZQY" },
-    footnote: "奖励以官方活动页为准。",
+    footnote: "活动时间 2026 年 10 月 1 日至 10 月 31 日。奖励以官方活动页为准。",
   },
   {
     id: "bybit",
