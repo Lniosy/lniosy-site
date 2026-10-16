@@ -5,7 +5,7 @@ import { Arrow, XLogo } from "@/components/Icons";
 
 export const metadata: Metadata = {
   title: "免费领｜李天才",
-  description: "免费领：腾讯打车权益券等第三方免费活动入口，以官方页面为准。",
+  description: "免费领：腾讯打车权益券等第三方免费活动入口，以领取页为准。",
   alternates: { canonical: "/free/" },
   openGraph: { url: "/free/" },
 };
@@ -18,7 +18,7 @@ export default function FreePage() {
       <div className="relative z-10 mx-auto max-w-6xl px-5 pb-16 pt-8 sm:px-8 sm:pt-12">
         <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">免费领</p>
         <h1 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">免费领</h1>
-        <p className="mt-3 max-w-xl text-sm leading-6 text-muted">整理一些可以免费领的第三方活动，点按钮直达官方页面。</p>
+        <p className="mt-3 max-w-xl text-sm leading-6 text-muted">整理一些可以免费领的第三方活动，点按钮直达领取页。</p>
         <div className="mt-6 grid items-start gap-4 md:grid-cols-2 lg:grid-cols-3">
           {freebies.map((f) => (
             <article key={f.id} id={`free-${f.id}`} className="flex flex-col border-2 border-ink bg-white p-5">
