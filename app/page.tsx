@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { X_URL, X_FOLLOWERS_LABEL, profile } from "@/lib/content";
+import { homeJsonLd } from "@/lib/jsonld";
 import SiteSearch from "@/components/SiteSearch";
 import { Arrow, XLogo } from "@/components/Icons";
 
@@ -8,6 +9,7 @@ const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd).replace(/</g, "\\u003c") }} />
       <div aria-hidden className="grid-texture pointer-events-none absolute inset-0" />
       <div aria-hidden className="pointer-events-none absolute -right-36 top-28 h-80 w-80 rounded-full bg-[#c9cbd1] opacity-40 blur-2xl" />
       <div aria-hidden className="pointer-events-none absolute -left-32 top-[60%] h-56 w-56 rounded-full bg-[#e5d9c8] opacity-40 blur-2xl" />

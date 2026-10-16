@@ -281,7 +281,7 @@ function Points({ items, dark = false }: { items: string[]; dark?: boolean }) {
 
 function FeaturedCard({ r }: { r: Referral }) {
   return (
-    <article className="card-accent group relative grid overflow-hidden border border-ink bg-ink text-paper md:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]" style={{ ["--accent" as string]: r.accent }}>
+    <article id={`referral-${r.id}`} className="scroll-mt-24 card-accent group relative grid overflow-hidden border border-ink bg-ink text-paper md:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]" style={{ ["--accent" as string]: r.accent }}>
       <div aria-hidden className="grid-texture-dark pointer-events-none absolute inset-0 opacity-60" />
       <div className="relative order-2 flex flex-col p-6 sm:p-8 md:order-1 lg:p-10">
         <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] font-bold tracking-[0.12em]">
@@ -334,7 +334,7 @@ function FeaturedCard({ r }: { r: Referral }) {
 function ReferralCard({ r, index }: { r: Referral; index: number }) {
   const n = String(index).padStart(2, "0");
   return (
-    <article className="card-accent group relative flex flex-col overflow-hidden border border-line bg-[#fffffce6] transition hover:-translate-y-1 hover:border-ink/40 hover:bg-white hover:shadow-[0_16px_34px_-10px_#11121433]" style={{ ["--accent" as string]: r.accent }}>
+    <article id={`referral-${r.id}`} className="scroll-mt-24 card-accent group relative flex flex-col overflow-hidden border border-line bg-[#fffffce6] transition hover:-translate-y-1 hover:border-ink/40 hover:bg-white hover:shadow-[0_16px_34px_-10px_#11121433]" style={{ ["--accent" as string]: r.accent }}>
       <a href={goHref(r.id)} {...sponsored} aria-label={`${r.title}（邀请链接）`} className="block h-44 sm:h-48">
         {(() => { const V = visuals[r.visual]; return V ? <V /> : null; })()}
       </a>

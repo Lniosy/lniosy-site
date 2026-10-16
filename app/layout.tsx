@@ -7,7 +7,11 @@ const title = "李天才 @Lniosytest｜美卡 ITIN · AI · 独立开发";
 const description =
   "李天才（天才毛球）的个人主页：分享我用 ITIN 办美卡的经验、AI 工具实战、独立开发与微信小程序「拼豆图纸生成神器」。";
 
+// Google Search Console「HTML 标记」验证：把 content 值填到环境变量 NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION 或下面常量；空则不输出。
+const GOOGLE_SITE_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "";
+
 export const metadata: Metadata = {
+  ...(GOOGLE_SITE_VERIFICATION ? { verification: { google: GOOGLE_SITE_VERIFICATION } } : {}),
   metadataBase: new URL(SITE_URL),
   title,
   description,
