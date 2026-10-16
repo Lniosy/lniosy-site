@@ -26,14 +26,14 @@ export const homeJsonLd = {
     {
       "@type": "ItemList",
       "@id": `${SITE_URL}/#referrals`,
-      name: "美卡邀请专区",
+      name: "邀请推荐",
       numberOfItems: referrals.length,
       itemListElement: referrals.map((r, i) => ({
         "@type": "ListItem",
         position: i + 1,
         name: r.title,
         description: r.tagline,
-        url: `${SITE_URL}/#referral-${r.id}`,
+        url: `${SITE_URL}/referrals/#referral-${r.id}`,
       })),
     },
   ],

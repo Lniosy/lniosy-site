@@ -144,10 +144,9 @@ export const posts: Post[] = [
 export type CardArt = { src: string; alt: string };
 
 export const referralGroups = [
-  { id: "bank", label: "美卡 / 银行账户" },
-  { id: "crypto", label: "加密卡" },
-  { id: "ai", label: "工具 / AI" },
-  { id: "network", label: "网络环境" },
+  { id: "bank", label: "美卡 · 银行账户" },
+  { id: "crypto", label: "加密 U 卡" },
+  { id: "tools", label: "出海工具（AI / IP / 手机号）" },
   // { id: "x", label: "X / 蓝V" }, // 蓝V卡暂时下架，恢复时一起取消注释
 ] as const;
 export type ReferralGroup = (typeof referralGroups)[number]["id"];
@@ -356,7 +355,7 @@ export const referrals: Referral[] = [
     href: "https://muse.ai/join",
     cta: "加入 Muse",
     accent: "#2f6bff",
-    group: "ai",
+    group: "tools",
     visual: "muse",
     badge: "from Meta",
     code: { label: "邀请码", value: "WZW03J", hint: "W Z W + 数字 0 3 + J" },
@@ -377,7 +376,7 @@ export const referrals: Referral[] = [
     href: "https://share.cliproxy.com/share/8i9xuktqq",
     cta: "去 CliProxy 看看",
     accent: "#8b5cf6",
-    group: "network",
+    group: "tools",
     visual: "cliproxy",
     footnote: "以上是我个人的使用心得，不代表任何保证；请遵守各平台规则与当地法律法规。",
   },
@@ -395,7 +394,7 @@ export const referrals: Referral[] = [
     href: "https://www.ipequal.com/?ref=9a08d94e8b",
     cta: "去 IPEqual 看看",
     accent: "#10b981",
-    group: "network",
+    group: "tools",
     visual: "ipequal",
     footnote: "套餐与价格以 IPEqual 官网为准；请遵守各平台规则与当地法律法规。",
   },
@@ -417,7 +416,7 @@ export const referrals: Referral[] = [
     // 「查看相关教程」：10/05 X 长文《美国号码到底怎么选》，含红包卡购买、激活、保号步骤
     guide: { label: "查看相关教程", href: "https://x.com/Lniosytest/status/2107024662123225129", keywords: "红包卡 RedPocket 美国手机号 激活 保号 教程" },
     accent: "#e11d48",
-    group: "network",
+    group: "tools",
     visual: "redpocket",
     footnote: "套餐与价格以 eBay 官方店页面为准；官方写 SIM 只能在美国境内激活、eBay 套餐不含漫游，国内激活和漫游是我个人实测，官方不保证；买后 90 天内要激活。",
   },
@@ -449,3 +448,14 @@ export const referralDisclosure =
 // 点击统计：/go/<slug>/ 静态跳转页（Vercel Web Analytics 记一次 pageview 后跳转）
 export const goSlug = (id: string) => (id === "capital-one" ? "c1" : id);
 export const goHref = (id: string) => `/go/${goSlug(id)}/`;
+
+// 旧锚点兼容：首页 /#xxx → 新页面
+export const legacyHashMap: Record<string, string> = {
+  referrals: "/referrals/",
+  "ref-bank": "/referrals/#ref-bank",
+  "ref-crypto": "/referrals/#ref-crypto",
+  "ref-ai": "/referrals/#ref-tools",
+  "ref-network": "/referrals/#ref-tools",
+  writing: "/guides/#writing",
+  search: "/referrals/",
+};

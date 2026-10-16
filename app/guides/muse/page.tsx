@@ -106,7 +106,7 @@ const jsonLd = {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "首页", item: `${SITE_URL}/` },
-        { "@type": "ListItem", position: 2, name: "AI 工具", item: `${SITE_URL}/#ref-ai` },
+        { "@type": "ListItem", position: 2, name: "AI 工具", item: `${SITE_URL}/referrals/#ref-tools` },
         { "@type": "ListItem", position: 3, name: "Muse 注册教程", item: `${SITE_URL}${PATH}` },
       ],
     },
@@ -185,7 +185,7 @@ export default function MuseGuide() {
             <span>李天才 <em className="hidden not-italic text-muted sm:inline">/ TianCai</em></span>
           </Link>
           <nav className="flex items-center gap-3 sm:gap-6">
-            <Link href="/#referrals" className="inline-flex min-h-10 items-center font-mono text-xs font-bold tracking-wide text-ink hover:underline sm:text-muted sm:hover:text-ink sm:hover:no-underline">邀请专区</Link>
+            <Link href="/referrals/" className="inline-flex min-h-10 items-center font-mono text-xs font-bold tracking-wide text-ink hover:underline sm:text-muted sm:hover:text-ink sm:hover:no-underline">邀请专区</Link>
             <a href="#invite" className="inline-flex min-h-10 items-center bg-ink px-3.5 py-2 text-[13px] font-semibold text-paper transition hover:-translate-y-0.5">Muse 邀请码</a>
           </nav>
         </div>
@@ -195,7 +195,7 @@ export default function MuseGuide() {
         <nav aria-label="面包屑" className="font-mono text-[11px] tracking-wide text-muted">
           <Link href="/" className="hover:text-ink hover:underline">首页</Link>
           <span className="mx-1.5" aria-hidden>/</span>
-          <Link href="/#ref-ai" className="hover:text-ink hover:underline">AI 工具</Link>
+          <Link href="/referrals/#ref-tools" className="hover:text-ink hover:underline">AI 工具</Link>
           <span className="mx-1.5" aria-hidden>/</span>
           <span className="text-ink">Muse 注册教程</span>
         </nav>
@@ -370,7 +370,7 @@ export default function MuseGuide() {
             <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 bg-ink px-5 text-sm font-bold text-paper transition hover:-translate-y-0.5">
               <XLogo className="h-4 w-4" /> 在 X 上看原文 <Arrow className="h-3.5 w-3.5" />
             </a>
-            <Link href="/#ref-ai" className="inline-flex min-h-12 items-center justify-center gap-2 border border-ink/25 bg-white px-5 text-sm font-bold transition hover:border-ink">
+            <Link href="/referrals/#ref-tools" className="inline-flex min-h-12 items-center justify-center gap-2 border border-ink/25 bg-white px-5 text-sm font-bold transition hover:border-ink">
               ← 回到邀请专区
             </Link>
           </div>

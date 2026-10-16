@@ -400,7 +400,7 @@ export default function Referrals({ q = "" }: { q?: string }) {
       <div className="mb-6 flex flex-col justify-between gap-3 border-t border-line pt-8 sm:flex-row sm:items-end">
         <div>
           <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">美卡 / 账户 / 工具 · 我的邀请入口</p>
-          <h2 id="referrals-title" className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">美卡邀请专区</h2>
+          <h2 id="referrals-title" className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">邀请推荐</h2>
         </div>
         <p className="max-w-sm text-sm leading-6 text-muted">都是我自己的邀请链接，点开直达官方页面。资格、额度与奖励以官方页面为准。</p>
       </div>
@@ -429,7 +429,7 @@ export default function Referrals({ q = "" }: { q?: string }) {
 
       {bank.length > 0 && (
       <div id="ref-bank" className="scroll-mt-24">
-        <GroupLabel label="美卡 / 银行账户" count={bank.length} />
+        <GroupLabel label={referralGroups[0].label} count={bank.length} />
         <div className="space-y-4">
           {featured.map((r) => (
             <FeaturedCard key={r.id} r={r} />
@@ -443,7 +443,7 @@ export default function Referrals({ q = "" }: { q?: string }) {
       </div>
       )}
 
-      <div className="mt-10 grid items-start gap-x-4 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid items-start gap-x-4 gap-y-10 md:grid-cols-2">
         {others.map((g) => (
           <div key={g.id} id={`ref-${g.id}`} className="scroll-mt-24">
             <GroupLabel label={g.label} count={g.items.length} />

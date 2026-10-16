@@ -8,7 +8,7 @@ import Referrals from "./Referrals";
 
 const hints = ["U卡", "Wise", "ITIN", "邀请码", "Claude"];
 
-export default function SiteSearch() {
+export default function SiteSearch({ only }: { only?: "referrals" | "posts" }) {
   const [q, setQ] = useState("");
   const input = useRef<HTMLInputElement>(null);
 
@@ -25,13 +25,13 @@ export default function SiteSearch() {
   }, [q]);
 
   const active = q.trim().length > 0;
-  const nRef = active ? referrals.filter((r) => matches(referralText(r), q)).length : referrals.length;
-  const nPost = active ? posts.filter((p) => matches(postText(p), q)).length : posts.length;
+  const nRef = only === "posts" ? 0 : active ? referrals.filter((r) => matches(referralText(r), q)).length : referrals.length;
+  const nPost = only === "referrals" ? 0 : active ? posts.filter((p) => matches(postText(p), q)).length : posts.length;
   const none = active && nRef + nPost === 0;
 
   return (
     <>
-      <div id="search" className="sticky top-[73px] z-20 -mx-5 mb-10 border-y border-line bg-paper/90 px-5 py-3 backdrop-blur-md sm:-mx-8 sm:px-8">
+      <div id="search" className="sticky top-[69px] z-20 -mx-5 mb-10 border-y border-line bg-paper/90 px-5 py-3 backdrop-blur-md sm:-mx-8 sm:px-8">
         <form role="search" onSubmit={(e) => { e.preventDefault(); input.current?.blur(); }} className="relative">
           <svg viewBox="0 0 24 24" className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
           <input
@@ -40,7 +40,7 @@ export default function SiteSearch() {
             enterKeyHint="search"
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="搜卡片 / 邀请码 / 文章"
+            placeholder={only === "referrals" ? "搜卡片 / 邀请码" : only === "posts" ? "搜文章" : "搜卡片 / 邀请码 / 文章"}
             aria-label="搜索全站邀请卡片和文章"
             className="h-14 w-full border-2 border-ink bg-white pl-12 pr-24 text-base font-semibold text-ink shadow-[4px_4px_0_#111214] outline-none placeholder:font-normal placeholder:text-muted focus:shadow-[4px_4px_0_#3ad6ff] [&::-webkit-search-cancel-button]:hidden"
           />
@@ -52,7 +52,7 @@ export default function SiteSearch() {
         </form>
         <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted" aria-live="polite">
           {active ? (
-            <span>找到 <b className="text-ink">{nRef}</b> 张邀请卡 · <b className="text-ink">{nPost}</b> 篇内容</span>
+            <span>找到 {only !== "posts" && <><b className="text-ink">{nRef}</b> 张邀请卡</>}{!only && " · "}{only !== "referrals" && <><b className="text-ink">{nPost}</b> 篇内容</>}</span>
           ) : (
             <>
               <span>试试：</span>
@@ -72,8 +72,8 @@ export default function SiteSearch() {
         </div>
       ) : (
         <>
-          {(!active || nPost > 0) && <Writing q={q} />}
-          {(!active || nRef > 0) && <Referrals q={q} />}
+          {only !== "referrals" && (!active || nPost > 0) && <Writing q={q} />}
+          {only !== "posts" && (!active || nRef > 0) && <Referrals q={q} />}
         </>
       )}
     </>

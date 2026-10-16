@@ -1,3 +1,4 @@
+import { guides } from "@/lib/guides";
 import { SITE_URL, X_URL, profile, referrals, referralGroups } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -7,7 +8,7 @@ export function GET() {
     .map((g) => {
       const items = referrals.filter((r) => r.group === g.id);
       if (!items.length) return "";
-      return `### ${g.label}\n` + items.map((r) => `- ${r.title}：${r.tagline}${r.guide && r.guide.href.startsWith("/") ? `（教程：${SITE_URL}${r.guide.href}）` : ""}`).join("\n");
+      return `### ${g.label}\n` + items.map((r) => `- [${r.title}](${SITE_URL}/referrals/#referral-${r.id})：${r.tagline}${r.guide && r.guide.href.startsWith("/") ? `（教程：${SITE_URL}${r.guide.href}）` : ""}`).join("\n");
     })
     .filter(Boolean)
     .join("\n\n");
@@ -19,14 +20,15 @@ export function GET() {
 - X：${X_URL}
 - 语言：简体中文
 
+## 页面
+- [邀请推荐](${SITE_URL}/referrals/)
+- [教程](${SITE_URL}/guides/)
+- [免费领（内容整理中）](${SITE_URL}/free/)
+
 ## 教程
-- [Muse 注册教程：用 Gemini Spark 远程浏览器注册 Muse](${SITE_URL}/guides/muse/)
+${guides.map((g) => `- [${g.title}](${g.href.startsWith("/") ? SITE_URL + g.href : g.href})（${g.source}）`).join("\n")}
 
-## 分区
-- [我在写什么（X 帖子精选）](${SITE_URL}/#writing)
-- [美卡邀请专区](${SITE_URL}/#referrals)
-
-## 邀请专区条目
+## 邀请推荐条目
 ${groups}
 `;
   return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
