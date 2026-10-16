@@ -8,7 +8,7 @@ import LegacyHash from "@/components/LegacyHash";
 import { Arrow, XLogo } from "@/components/Icons";
 
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
-const topicAccent: Record<string, string> = { card: "#c8f04a", ai: "#b6ccff", indie: "#ffb56b", miniapp: "#f2db55" };
+const topicAccent: Record<string, string> = { card: "#c8f04a", ai: "#b6ccff", indie: "#ffb56b" };
 
 export default function Home() {
   return (
@@ -53,7 +53,7 @@ export default function Home() {
         {/* 我能帮你什么 */}
         <section aria-labelledby="help-title" className="pb-12">
           <h2 id="help-title" className="mb-3 font-mono text-xs font-bold tracking-[0.14em] text-muted">我能帮你什么</h2>
-          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <div className="grid gap-3 sm:grid-cols-3">
             {topics.map((t) => (
               <div key={t.id} className="border border-ink/80 bg-[#fffffc] p-4">
                 <div className="mb-2 flex items-center gap-2 text-[15px] font-extrabold">

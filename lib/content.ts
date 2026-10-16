@@ -17,7 +17,7 @@ export const profile = {
   mascot: "天才毛球",
   // 来自 X 个人简介
   bio: "AI × 加密货币 × 独立开发",
-  bio2: "微信小程序从 0 到 1 全链路｜自媒体实战分享",
+  bio2: "自媒体实战分享",
 };
 
 // ---------------- 我在写什么：只放真实发过的 X 帖子 ----------------
@@ -28,7 +28,6 @@ export const topics = [
   { id: "card", label: "美卡 / ITIN", line: "我自己用 ITIN 办下了 Capital One，从 300 分往上爬的每一步。" },
   { id: "ai", label: "AI", line: "AI 编程和工具的实用信息。" },
   { id: "indie", label: "独立开发", line: "一个人折腾产品、服务器和脚本的记录。" },
-  { id: "miniapp", label: "微信小程序", line: "我做的「拼豆图纸生成神器」，在微信里搜索名字就能找到。" },
 ] as const;
 export type TopicId = (typeof topics)[number]["id"];
 

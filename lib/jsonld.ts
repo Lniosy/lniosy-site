@@ -12,7 +12,7 @@ export const homeJsonLd = {
       image: `${SITE_URL}/avatar.jpg`,
       description: `${profile.bio}｜${profile.bio2}`,
       sameAs: [X_URL],
-      knowsAbout: ["ITIN", "美国信用卡", "AI 工具", "加密货币", "独立开发", "微信小程序"],
+      knowsAbout: ["ITIN", "美国信用卡", "AI 工具", "加密货币", "独立开发"],
     },
     {
       "@type": "WebSite",

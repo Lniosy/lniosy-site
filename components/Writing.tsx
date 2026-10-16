@@ -9,7 +9,7 @@ import { matches, postText } from "@/lib/search";
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 const kindLabel: Record<Post["kind"], string> = { post: "帖子", thread: "长帖", article: "长文", image: "图文" };
 const topicLabel = Object.fromEntries(topics.map((t) => [t.id, t.label])) as Record<TopicId, string>;
-const topicAccent: Record<TopicId, string> = { card: "#c8f04a", ai: "#b6ccff", indie: "#ffb56b", miniapp: "#f2db55" };
+const topicAccent: Record<TopicId, string> = { card: "#c8f04a", ai: "#b6ccff", indie: "#ffb56b" };
 
 function PostCard({ p, layout }: { p: Post; layout: boolean }) {
   const lead = layout && !!p.lead;
@@ -95,7 +95,7 @@ export default function Writing({ q = "" }: { q?: string }) {
       </div>
 
       <p className="mt-4 min-h-6 text-sm leading-6 text-muted" aria-live="polite">
-        {activeTopic ? activeTopic.line : "美卡 / ITIN、AI、独立开发和微信小程序，四条线都在 X 上持续更新。"}
+        {activeTopic ? activeTopic.line : "美卡 / ITIN、AI、独立开发，三条线都在 X 上持续更新。"}
       </p>
 
       {list.length > 0 ? (
@@ -110,11 +110,6 @@ export default function Writing({ q = "" }: { q?: string }) {
         </a>
       )}
 
-      {/* 小程序：没有真实帖子，只保留一行简介 */}
-      <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 border border-dashed border-line px-4 py-3 text-[13px] leading-6 text-muted">
-        <span className="bg-[#f2db55] px-1.5 font-mono text-[11px] font-bold text-ink">微信小程序</span>
-        我做的「<strong className="font-bold text-ink">拼豆图纸生成神器</strong>」：在微信中搜索名字即可找到。
-      </p>
     </section>
   );
 }

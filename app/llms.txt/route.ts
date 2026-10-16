@@ -14,7 +14,7 @@ export function GET() {
     .join("\n\n");
   const body = `# ${profile.name}（${profile.nameEn}，X ${profile.handle}）
 
-> ${profile.name}，又称「${profile.mascot}」，${profile.bio}。${profile.bio2}。个人站分享用 ITIN 办美卡的经验、AI 工具实战、独立开发与微信小程序。
+> ${profile.name}，又称「${profile.mascot}」，${profile.bio}。${profile.bio2}。个人站分享用 ITIN 办美卡的经验、AI 工具实战与独立开发。
 
 - 主页：${SITE_URL}/
 - X：${X_URL}
