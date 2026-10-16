@@ -313,7 +313,7 @@ export const referrals: Referral[] = [
     tagline: "MEXC 交易所注册入口，也可在站内申请 U 卡",
     points: [
       "0 手续费活动已于 9 月 30 日结束；10 月 1 日起每笔消费收 1% 手续费",
-      "消费返现 4–10% USDT，上限 800 USDT",
+      "官方活动：消费返现 4–10% USDT，上限 800 USDT（以官方活动规则为准）",
     ],
     href: "https://s.mexc.com/referral/soPlwdQEbb",
     cta: "通过邀请注册 MEXC",
