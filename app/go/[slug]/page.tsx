@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { referrals, goSlug } from "@/lib/content";
+import { referrals, goSlug, freebies } from "@/lib/content";
+
+const targets = [...referrals.map((r) => ({ slug: goSlug(r.id), title: r.title, href: r.href })), ...freebies.map((f) => ({ slug: f.id, title: f.title, href: f.href }))];
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return referrals.map((r) => ({ slug: goSlug(r.id) }));
+  return targets.map((t) => ({ slug: t.slug }));
 }
 
-const find = (slug: string) => referrals.find((r) => goSlug(r.id) === slug);
+const find = (slug: string) => targets.find((t) => t.slug === slug);
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const r = find((await params).slug);

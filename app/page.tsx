@@ -106,7 +106,7 @@ export default function Home() {
           <Link href="/free/" className="flex items-center justify-between gap-4 border-2 border-dashed border-ink/40 p-6 transition hover:border-ink">
             <div>
               <h2 className="text-2xl font-extrabold">免费领</h2>
-              <p className="mt-1 text-sm text-muted">内容整理中，敬请期待。</p>
+              <p className="mt-1 text-sm text-muted">腾讯打车权益券等第三方免费活动入口。</p>
             </div>
             <Arrow className="h-5 w-5" />
           </Link>

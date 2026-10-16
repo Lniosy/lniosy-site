@@ -459,3 +459,15 @@ export const legacyHashMap: Record<string, string> = {
   writing: "/guides/#writing",
   search: "/referrals/",
 };
+
+// 免费领：只放已确认的第三方活动；跳转页走 /go/<slug>/（noindex）
+export const freebies = [
+  {
+    id: "tencent-ride",
+    title: "腾讯打车权益券",
+    points: ["每个手机号每周领 1 次，券 7 天有效", "领完在 腾讯地图 App→我的→优惠券 里看", "仅限中国大陆用户线上支付抵扣"],
+    note: "第三方活动，以官方页面为准，非本站发放，可能有营销短信。",
+    href: "https://50fl.cn/f.UCLV",
+    cta: "去官方页领取",
+  },
+];

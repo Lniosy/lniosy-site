@@ -23,7 +23,7 @@ export function GET() {
 ## 页面
 - [邀请推荐](${SITE_URL}/referrals/)
 - [教程](${SITE_URL}/guides/)
-- [免费领（内容整理中）](${SITE_URL}/free/)
+- [免费领](${SITE_URL}/free/)
 
 ## 教程
 ${guides.map((g) => `- [${g.title}](${g.href.startsWith("/") ? SITE_URL + g.href : g.href})（${g.source}）`).join("\n")}
