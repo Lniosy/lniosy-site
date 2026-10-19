@@ -162,7 +162,7 @@ export type Referral = {
   cta: string;
   accent: string;
   group: ReferralGroup;
-  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "savo" | "mexc" | "plasma" | "muse" | "cliproxy" | "ipequal" | "antbank" | "redpocket" | "ronvip";
+  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "savo" | "mexc" | "plasma" | "muse" | "cliproxy" | "ipequal" | "antbank" | "redpocket" | "ronvip" | "airnova";
   badge?: string;
   art?: CardArt[];
   code?: { label: string; value: string; hint?: string };
@@ -431,6 +431,25 @@ export const referrals: Referral[] = [
     group: "tools",
     visual: "redpocket",
     footnote: "套餐与价格以 eBay 官方店页面为准；官方写 SIM 只能在美国境内激活、eBay 套餐不含漫游，国内激活和漫游是我个人实测，官方不保证；买后 90 天内要激活。",
+  },
+  {
+    id: "airnova",
+    slug: "airnova",
+    issuer: "Airnova",
+    category: "eSIM · 全球流量",
+    title: "Airnova 全球旅行 eSIM",
+    tagline: "一张 eSIM 全球可用，落地即上网",
+    points: [
+      "官网介绍：一张 eSIM 覆盖 190+ 国家与地区，不用换实体卡，原来的实体卡可以保留",
+      "支持 iOS 与 Android，安装约 1 分钟，24/7 在 App 内管理流量",
+      "用法：选目的地和套餐 → 出发前扫码 / 快捷安装 eSIM → 落地后打开数据漫游即可启用",
+    ],
+    href: "https://url.airnova.app/aff/AESIM",
+    cta: "通过邀请注册 Airnova",
+    accent: "#0ea5e9",
+    group: "tools",
+    visual: "airnova",
+    footnote: "购买前请确认手机支持 eSIM 且没有运营商锁；套餐按行程天数、流量和覆盖地区选。套餐与覆盖以官网为准。",
   },
   // 蓝V代开卡暂时下架（2026-10-07 老板要求），等创作者收益审核通过、老板通知后再取消注释
   // {

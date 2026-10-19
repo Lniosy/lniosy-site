@@ -4,7 +4,7 @@ import SiteSearch from "@/components/SiteSearch";
 
 export const metadata: Metadata = {
   title: "邀请推荐：美卡 · 银行账户 / 加密 U 卡 / 出海工具｜李天才",
-  description: "李天才的邀请链接合集：Capital One、Wise、StarryBlu、澳门蚂蚁银行、Bybit、Savo、MEXC、Plasma One、Muse、CliProxy、IPEqual、RedPocket。",
+  description: "李天才的邀请链接合集：Capital One、Wise、StarryBlu、澳门蚂蚁银行、Bybit、Savo、MEXC、Plasma One、Muse、CliProxy、IPEqual、RedPocket、Airnova eSIM。",
   alternates: { canonical: "/referrals/" },
   openGraph: { url: "/referrals/" },
 };

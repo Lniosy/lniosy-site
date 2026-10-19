@@ -250,6 +250,27 @@ function RonVipVisual() {
   );
 }
 
+function AirnovaVisual() {
+  // 文字 logo + 简笔叶子图形（非官方素材）
+  return (
+    <div className="relative flex h-full items-center justify-center overflow-hidden bg-[radial-gradient(120%_120%_at_0%_0%,#38bdf8_0%,#0369a1_50%,#082f49_100%)]">
+      <div aria-hidden className="absolute inset-0 opacity-30 [background-image:radial-gradient(#ffffff66_1px,transparent_1px)] [background-size:16px_16px]" />
+      <div aria-hidden className="absolute -right-12 -bottom-12 h-48 w-48 rounded-full border border-white/20" />
+      <div aria-hidden className="absolute -right-4 -bottom-4 h-32 w-32 rounded-full border border-white/15" />
+      <div className="relative flex flex-col items-center gap-3 transition duration-500 group-hover:scale-105">
+        <div className="flex items-center gap-2.5">
+          <svg viewBox="0 0 32 32" className="h-10 w-10 sm:h-12 sm:w-12" aria-hidden="true">
+            <path d="M7 25C7 13 15 6 26 6c0 11-7 19-19 19z" fill="#fff" />
+            <path d="M7 25L19 13" stroke="#0369a1" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+          <span className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">Airnova</span>
+        </div>
+        <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] tracking-[0.12em] text-[#e0f2fe] ring-1 ring-white/20">eSIM · 190+ 国家与地区</span>
+      </div>
+    </div>
+  );
+}
+
 const visuals: Record<string, () => React.JSX.Element> = {
   wise: WiseVisual,
   starryblu: StarryBluVisual,
@@ -263,6 +284,7 @@ const visuals: Record<string, () => React.JSX.Element> = {
   antbank: AntBankVisual,
   redpocket: RedPocketVisual,
   ronvip: RonVipVisual,
+  airnova: AirnovaVisual,
 };
 
 function Points({ items, dark = false }: { items: string[]; dark?: boolean }) {
