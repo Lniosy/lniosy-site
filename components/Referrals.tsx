@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { goHref, referrals as allReferrals, referralGroups, referralDisclosure, type Referral } from "@/lib/content";
+import { goHref, referralPath, referrals as allReferrals, referralGroups, referralDisclosure, type Referral } from "@/lib/content";
 import CopyBlock from "./CopyBlock";
 import { matches, referralText } from "@/lib/search";
 import { Arrow, Check } from "./Icons";
@@ -203,6 +203,7 @@ function AntBankInfo({ r }: { r: Referral }) {
               <div className="min-w-0 text-sm leading-6">
                 <p className="font-mono text-[11px] font-bold tracking-wide text-[#0f766e]">{t.when}</p>
                 <p className="font-extrabold text-ink">{t.reward}</p>
+                {t.valueHint && <p className="mt-0.5 inline-block bg-[#0f766e]/10 px-1.5 text-xs font-bold leading-5 text-[#0f766e]">{t.valueHint}</p>}
                 {t.note && <p className="text-xs leading-5 text-muted">{t.note}</p>}
               </div>
             </li>
@@ -279,7 +280,7 @@ function Points({ items, dark = false }: { items: string[]; dark?: boolean }) {
 
 /* ---------- Cards ---------- */
 
-function FeaturedCard({ r }: { r: Referral }) {
+function FeaturedCard({ r, permalink = true }: { r: Referral; permalink?: boolean }) {
   return (
     <article id={`referral-${r.id}`} className="scroll-mt-24 card-accent group relative grid overflow-hidden border border-ink bg-ink text-paper md:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]" style={{ ["--accent" as string]: r.accent }}>
       <div aria-hidden className="grid-texture-dark pointer-events-none absolute inset-0 opacity-60" />
@@ -287,6 +288,7 @@ function FeaturedCard({ r }: { r: Referral }) {
         <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] font-bold tracking-[0.12em]">
           <span className="bg-[#c8f04a] px-2 py-1 text-ink">我在用</span>
           <span className="border border-paper/30 px-2 py-1 text-paper/80">{r.category}</span>
+          {permalink && <a href={referralPath(r)} className="ml-auto inline-flex items-center gap-1 px-1 py-1 font-normal text-paper/50 transition hover:text-[#c8f04a]" title="这张卡的专属链接">#专属链接</a>}
         </div>
         <h3 className="mt-5 text-[26px] font-extrabold leading-tight tracking-tight [text-wrap:balance] sm:text-[32px] lg:text-4xl">{r.title}</h3>
         <p className="mt-2 text-[17px] font-bold text-[#c8f04a] sm:text-xl">{r.tagline}</p>
@@ -331,7 +333,7 @@ function FeaturedCard({ r }: { r: Referral }) {
   );
 }
 
-function ReferralCard({ r, index }: { r: Referral; index: number }) {
+function ReferralCard({ r, index, permalink = true }: { r: Referral; index: number; permalink?: boolean }) {
   const n = String(index).padStart(2, "0");
   return (
     <article id={`referral-${r.id}`} className="scroll-mt-24 card-accent group relative flex flex-col overflow-hidden border border-line bg-[#fffffce6] transition hover:-translate-y-1 hover:border-ink/40 hover:bg-white hover:shadow-[0_16px_34px_-10px_#11121433]" style={{ ["--accent" as string]: r.accent }}>
@@ -341,7 +343,11 @@ function ReferralCard({ r, index }: { r: Referral; index: number }) {
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <div className="flex items-center justify-between font-mono text-[11px] tracking-[0.1em] text-muted">
           <span className="font-bold text-ink">{r.issuer}</span>
-          <span>/{n}</span>
+          {permalink ? (
+            <a href={referralPath(r)} className="inline-flex min-h-6 items-center transition hover:text-ink" title="这张卡的专属链接">#专属链接 /{n}</a>
+          ) : (
+            <span>/{n}</span>
+          )}
         </div>
         <div className="mt-3 flex flex-wrap gap-1.5">
           <span className="bg-ink/[0.06] px-2 py-0.5 font-mono text-[11px] font-bold tracking-wide text-ink/80">{r.category}</span>
@@ -373,6 +379,16 @@ function ReferralCard({ r, index }: { r: Referral; index: number }) {
         )}
       </div>
     </article>
+  );
+}
+
+/** 单卡直达页 /referrals/<slug>/ 用：复用同一套卡片样式 */
+export function SingleReferral({ r }: { r: Referral }) {
+  const index = allReferrals.findIndex((x) => x.id === r.id) + 1;
+  return r.featured ? <FeaturedCard r={r} permalink={false} /> : (
+    <div className="mx-auto max-w-xl">
+      <ReferralCard r={r} index={index} permalink={false} />
+    </div>
   );
 }
 

@@ -152,6 +152,7 @@ export type ReferralGroup = (typeof referralGroups)[number]["id"];
 
 export type Referral = {
   id: string;
+  slug: string; // 单卡直达页 /referrals/<slug>/，与 id 解耦，定了就别改（外面可能已分享）
   issuer: string;
   category: string; // 小标签：信用卡 / 跨境账户…
   title: string;
@@ -171,7 +172,7 @@ export type Referral = {
   story?: { label: string; href: string }; // 次要链接：我的真实经历
   guide?: { label: string; href: string; keywords?: string }; // 卡片上的「查看教程」按钮：站内路径或外链（http 开头自动新标签页打开）
   // 结构化信息卡（目前仅 antbank 使用）：数字均取自官方素材图
-  tiers?: { when: string; reward: string; note?: string }[];
+  tiers?: { when: string; reward: string; note?: string; valueHint?: string }[]; // valueHint：股票类奖励的参考价（必须带「约」+ 收盘日期）
   feeHighlight?: { title: string; lines: string[] };
   abilities?: string[];
 };
@@ -180,6 +181,7 @@ export const referrals: Referral[] = [
   // 2026-10-10 老板要求恢复展示
   {
     id: "capital-one",
+    slug: "capitalone",
     issuer: "Capital One",
     category: "信用卡 · 预审批",
     title: "Capital One 预审批通道",
@@ -210,6 +212,7 @@ export const referrals: Referral[] = [
   },
   {
     id: "wise",
+    slug: "wise",
     issuer: "Wise",
     category: "跨境转账 · 多币种账户",
     title: "Wise 跨境转账 / 多币种账户",
@@ -227,6 +230,7 @@ export const referrals: Referral[] = [
   },
   {
     id: "starryblu",
+    slug: "starryblu",
     issuer: "StarryBlu",
     category: "新加坡 · 多币种账户",
     title: "StarryBlu（新加坡）",
@@ -246,6 +250,7 @@ export const referrals: Referral[] = [
   },
   {
     id: "antbank",
+    slug: "aomenant",
     issuer: "Ant Bank Macau",
     category: "银行 · 港澳",
     title: "澳门蚂蚁银行",
@@ -253,8 +258,8 @@ export const referrals: Referral[] = [
     tagline: "十月新客礼：入金达标即享交易 0 佣金",
     points: ["需本人到澳门开户，开通财富账户并入金才算达标"],
     tiers: [
-      { when: "净存入 HKD 3,000", reward: "2 股阿里巴巴-W + HKD 600 费率优惠", note: "0 佣交易礼包，当月最高抵扣 HKD 200" },
-      { when: "资产达标满 30 天", reward: "再领 2 股小米集团-W" },
+      { when: "净存入 HKD 3,000", reward: "2 股阿里巴巴-W + HKD 600 费率优惠", note: "0 佣交易礼包，当月最高抵扣 HKD 200", valueHint: "2 股阿里参考价约 HKD 220（按 2026-10-16 港股收盘，股价会变）" },
+      { when: "资产达标满 30 天", reward: "再领 2 股小米集团-W", valueHint: "2 股小米参考价约 HKD 53（按 2026-10-16 港股收盘，股价会变）" },
     ],
     feeHighlight: {
       title: "费率亮点",
@@ -271,6 +276,7 @@ export const referrals: Referral[] = [
   },
   {
     id: "bybit",
+    slug: "bybit",
     issuer: "Bybit",
     category: "加密卡 · Bybit Card",
     title: "Bybit Card",
@@ -289,6 +295,7 @@ export const referrals: Referral[] = [
   },
   {
     id: "savo",
+    slug: "savo",
     issuer: "Savo",
     category: "加密卡 · Savo",
     title: "Savo U卡",
@@ -307,6 +314,7 @@ export const referrals: Referral[] = [
   },
   {
     id: "mexc",
+    slug: "mexc",
     issuer: "MEXC",
     category: "加密卡 · MEXC",
     title: "MEXC U卡 / 交易所",
@@ -324,6 +332,7 @@ export const referrals: Referral[] = [
   },
   {
     id: "plasma",
+    slug: "plasma",
     issuer: "Plasma",
     category: "加密卡 · Plasma",
     title: "Plasma One",
@@ -343,6 +352,7 @@ export const referrals: Referral[] = [
   },
   {
     id: "muse",
+    slug: "muse",
     issuer: "Muse",
     category: "个人 AI 智能体",
     title: "Muse 个人 AI 智能体",
@@ -362,6 +372,7 @@ export const referrals: Referral[] = [
   },
   {
     id: "cliproxy",
+    slug: "cliproxy",
     issuer: "CliProxy",
     category: "网络环境 · 住宅 IP",
     title: "CliProxy 住宅 IP",
@@ -381,6 +392,7 @@ export const referrals: Referral[] = [
   },
   {
     id: "ipequal",
+    slug: "ipequal",
     issuer: "IPEqual",
     category: "网络环境 · 住宅 IP",
     title: "IPEqual 住宅 IP",
@@ -399,6 +411,7 @@ export const referrals: Referral[] = [
   },
   {
     id: "redpocket",
+    slug: "redpocket",
     issuer: "RedPocket",
     category: "网络环境 · 美国手机号",
     title: "RedPocket 红包卡",
@@ -422,6 +435,7 @@ export const referrals: Referral[] = [
   // 蓝V代开卡暂时下架（2026-10-07 老板要求），等创作者收益审核通过、老板通知后再取消注释
   // {
   //   id: "ronvip",
+  //   slug: "ronvip",
   //   issuer: "RON Premium",
   //   category: "X / 蓝V · 代开通",
   //   title: "低价开推特蓝V",
@@ -447,6 +461,10 @@ export const referralDisclosure =
 // 点击统计：/go/<slug>/ 静态跳转页（Vercel Web Analytics 记一次 pageview 后跳转）
 export const goSlug = (id: string) => (id === "capital-one" ? "c1" : id);
 export const goHref = (id: string) => `/go/${goSlug(id)}/`;
+
+// 单卡直达页：/referrals/<slug>/
+export const referralPath = (r: Pick<Referral, "slug">) => `/referrals/${r.slug}/`;
+export const findReferralBySlug = (slug: string) => referrals.find((r) => r.slug === slug);
 
 // 旧锚点兼容：首页 /#xxx → 新页面
 export const legacyHashMap: Record<string, string> = {
