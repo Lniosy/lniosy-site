@@ -183,18 +183,17 @@ const allReferrals: Referral[] = [
   {
     id: "capital-one",
     slug: "capitalone",
-    hidden: true, // 2026-10-21 老板要求暂时下架 C1 邀请卡片；恢复：删掉这行
     issuer: "Capital One",
     category: "信用卡 · 预审批",
     title: "Capital One 预审批通道",
     tagline: "不影响信用分，先查能批哪张卡",
     points: [
-      "我自己用 ITIN 办下了 Capital One，这是我的邀请入口",
+      "这是随机找的网友分享的可用邀请链接，不是我本人的",
       "进入 Capital One 官方选卡 / 预审工具，不是某一张固定的卡",
       "先看自己可能获批的卡，再决定申请哪张",
     ],
-    // 跳转到 capitalone.com/credit-cards/lp/referrals/?referralCode=F0JFG8JY…
-    href: "https://i.capitalone.com/Jf9f7s1cs",
+    // 网友可用邀请链接（非本人）
+    href: "https://i.capitalone.com/Gdrpz5f7p",
     cta: "去 Capital One 预审",
     accent: "#c8f04a",
     group: "bank",
@@ -204,13 +203,11 @@ const allReferrals: Referral[] = [
       { src: "/cards/venture-x.png", alt: "Capital One Venture X 卡面" },
       { src: "/cards/savor.png", alt: "Capital One Savor 卡面" },
     ],
-    quote:
-      "Hey there! I'm loving my card from Capital One. Their tool makes it easy to see what cards you'll be approved for with no impact to your credit score.",
     featured: true,
     story: { label: "看我的真实经历", href: C1_ARTICLE_URL },
     // 「查看相关教程」：我在 X 发的 C1 申卡长文（与 story 同一篇，卡上只显示这一个按钮）
     guide: { label: "查看相关教程", href: C1_ARTICLE_URL, keywords: "C1 申卡 教程 ITIN Capital One" },
-    footnote: "卡面来自 Capital One 官网，仅作示意；可申请的卡和结果以官网预审为准。",
+    footnote: "邀请链接为网友分享、非本人；卡面来自 Capital One 官网，仅作示意，可申请的卡和结果以官网预审为准。",
   },
   {
     id: "wise",
