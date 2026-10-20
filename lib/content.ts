@@ -175,13 +175,15 @@ export type Referral = {
   tiers?: { when: string; reward: string; note?: string; valueHint?: string }[]; // valueHint：股票类奖励的参考价（必须带「约」+ 收盘日期）
   feeHighlight?: { title: string; lines: string[] };
   abilities?: string[];
+  hidden?: boolean; // true = 暂时下架：不在任何页面展示，也不生成 /referrals/<slug>/ 和 /go/<slug>/；删掉这行即恢复
 };
 
-export const referrals: Referral[] = [
+const allReferrals: Referral[] = [
   // 2026-10-10 老板要求恢复展示
   {
     id: "capital-one",
     slug: "capitalone",
+    hidden: true, // 2026-10-21 老板要求暂时下架 C1 邀请卡片；恢复：删掉这行
     issuer: "Capital One",
     category: "信用卡 · 预审批",
     title: "Capital One 预审批通道",
@@ -473,6 +475,9 @@ export const referrals: Referral[] = [
   //   footnote: "第三方代开通平台，不是 X 官方；会员功能和资格以 X 平台规则为准。",
   // },
 ];
+
+// 对外只导出未下架的卡片（hidden: true 的保留数据但不展示）
+export const referrals: Referral[] = allReferrals.filter((r) => !r.hidden);
 
 export const referralDisclosure =
   "含我的邀请链接，通过链接申请我可能获得奖励；个人经验不构成金融建议。";
