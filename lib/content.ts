@@ -175,6 +175,7 @@ export type Referral = {
   tiers?: { when: string; reward: string; note?: string; valueHint?: string }[]; // valueHint：股票类奖励的参考价（必须带「约」+ 收盘日期）
   feeHighlight?: { title: string; lines: string[] };
   abilities?: string[];
+  notMine?: boolean; // true = 网友分享的可用邀请、非本人：不显示「我有返利」，单页说明改为非本人口径
   hidden?: boolean; // true = 暂时下架：不在任何页面展示，也不生成 /referrals/<slug>/ 和 /go/<slug>/；删掉这行即恢复
 };
 
@@ -183,6 +184,7 @@ const allReferrals: Referral[] = [
   {
     id: "capital-one",
     slug: "capitalone",
+    notMine: true,
     issuer: "Capital One",
     category: "信用卡 · 预审批",
     title: "Capital One 预审批通道",
@@ -478,6 +480,10 @@ export const referrals: Referral[] = allReferrals.filter((r) => !r.hidden);
 
 export const referralDisclosure =
   "含我的邀请链接，通过链接申请我可能获得奖励；个人经验不构成金融建议。";
+
+export const notMineDisclosure =
+  "该邀请链接是随机找的网友分享的可用链接，不是我本人的；个人经验不构成金融建议。";
+export const disclosureFor = (r: { notMine?: boolean }) => (r.notMine ? notMineDisclosure : referralDisclosure);
 
 // 点击统计：/go/<slug>/ 静态跳转页（Vercel Web Analytics 记一次 pageview 后跳转）
 export const goSlug = (id: string) => (id === "capital-one" ? "c1" : id);

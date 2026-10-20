@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteHeader, SiteFooter, Disclaimer, PageBg } from "@/components/SiteChrome";
 import { SingleReferral } from "@/components/Referrals";
-import { referrals, findReferralBySlug, referralPath, referralDisclosure } from "@/lib/content";
+import { referrals, findReferralBySlug, referralPath, disclosureFor } from "@/lib/content";
 
 export const dynamicParams = false;
 
@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const r = findReferralBySlug((await params).slug);
   if (!r) return { title: "邀请推荐｜李天才" };
   const url = referralPath(r);
-  const title = `${r.title}：${r.tagline}｜李天才的邀请`;
-  const description = `${r.title}（${r.category}）。${r.tagline}。${referralDisclosure}`;
+  const title = `${r.title}：${r.tagline}｜${r.notMine ? "网友可用邀请" : "李天才的邀请"}`;
+  const description = `${r.title}（${r.category}）。${r.tagline}。${disclosureFor(r)}`;
   return {
     title,
     description,
@@ -44,7 +44,7 @@ export default async function ReferralSlugPage({ params }: { params: Promise<{ s
         <h1 className="sr-only">{r.title}</h1>
         <p className="mb-6 flex items-start gap-2.5 border border-ink/15 bg-[#fffffc] px-4 py-3 text-[13px] leading-6 text-ink/80">
           <span className="mt-[3px] grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full bg-ink font-mono text-[11px] font-bold text-paper">i</span>
-          <span>{referralDisclosure}</span>
+          <span>{disclosureFor(r)}</span>
         </p>
         <div className="pb-10">
           <SingleReferral r={r} />

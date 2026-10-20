@@ -11,12 +11,12 @@ export default function CopyBlock({ r, badgeOnLink = false, className = "mt-5" }
   return (
     <div className={`${className} space-y-3`}>
       <div>
-        {badgeOnLink && <Rebate />}
+        {badgeOnLink && !r.notMine && <Rebate />}
         <CopyCode label="邀请链接" value={r.href} variant="link" />
       </div>
       {r.code && (
         <div>
-          {!badgeOnLink && <Rebate />}
+          {!badgeOnLink && !r.notMine && <Rebate />}
           <CopyCode label={r.code.label} value={r.code.value} hint={r.code.hint} />
         </div>
       )}
