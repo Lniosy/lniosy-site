@@ -506,13 +506,14 @@ export const legacyHashMap: Record<string, string> = {
 };
 
 // 免费领：只放已确认的第三方活动；跳转页走 /go/<slug>/（noindex）
-export const freebies = [
-  {
-    id: "tencent-ride",
-    title: "腾讯打车权益券",
-    points: ["每个手机号每周领 1 次，券 7 天有效", "领完在 腾讯地图 App→我的→优惠券 里看", "仅限中国大陆用户线上支付抵扣"],
-    note: "第三方活动，以领取页为准，非本站发放，可能有营销短信。",
-    href: "https://50fl.cn/f.UCLV",
-    cta: "去领取页（第三方活动）",
-  },
-];
+// 已按老板要求删除。目前没有进行中的活动。
+export type Freebie = {
+  id: string;
+  title: string;
+  points: string[];
+  note: string;
+  href: string;
+  cta: string;
+};
+
+export const freebies: Freebie[] = [];
