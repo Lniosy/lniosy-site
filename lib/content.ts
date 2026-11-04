@@ -232,6 +232,7 @@ const allReferrals: Referral[] = [
   {
     id: "starryblu",
     slug: "starryblu",
+    hidden: true, // 暂时下架，老板要求；恢复时删掉 hidden
     issuer: "StarryBlu",
     category: "新加坡 · 多币种账户",
     title: "StarryBlu（新加坡）",
