@@ -177,6 +177,20 @@ function IPEqualVisual() {
   );
 }
 
+function IfastVisual() {
+  // 文字卡面示意，不用官方 logo 文件
+  return (
+    <div className="relative flex h-full items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#16324f_0%,#0e2438_55%,#08141f_100%)]">
+      <div aria-hidden className="absolute inset-0 opacity-25 [background-image:radial-gradient(#ffffff33_1px,transparent_1px)] [background-size:16px_16px]" />
+      <div aria-hidden className="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-[#c4b48a] opacity-20 blur-3xl" />
+      <div className="relative flex flex-col items-center gap-2.5 transition duration-500 group-hover:scale-105">
+        <span className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">iFAST</span>
+        <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] tracking-[0.12em] text-[#e7e1d4] ring-1 ring-white/15">GLOBAL BANK · UK</span>
+      </div>
+    </div>
+  );
+}
+
 function AntBankVisual() {
   // 配色取自官方十月新客海报（深青绿 + 青色高亮），代码绘制，非海报原图
   return (
@@ -282,6 +296,7 @@ const visuals: Record<string, () => React.JSX.Element> = {
   cliproxy: CliProxyVisual,
   ipequal: IPEqualVisual,
   antbank: AntBankVisual,
+  ifast: IfastVisual,
   redpocket: RedPocketVisual,
   ronvip: RonVipVisual,
   airnova: AirnovaVisual,

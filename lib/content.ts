@@ -162,7 +162,7 @@ export type Referral = {
   cta: string;
   accent: string;
   group: ReferralGroup;
-  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "savo" | "mexc" | "plasma" | "muse" | "cliproxy" | "ipequal" | "antbank" | "redpocket" | "ronvip" | "airnova";
+  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "savo" | "mexc" | "plasma" | "muse" | "cliproxy" | "ipequal" | "antbank" | "ifast" | "redpocket" | "ronvip" | "airnova";
   badge?: string;
   art?: CardArt[];
   code?: { label: string; value: string; hint?: string };
@@ -275,6 +275,25 @@ const allReferrals: Referral[] = [
     visual: "antbank",
     code: { label: "邀请码", value: "LPH9BZQY" },
     footnote: "活动时间 2026 年 10 月 1 日至 10 月 31 日。奖励以官方活动页为准。",
+  },
+  {
+    id: "ifast",
+    slug: "ifast",
+    issuer: "iFAST Global Bank",
+    category: "英国 · 银行账户",
+    title: "iFAST Global Bank",
+    tagline: "我在英国用的银行账户",
+    points: [
+      "我在英国使用 iFAST Global Bank",
+      "邀请链接和推荐码都在这张卡上，可直接复制",
+    ],
+    href: "https://www.ifastgb.com/tellafriend/yanweil5306",
+    cta: "通过邀请注册 iFAST",
+    accent: "#1e3a5f",
+    group: "bank",
+    visual: "ifast",
+    code: { label: "推荐码", value: "34LOPZN7WK" },
+    footnote: "活动与资格以 iFAST 官网为准。",
   },
   {
     id: "bybit",
