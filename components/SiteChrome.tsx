@@ -7,7 +7,6 @@ const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 const nav = [
   { href: "/referrals/", label: "邀请推荐" },
   { href: "/guides/", label: "教程" },
-  { href: "/free/", label: "免费领" },
 ];
 
 export function SiteHeader({ current }: { current?: string }) {
