@@ -312,8 +312,6 @@ const allReferrals: Referral[] = [
     accent: "#f7a600",
     group: "crypto",
     visual: "bybit",
-    // 辅助入口，不替换上面的邀请链接
-    guide: { label: "查看我的推特文章", href: "https://x.com/Lniosytest/status/2118672301868696026", keywords: "推特文章" },
     footnote: "加密资产波动大、有风险；Bybit 服务在部分国家/地区不可用。",
   },
   {
