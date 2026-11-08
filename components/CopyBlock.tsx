@@ -1,7 +1,7 @@
 import type { Referral } from "@/lib/content";
 import CopyCode from "./CopyCode";
 
-const Rebate = () => <span className="mb-1.5 inline-block bg-[#c8f04a] px-2 py-0.5 text-xs font-extrabold text-ink">我有返利</span>;
+const Rebate = () => <span className="mb-1.5 inline-block rounded-full bg-rebate px-2.5 py-1 text-xs font-bold text-ink">我有返利</span>;
 
 /**
  * 邀请链接 + 邀请码一键复制。邀请卡和教程页共用。

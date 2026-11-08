@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function FreePage() {
   return (
-    <main className="relative min-h-screen overflow-hidden">
+    <main id="main" className="relative min-h-dvh overflow-hidden">
       <PageBg />
       <SiteHeader current="/free/" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 pb-16 pt-8 sm:px-8 sm:pt-12">

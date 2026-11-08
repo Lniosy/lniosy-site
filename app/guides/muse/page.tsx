@@ -56,7 +56,7 @@ const steps = [
   { id: "spark", name: "在 Gemini 里调出远程浏览器", text: "打开 Gemini，点左上角的 Spark，发送「帮我在远端浏览器打开 Google」，允许 Spark 使用远程浏览器，再点「接管任务」（Take over task）。", image: "muse-03-spark-remote-browser" },
   { id: "signup", name: "在远程浏览器里注册 Muse", text: "在远程浏览器地址栏打开 Muse 官网的 join 注册页，填邮箱和 6 位验证码、填真实出生日期，读完须知点「开始」。还跳候补页就新开一个 Spark 会话重来。", image: "muse-04-signup" },
   { id: "age", name: "年龄验证：刷卡、绑 Instagram、绑 Facebook 三选一", text: "选支付卡验证时，在 Meta 验证页填卡号、有效期、安全码、账单国家和邮编。会暂扣 1 美元，页面写 5 到 7 个工作日退回。", image: "muse-05-age-verification" },
-  { id: "redeem", name: "注册完 48 小时内兑换邀请码", text: "进到 Muse 里面，去「设置 → 通用 → 兑换邀请码」（Redeem invite code），填 6 位码，点确认。你和发码的人各得 10 亿 Muse Tokens。", image: "muse-06-redeem-invite-code" },
+  { id: "redeem", name: "注册完 48 小时内兑换邀请码", text: "进到 Muse 里面，去「设置 → 通用 → 兑换邀请码」（Redeem invite code），填 6 位码，点确认。奖励数量以 Muse 官方页面为准。", image: "muse-06-redeem-invite-code" },
 ];
 
 const jsonLd = {
@@ -324,9 +324,9 @@ export default function MuseGuide() {
           邀请码在注册页没地方填。先进到 Muse 里面，再去<B>「设置 → 通用 → 兑换邀请码」</B>（英文 Redeem invite code），填 6 位码，点确认。
         </P>
         <P>
-          规则是注册后 48 小时内兑换，你和发码的人各得 10 亿 Muse Tokens（Muse 词元），过了 48 小时这个入口就没了。每个码能用的次数有限，以兑换页显示的剩余次数为准。
+          我写这篇时，兑换入口在注册后的一段时间内。奖励数量和时限以 Muse 兑换页为准，这里不写死。每个码能用的次数有限，以兑换页显示的剩余次数为准。
         </P>
-        <Figure name="muse-06-redeem-invite-code" alt="兑换邀请码：设置、通用、兑换邀请码（Redeem invite code），填 6 位码点确认；48 小时内兑换，双方各得 10 亿 Muse Tokens" caption="设置 → 通用 → 兑换邀请码" />
+        <Figure name="muse-06-redeem-invite-code" alt="兑换邀请码：设置、通用、兑换邀请码（Redeem invite code），填 6 位码点确认。奖励数量以页面为准" caption="设置 → 通用 → 兑换邀请码" />
 
         {muse && (
           <section id="invite" aria-labelledby="invite-title" className="card-accent relative mt-8 scroll-mt-24 border border-ink bg-[#fffffc] p-5 sm:p-7" style={{ ["--accent" as string]: muse.accent }}>

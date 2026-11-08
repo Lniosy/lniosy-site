@@ -144,6 +144,7 @@ export type CardArt = { src: string; alt: string };
 
 export const referralGroups = [
   { id: "bank", label: "美卡 · 银行账户" },
+  { id: "securities", label: "证券" },
   { id: "crypto", label: "加密 U 卡" },
   { id: "tools", label: "出海工具（AI / IP / 手机号）" },
   // { id: "x", label: "X / 蓝V" }, // 蓝V卡暂时下架，恢复时一起取消注释
@@ -162,7 +163,7 @@ export type Referral = {
   cta: string;
   accent: string;
   group: ReferralGroup;
-  visual: "capital-one" | "wise" | "starryblu" | "bybit" | "savo" | "mexc" | "plasma" | "muse" | "cliproxy" | "ipequal" | "antbank" | "ifast" | "redpocket" | "ronvip" | "airnova";
+  visual: "capital-one" | "wise" | "starryblu" | "bit" | "bybit" | "savo" | "mexc" | "plasma" | "muse" | "cliproxy" | "ipequal" | "antbank" | "ifast" | "redpocket" | "ronvip" | "airnova";
   badge?: string;
   art?: CardArt[];
   code?: { label: string; value: string; hint?: string };
@@ -188,7 +189,7 @@ const allReferrals: Referral[] = [
     issuer: "Capital One",
     category: "信用卡 · 预审批",
     title: "Capital One 预审批通道",
-    tagline: "不影响信用分，先查能批哪张卡",
+    tagline: "先看自己可能获批哪张卡",
     points: [
       "这是随机找的网友分享的可用邀请链接，不是我本人的",
       "进入 Capital One 官方选卡 / 预审工具，不是某一张固定的卡",
@@ -219,8 +220,8 @@ const allReferrals: Referral[] = [
     title: "Wise 跨境转账 / 多币种账户",
     tagline: "跨境收付、换汇和多币种余额，一个账户搞定",
     points: [
-      "官网介绍：在全球范围内收款、汇款和消费，可向 50+ 种货币汇款",
-      "支持多币种余额与 Wise 借记卡",
+      "官网提供跨境收款、汇款和多币种余额",
+      "借记卡和可用货币以 Wise 官网为准",
     ],
     href: "https://wise.com/invite/ahpc/l1ulth3",
     cta: "通过邀请注册 Wise",
@@ -256,25 +257,19 @@ const allReferrals: Referral[] = [
     issuer: "Ant Bank Macau",
     category: "银行 · 港澳",
     title: "澳门蚂蚁银行",
-    // 以下数字全部来自官方素材图（10 月新客海报 / 港美股费率对比 / 三家功能对比 / 产品能力）
-    tagline: "十月新客礼：入金达标即享交易 0 佣金",
-    points: ["需本人到澳门开户，开通财富账户并入金才算达标"],
-    tiers: [
-      { when: "净存入 HKD 3,000", reward: "2 股阿里巴巴-W + HKD 600 费率优惠", note: "0 佣交易礼包，当月最高抵扣 HKD 200", valueHint: "2 股阿里参考价约 HKD 220（按 2026-10-16 港股收盘，股价会变）" },
-      { when: "资产达标满 30 天", reward: "再领 2 股小米集团-W", valueHint: "2 股小米参考价约 HKD 53（按 2026-10-16 港股收盘，股价会变）" },
+    // 2026-11-08：原先的十月新客礼写明截止 2026-10-31，已过该日期。奖励和费率数字不再列出。
+    tagline: "港澳银行账户，这是我的邀请入口",
+    points: [
+      "邀请链接和邀请码都在这张卡上，可直接复制",
+      "开户条件、费用和活动以澳门蚂蚁银行官方页面为准",
     ],
-    feeHighlight: {
-      title: "费率亮点",
-      lines: ["港股 0.02% × 成交额，美股每股 USD 0.0088", "用 200 港币费率优惠卡，11 月至 2027 年 1 月每单最低 0 元"],
-    },
-    abilities: ["美股期权", "碎股交易", "9 类 12 种订单", "22 项行情", "49 项研究工具"],
     href: "https://render.alipay.com/p/c/180020570000149153/index.html?invite-code=LPH9BZQY",
     cta: "通过邀请开户蚂蚁银行",
     accent: "#0f766e",
     group: "bank",
     visual: "antbank",
     code: { label: "邀请码", value: "LPH9BZQY" },
-    footnote: "活动时间 2026 年 10 月 1 日至 10 月 31 日。奖励以官方活动页为准。",
+    footnote: "2026-11-08 起不再展示已过期的十月新客礼数字。当前活动以官方页面为准。",
   },
   {
     id: "ifast",
@@ -296,16 +291,38 @@ const allReferrals: Referral[] = [
     footnote: "活动与资格以 iFAST 官网为准。",
   },
   {
+    id: "bit",
+    slug: "bit",
+    issuer: "BIT",
+    category: "证券 · BIT 证券",
+    title: "BIT 证券",
+    tagline: "BIT证券开户与入金实操",
+    points: [
+      "官网和邀请码分开：打开官网不会自动带上邀请码，要在注册页的邀请码栏手动填写",
+      "客户端下载页是 bit.com/download，同样不会自动填写邀请码",
+      "详细步骤在我的推特文章里",
+    ],
+    // 原稿只有官网和手动邀请码，没有带参数的专属链接
+    href: "https://www.bit.com",
+    cta: "前往 BIT 官网",
+    accent: "#1f6b45",
+    group: "securities",
+    visual: "bit",
+    code: { label: "邀请码", value: "TIANCAI", hint: "注册时手动填写，全大写。点开官网不会自动绑定。" },
+    guide: { label: "查看我的推特文章", href: "https://x.com/Lniosytest/status/2118672301868696026", keywords: "BIT 证券 开户 入金 推特文章" },
+    footnote: "资格、费用和可交易品种以 bit.com 官方页面为准。证券和加密资产都有风险。",
+  },
+  {
     id: "bybit",
     slug: "bybit",
     issuer: "Bybit",
     category: "加密卡 · Bybit Card",
     title: "Bybit Card",
-    // 官方邀请文案原文
-    tagline: "申请 Bybit Card，解锁 10% 返现和 10 USDT 体验金",
+    // 2026-11-08：官网仍能看到返现和推荐奖励页面，但门槛、上限和地区限制很多。卡上不再写死数字。
+    tagline: "申请 Bybit Card，这是我的邀请入口",
     points: [
-      "以上为 Bybit 官方邀请文案，活动规则以官方活动为准",
-      "可申请地区、资格与返现规则以 Bybit 官方页面为准",
+      "返现、体验金和申请资格以 Bybit 官方页面为准，规则会变",
+      "可申请地区以 Bybit 官方页面为准",
     ],
     href: "https://www.bybit.com/cards/?ref=0LL34JO&source=applet_invite",
     cta: "申请 Bybit Card",
@@ -341,8 +358,8 @@ const allReferrals: Referral[] = [
     title: "MEXC U卡 / 交易所",
     tagline: "MEXC 交易所注册入口，也可在站内申请 U 卡",
     points: [
-      "0 手续费活动已于 9 月 30 日结束；10 月 1 日起每笔消费收 1% 手续费",
-      "官方活动：消费返现 4–10% USDT，上限 800 USDT（以官方活动规则为准）",
+      "交易所注册入口，也可在站内申请 U 卡",
+      "手续费、返现和活动以 MEXC 官网当时页面为准",
     ],
     href: "https://s.mexc.com/referral/soPlwdQEbb",
     cta: "通过邀请注册 MEXC",
@@ -359,10 +376,9 @@ const allReferrals: Referral[] = [
     title: "Plasma One",
     tagline: "稳定币 Visa 卡，非托管钱包，这是我的邀请入口",
     points: [
-      "稳定币 Visa 卡；钱包非托管，私钥在用户手里",
-      "免费档基础返现 2%；Core 档每年 199 美元，或锁仓 20,000 XPL",
-      "被邀请人须完成身份认证并激活卡，邀请才算数",
-      "支持国家以官网为准",
+      "这是我的 Plasma One 邀请入口",
+      "卡种、托管方式、返现和档位以 Plasma 官网为准",
+      "邀请是否算数，以官网规则为准",
     ],
     href: "https://plasma.org/download/A3BZAC",
     cta: "通过邀请注册 Plasma One",
@@ -380,7 +396,7 @@ const allReferrals: Referral[] = [
     tagline: "给它一个目标或日常任务，它来帮你搞定",
     points: [
       "官网介绍：Muse 是你的个人 AI 智能体（Muse from Meta）",
-      "加入后 48 小时内在「设置」里兑现邀请码，双方各得 10 亿个 Muse 词元",
+      "邀请码在设置里兑现。奖励数量和时限以 Muse 官方页面为准",
     ],
     href: "https://muse.ai/join",
     cta: "加入 Muse",
@@ -401,7 +417,7 @@ const allReferrals: Referral[] = [
     points: [
       "我是配合比特浏览器（BitBrowser）一起用的，注册 X 也在比特里注册，比较稳",
       "这个 IP 我用着挺不错：挂 X、挂 C1 App、Muse、美区 PayPal 都可以",
-      "官网介绍：动态住宅 IP，覆盖 180+ 国家和地区",
+      "官网介绍动态住宅 IP，覆盖范围以官网为准",
     ],
     // 跳转到 cliproxy.com/?code=8i9xuktqq
     href: "https://share.cliproxy.com/share/8i9xuktqq",
@@ -420,8 +436,8 @@ const allReferrals: Referral[] = [
     tagline: "专给 ChatGPT / Claude 用的住宅节点",
     points: [
       "官网定位：针对访问 ChatGPT 的住宅 IP 和网络加速（EqualDCDN 旗下）",
-      "官网介绍：ISP 静态住宅节点，独享带宽，主打解决 ChatGPT 降智、Claude 封号",
-      "官网写：通过邀请链接购买可享 20% 折扣",
+      "具体节点和效果以官网为准",
+      "如页面写有邀请折扣，以购买页当时显示为准",
     ],
     href: "https://www.ipequal.com/?ref=9a08d94e8b",
     cta: "去 IPEqual 看看",
@@ -439,9 +455,8 @@ const allReferrals: Referral[] = [
     tagline: "美国实体手机号卡",
     points: [
       "美国实体手机号卡，我自己用的就是这张",
-      "eBay 官方店 30 美元 360 天，折合每月 2.5 刀",
-      "电话短信不限，每 30 天 200MB 高速流量，可选 eSIM",
-      "我人在国内连 Wi-Fi、开 Wi-Fi 通话就激活成功了；漫游流量被砍到 100MB",
+      "价格、通话、短信和流量以 eBay 官方店当时页面为准",
+      "我人在国内连 Wi-Fi、开 Wi-Fi 通话就激活成功了；这是我的个人实测，官方不保证",
     ],
     // 邀请链接：跳转到 RedPocket 官方页面
     href: "https://ebay.io/m/kAae1p",
@@ -451,7 +466,7 @@ const allReferrals: Referral[] = [
     accent: "#e11d48",
     group: "tools",
     visual: "redpocket",
-    footnote: "套餐与价格以 eBay 官方店页面为准；官方写 SIM 只能在美国境内激活、eBay 套餐不含漫游，国内激活和漫游是我个人实测，官方不保证；买后 90 天内要激活。",
+    footnote: "套餐与价格以 eBay 官方店页面为准。2026-11-08 起卡上不再写死价格和流量数字。国内激活是我的个人实测，官方不保证。",
   },
   {
     id: "airnova",
@@ -461,7 +476,7 @@ const allReferrals: Referral[] = [
     title: "Airnova 全球旅行 eSIM",
     tagline: "一张 eSIM 全球可用，落地即上网",
     points: [
-      "官网介绍：一张 eSIM 覆盖 190+ 国家与地区，不用换实体卡，原来的实体卡可以保留",
+      "官网介绍旅行 eSIM，覆盖范围以官网为准；不用换实体卡，原来的实体卡可以保留",
       "支持 iOS 与 Android，安装约 1 分钟，24/7 在 App 内管理流量",
       "用法：选目的地和套餐 → 出发前扫码 / 快捷安装 eSIM → 落地后打开数据漫游即可启用",
     ],
