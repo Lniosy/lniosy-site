@@ -41,7 +41,7 @@ export default function Home() {
             </div>
             {/* 关注者数来源见 lib/content.ts 注释 */}
             <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-muted">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />X 关注者 {X_FOLLOWERS_LABEL}（2026-10-13 核对，不是实时数）
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />{X_FOLLOWERS_LABEL} 位 X 关注者 · 2026-11-08 核对 · 静态快照，不是实时
             </p>
           </div>
           <a href={X_URL} {...ext} aria-label="天才毛球 — 在 X 上关注 @Lniosytest" className="order-first mx-auto block w-28 md:order-none md:w-full">
