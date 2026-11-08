@@ -398,13 +398,13 @@ function ReferralCard({ r, index, permalink = true }: { r: Referral; index: numb
         <CopyBlock r={r} badgeOnLink={r.group === "bank" || r.id === "ipequal"} />
         {r.footnote && <p className="mt-3 text-xs leading-5 text-muted">{r.footnote}</p>}
         {r.guide ? (
-          <div className="mt-auto flex items-center gap-3 border-t border-line pt-4">
-            <a href={r.guide.href} {...(/^https?:/.test(r.guide.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap border border-ink/25 bg-white px-3.5 text-sm font-extrabold transition hover:border-ink hover:bg-ink hover:text-paper">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z" /><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z" /></svg>
+          <div className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-line pt-4">
+            <a href={r.guide.href} {...(/^https?:/.test(r.guide.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="inline-flex min-h-11 max-w-full items-center gap-1.5 border border-ink/25 bg-white px-3.5 text-left text-sm font-extrabold leading-snug transition hover:border-ink hover:bg-ink hover:text-paper">
+              <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z" /><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z" /></svg>
               {r.guide.label}
             </a>
-            <a href={goHref(r.id)} {...sponsored} className="inline-flex min-h-12 min-w-0 flex-1 items-center justify-end gap-2 text-sm font-extrabold transition hover:text-[#1d2a6b]">
-              <span className="text-right leading-snug">{r.cta}</span>
+            <a href={goHref(r.id)} {...sponsored} className="ml-auto inline-flex min-h-12 shrink-0 items-center gap-2 text-sm font-extrabold transition hover:text-[#1d2a6b]">
+              <span className="leading-snug">{r.cta}</span>
               <span className="grid h-9 w-9 shrink-0 place-items-center bg-ink text-paper transition group-hover:translate-x-0.5"><Arrow /></span>
             </a>
           </div>
