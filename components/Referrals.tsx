@@ -199,8 +199,7 @@ function AntBankVisual() {
       <div aria-hidden className="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-[#14b8a6] opacity-35 blur-3xl" />
       <div className="relative flex flex-col items-center gap-2.5 transition duration-500 group-hover:scale-105">
         <span className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">Ant Bank</span>
-        <span className="text-[15px] font-bold text-[#99f6e4]">交易 <span className="text-2xl font-black text-[#facc15]">0</span> 佣金 · 送阿里 + 小米股</span>
-        <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] tracking-[0.12em] text-[#ccfbf1] ring-1 ring-white/15">澳门蚂蚁银行 · 十月新客礼</span>
+        <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] tracking-[0.12em] text-[#ccfbf1] ring-1 ring-white/15">澳门蚂蚁银行</span>
       </div>
     </div>
   );
@@ -264,6 +263,18 @@ function RonVipVisual() {
   );
 }
 
+function BitVisual() {
+  return (
+    <div className="relative flex h-full items-center justify-center overflow-hidden bg-[linear-gradient(160deg,#16382a_0%,#10241c_55%,#0c1612_100%)]">
+      <div aria-hidden className="absolute inset-0 opacity-25 [background-image:radial-gradient(#ffffff33_1px,transparent_1px)] [background-size:16px_16px]" />
+      <div className="relative flex flex-col items-center gap-2.5 transition duration-200 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100">
+        <span className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">BIT</span>
+        <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] tracking-[0.12em] text-[#d7efe4] ring-1 ring-white/15">证券 · 官网入口</span>
+      </div>
+    </div>
+  );
+}
+
 function AirnovaVisual() {
   // 文字 logo + 简笔叶子图形（非官方素材）
   return (
@@ -279,7 +290,7 @@ function AirnovaVisual() {
           </svg>
           <span className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">Airnova</span>
         </div>
-        <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] tracking-[0.12em] text-[#e0f2fe] ring-1 ring-white/20">eSIM · 190+ 国家与地区</span>
+        <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] tracking-[0.12em] text-[#e0f2fe] ring-1 ring-white/20">eSIM · 全球流量</span>
       </div>
     </div>
   );
@@ -288,6 +299,7 @@ function AirnovaVisual() {
 const visuals: Record<string, () => React.JSX.Element> = {
   wise: WiseVisual,
   starryblu: StarryBluVisual,
+  bit: BitVisual,
   bybit: BybitVisual,
   savo: SavoVisual,
   mexc: MexcVisual,
@@ -306,7 +318,7 @@ function Points({ items, dark = false }: { items: string[]; dark?: boolean }) {
   return (
     <ul className="space-y-2">
       {items.map((p) => (
-        <li key={p} className={`flex gap-2.5 text-sm leading-6 ${dark ? "text-paper/80" : "text-muted"}`}>
+        <li key={p} className={`flex gap-2.5 text-base leading-7 ${dark ? "text-paper/80" : "text-muted"}`}>
           <Check className={`mt-1 h-4 w-4 shrink-0 ${dark ? "text-[#c8f04a]" : "text-ink"}`} />
           <span>{p}</span>
         </li>
@@ -325,7 +337,7 @@ function FeaturedCard({ r, permalink = true }: { r: Referral; permalink?: boolea
         <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] font-bold tracking-[0.12em]">
           <span className="bg-[#c8f04a] px-2 py-1 text-ink">我在用</span>
           <span className="border border-paper/30 px-2 py-1 text-paper/80">{r.category}</span>
-          {permalink && <a href={referralPath(r)} className="ml-auto inline-flex items-center gap-1 px-1 py-1 font-normal text-paper/50 transition hover:text-[#c8f04a]" title="这张卡的专属链接">#专属链接</a>}
+          {permalink && <a href={referralPath(r)} className="ml-auto inline-flex min-h-11 items-center gap-1 px-1 font-normal text-paper/70 hover:text-white" title="这张卡的专属链接">#专属链接</a>}
         </div>
         <h3 className="mt-5 text-[26px] font-extrabold leading-tight tracking-tight [text-wrap:balance] sm:text-[32px] lg:text-4xl">{r.title}</h3>
         <p className="mt-2 text-[17px] font-bold text-[#c8f04a] sm:text-xl">{r.tagline}</p>
@@ -381,7 +393,7 @@ function ReferralCard({ r, index, permalink = true }: { r: Referral; index: numb
         <div className="flex items-center justify-between font-mono text-[11px] tracking-[0.1em] text-muted">
           <span className="font-bold text-ink">{r.issuer}</span>
           {permalink ? (
-            <a href={referralPath(r)} className="inline-flex min-h-6 items-center transition hover:text-ink" title="这张卡的专属链接">#专属链接 /{n}</a>
+            <a href={referralPath(r)} className="inline-flex min-h-11 items-center px-1 transition hover:text-ink" title="这张卡的专属链接">#专属链接 /{n}</a>
           ) : (
             <span>/{n}</span>
           )}
@@ -398,14 +410,14 @@ function ReferralCard({ r, index, permalink = true }: { r: Referral; index: numb
         <CopyBlock r={r} badgeOnLink={r.group === "bank" || r.id === "ipequal"} />
         {r.footnote && <p className="mt-3 text-xs leading-5 text-muted">{r.footnote}</p>}
         {r.guide ? (
-          <div className="mt-auto flex items-center gap-3 border-t border-line pt-4">
-            <a href={r.guide.href} {...(/^https?:/.test(r.guide.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap border border-ink/25 bg-white px-3.5 text-sm font-extrabold transition hover:border-ink hover:bg-ink hover:text-paper">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z" /><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z" /></svg>
+          <div className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-line pt-4">
+            <a href={r.guide.href} {...(/^https?:/.test(r.guide.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="inline-flex min-h-11 max-w-full items-center gap-1.5 rounded-full border border-ink/20 bg-white px-3.5 text-left text-sm font-bold leading-snug text-ink hover:bg-ink hover:text-paper">
+              <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z" /><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z" /></svg>
               {r.guide.label}
             </a>
-            <a href={goHref(r.id)} {...sponsored} className="inline-flex min-h-12 min-w-0 flex-1 items-center justify-end gap-2 text-sm font-extrabold transition hover:text-[#1d2a6b]">
-              <span className="text-right leading-snug">{r.cta}</span>
-              <span className="grid h-9 w-9 shrink-0 place-items-center bg-ink text-paper transition group-hover:translate-x-0.5"><Arrow /></span>
+            <a href={goHref(r.id)} {...sponsored} className="ml-auto inline-flex min-h-12 shrink-0 items-center gap-2 text-sm font-bold">
+              <span className="leading-snug">{r.cta}</span>
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-ink text-paper"><Arrow /></span>
             </a>
           </div>
         ) : (

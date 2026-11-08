@@ -16,7 +16,7 @@ const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 export default function GuidesPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden">
+    <main id="main" className="relative min-h-dvh overflow-hidden">
       <PageBg />
       <SiteHeader current="/guides/" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
@@ -28,7 +28,7 @@ export default function GuidesPage() {
             {guides.map((g) => {
               const external = g.href.startsWith("http");
               return (
-                <li key={g.href} className="flex flex-col border border-line bg-[#fffffce6] p-5">
+                <li key={g.href} className="panel flex flex-col p-5">
                   <p className="font-mono text-[11px] font-bold text-muted">{g.source}</p>
                   <a href={g.href} {...(external ? ext : {})} className="mt-2 flex items-start justify-between gap-3 font-bold leading-6 hover:underline">
                     {g.title} <Arrow className="mt-1 h-4 w-4 shrink-0" />

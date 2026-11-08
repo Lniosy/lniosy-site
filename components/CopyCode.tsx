@@ -35,9 +35,9 @@ export default function CopyCode({ label, value, hint, variant = "code" }: { lab
       <div className="min-w-0 flex-1 px-3.5 py-2">
         <div className="font-mono text-[10px] font-bold tracking-[0.14em] text-muted">{label}</div>
         {variant === "link" ? (
-          <div className="select-all break-all font-mono text-[13px] font-semibold leading-5 text-ink">{value}</div>
+          <div className="select-all font-mono text-[13px] font-semibold leading-5 text-ink [overflow-wrap:anywhere]">{value}</div>
         ) : (
-          <div className="select-all break-all font-mono text-xl font-extrabold tracking-[0.18em] text-ink slashed-zero">{value}</div>
+          <div className="select-all font-mono text-xl font-bold tracking-[0.12em] text-ink [overflow-wrap:anywhere]">{value}</div>
         )}
       </div>
       <button

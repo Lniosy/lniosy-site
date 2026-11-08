@@ -14,7 +14,9 @@ export default function SiteSearch({ only }: { only?: "referrals" | "posts" }) {
 
   useEffect(() => {
     const v = new URLSearchParams(window.location.search).get("q");
-    if (v) setQ(v);
+    if (!v) return;
+    const id = window.setTimeout(() => setQ(v), 0);
+    return () => window.clearTimeout(id);
   }, []);
 
   useEffect(() => {
@@ -42,11 +44,12 @@ export default function SiteSearch({ only }: { only?: "referrals" | "posts" }) {
             onChange={(e) => setQ(e.target.value)}
             placeholder={only === "referrals" ? "搜卡片 / 邀请码" : only === "posts" ? "搜文章" : "搜卡片 / 邀请码 / 文章"}
             aria-label="搜索全站邀请卡片和文章"
-            className="h-14 w-full border-2 border-ink bg-white pl-12 pr-24 text-base font-semibold text-ink shadow-[4px_4px_0_#111214] outline-none placeholder:font-normal placeholder:text-muted focus:shadow-[4px_4px_0_#3ad6ff] [&::-webkit-search-cancel-button]:hidden"
+            className="min-h-14 w-full rounded-2xl border border-ink/15 bg-surface py-3 pl-12 pr-24 text-base font-semibold text-ink shadow-[var(--shadow-raised)] outline-none placeholder:font-normal placeholder:text-muted [&::-webkit-search-cancel-button]:hidden"
           />
           {active && (
-            <button type="button" onClick={() => { setQ(""); input.current?.focus(); }} className="absolute right-2 top-1/2 inline-flex h-10 -translate-y-1/2 items-center gap-1 bg-ink px-3 text-sm font-bold text-paper hover:bg-[#1d2a6b]" aria-label="清除搜索">
-              ✕ 清除
+            <button type="button" onClick={() => { setQ(""); input.current?.focus(); }} className="absolute right-2 top-1/2 inline-flex min-h-11 -translate-y-1/2 items-center gap-1 rounded-full bg-ink px-3 text-sm font-bold text-paper" aria-label="清除搜索">
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+              清除
             </button>
           )}
         </form>

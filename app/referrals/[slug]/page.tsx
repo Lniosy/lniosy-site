@@ -30,7 +30,7 @@ export default async function ReferralSlugPage({ params }: { params: Promise<{ s
   const r = findReferralBySlug((await params).slug);
   if (!r) notFound();
   return (
-    <main className="relative min-h-screen overflow-hidden">
+    <main id="main" className="relative min-h-dvh overflow-hidden">
       <PageBg />
       <SiteHeader current="/referrals/" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 pt-6 sm:px-8">
