@@ -6,6 +6,7 @@ import { homeJsonLd } from "@/lib/jsonld";
 import { SiteHeader, SiteFooter, Disclaimer } from "@/components/SiteChrome";
 import LegacyHash from "@/components/LegacyHash";
 import { HomeReferrals } from "@/components/Referrals";
+import { HomeProjects } from "@/components/Projects";
 import { Arrow } from "@/components/Icons";
 
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
@@ -99,6 +100,8 @@ export default function Home() {
               </Link>
           ))}
         </nav>
+
+        <HomeProjects />
 
         <section aria-labelledby="pick-title" className="pb-10">
           <div className="mb-4 flex items-end justify-between gap-3">

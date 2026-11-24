@@ -1,4 +1,5 @@
 import { SITE_URL, X_FOLLOWERS_AS_OF, X_FOLLOWERS_LABEL, X_URL, profile, referrals } from "@/lib/content";
+import { GITHUB_URL, PROJECT_SNAPSHOT, projectStats, projects } from "@/lib/projects";
 
 export const homeJsonLd = {
   "@context": "https://schema.org",
@@ -11,8 +12,8 @@ export const homeJsonLd = {
       url: `${SITE_URL}/`,
       image: `${SITE_URL}/avatar.jpg`,
       description: `${profile.bio}｜${profile.bio2}。X 关注者 ${X_FOLLOWERS_LABEL}（${X_FOLLOWERS_AS_OF} 更新，静态标注，非实时）。`,
-      sameAs: [X_URL],
-      knowsAbout: ["ITIN", "美国信用卡", "AI 工具", "加密货币", "独立开发"],
+      sameAs: [X_URL, GITHUB_URL],
+      knowsAbout: ["ITIN", "美国信用卡", "AI 工具", "加密货币", "独立开发", "开源项目"],
     },
     {
       "@type": "WebSite",
@@ -34,6 +35,61 @@ export const homeJsonLd = {
         name: r.title,
         description: r.tagline,
         url: `${SITE_URL}/referrals/#referral-${r.id}`,
+      })),
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${SITE_URL}/#projects`,
+      name: "开源项目",
+      url: `${SITE_URL}/projects/`,
+      numberOfItems: projectStats.count,
+      itemListElement: projects.map((project, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: `${project.name} (${project.repo})`,
+        url: project.url,
+      })),
+    },
+  ],
+};
+
+const projectListId = `${SITE_URL}/projects/#list`;
+
+export const projectsJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${SITE_URL}/projects/#page`,
+      url: `${SITE_URL}/projects/`,
+      name: "开源项目",
+      description: `李天才（GitHub @Lniosy）的 ${projectStats.count} 个公开原创仓库。${PROJECT_SNAPSHOT} 快照合计 ${projectStats.stars} Stars、${projectStats.forks} Forks。`,
+      inLanguage: "zh-CN",
+      dateModified: PROJECT_SNAPSHOT,
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      author: { "@id": `${SITE_URL}/#person` },
+      mainEntity: { "@id": projectListId },
+    },
+    {
+      "@type": "ItemList",
+      "@id": projectListId,
+      name: "Lniosy 50★ 以上原创开源项目",
+      numberOfItems: projectStats.count,
+      itemListElement: projects.map((project, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "SoftwareSourceCode",
+          name: `${project.name} (${project.repo})`,
+          description: project.summary,
+          codeRepository: project.url,
+          url: project.url,
+          image: `${SITE_URL}${project.image}`,
+          programmingLanguage: project.language,
+          license: "https://opensource.org/licenses/MIT",
+          dateModified: project.updated,
+          author: { "@id": `${SITE_URL}/#person` },
+        },
       })),
     },
   ],
