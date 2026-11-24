@@ -3,8 +3,8 @@ import { SiteHeader, SiteFooter, Disclaimer, PageBg } from "@/components/SiteChr
 import SiteSearch from "@/components/SiteSearch";
 
 export const metadata: Metadata = {
-  title: "邀请推荐：美卡 · 证券 · 加密 U 卡 · 出海工具｜李天才",
-  description: "李天才的邀请链接合集：Capital One、Wise、澳门蚂蚁银行、iFAST、BIT 证券、Bybit、Savo、MEXC、Plasma One、Muse、CliProxy、IPEqual、RedPocket、Airnova。奖励和资格以各官方页面为准。",
+  title: "邀请推荐：信用卡 · 证券 · 加密 U 卡 · 出海工具｜李天才",
+  description: "李天才的邀请链接合集：Capital One、招商银行全币种 Visa、Wise、澳门蚂蚁银行、iFAST、BIT 证券、Bybit、Savo、MEXC、Plasma One、Muse、CliProxy、IPEqual、RedPocket、Airnova。奖励和资格以各官方页面为准。",
   alternates: { canonical: "/referrals/" },
   openGraph: { url: "/referrals/" },
 };
