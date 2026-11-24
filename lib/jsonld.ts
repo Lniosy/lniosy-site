@@ -1,4 +1,4 @@
-import { SITE_URL, X_URL, profile, referrals } from "@/lib/content";
+import { SITE_URL, X_FOLLOWERS_AS_OF, X_FOLLOWERS_LABEL, X_URL, profile, referrals } from "@/lib/content";
 
 export const homeJsonLd = {
   "@context": "https://schema.org",
@@ -10,7 +10,7 @@ export const homeJsonLd = {
       alternateName: [profile.nameEn, profile.handle, profile.mascot],
       url: `${SITE_URL}/`,
       image: `${SITE_URL}/avatar.jpg`,
-      description: `${profile.bio}｜${profile.bio2}`,
+      description: `${profile.bio}｜${profile.bio2}。X 关注者 ${X_FOLLOWERS_LABEL}（${X_FOLLOWERS_AS_OF} 更新，静态标注，非实时）。`,
       sameAs: [X_URL],
       knowsAbout: ["ITIN", "美国信用卡", "AI 工具", "加密货币", "独立开发"],
     },

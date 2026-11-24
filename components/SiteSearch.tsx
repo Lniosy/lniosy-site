@@ -6,9 +6,7 @@ import { matches, postText, referralText } from "@/lib/search";
 import Writing from "./Writing";
 import Referrals from "./Referrals";
 
-const hints = ["U卡", "Wise", "ITIN", "邀请码", "Claude"];
-
-export default function SiteSearch({ only }: { only?: "referrals" | "posts" }) {
+export default function SiteSearch({ only, embedded = false }: { only?: "referrals" | "posts"; embedded?: boolean }) {
   const [q, setQ] = useState("");
   const input = useRef<HTMLInputElement>(null);
 
@@ -33,7 +31,7 @@ export default function SiteSearch({ only }: { only?: "referrals" | "posts" }) {
 
   return (
     <>
-      <div id="search" className="sticky top-[69px] z-20 -mx-5 mb-10 border-y border-line bg-paper/90 px-5 py-3 backdrop-blur-md sm:-mx-8 sm:px-8">
+      <div id="search" className="mb-5">
         <form role="search" onSubmit={(e) => { e.preventDefault(); input.current?.blur(); }} className="relative">
           <svg viewBox="0 0 24 24" className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
           <input
@@ -44,38 +42,28 @@ export default function SiteSearch({ only }: { only?: "referrals" | "posts" }) {
             onChange={(e) => setQ(e.target.value)}
             placeholder={only === "referrals" ? "搜卡片 / 邀请码" : only === "posts" ? "搜文章" : "搜卡片 / 邀请码 / 文章"}
             aria-label="搜索全站邀请卡片和文章"
-            className="min-h-14 w-full rounded-2xl border border-ink/15 bg-surface py-3 pl-12 pr-24 text-base font-semibold text-ink shadow-[var(--shadow-raised)] outline-none placeholder:font-normal placeholder:text-muted [&::-webkit-search-cancel-button]:hidden"
+            className="min-h-12 w-full rounded-full border border-line bg-white py-2 pl-12 pr-24 text-base text-ink outline-none placeholder:text-muted [&::-webkit-search-cancel-button]:hidden"
           />
           {active && (
-            <button type="button" onClick={() => { setQ(""); input.current?.focus(); }} className="absolute right-2 top-1/2 inline-flex min-h-11 -translate-y-1/2 items-center gap-1 rounded-full bg-ink px-3 text-sm font-bold text-paper" aria-label="清除搜索">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+            <button type="button" onClick={() => { setQ(""); input.current?.focus(); }} className="absolute right-1 top-1/2 inline-flex min-h-11 -translate-y-1/2 items-center rounded-full bg-ink px-3 text-sm font-bold text-white" aria-label="清除搜索">
               清除
             </button>
           )}
         </form>
-        <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted" aria-live="polite">
-          {active ? (
-            <span>找到 {only !== "posts" && <><b className="text-ink">{nRef}</b> 张邀请卡</>}{!only && " · "}{only !== "referrals" && <><b className="text-ink">{nPost}</b> 篇内容</>}</span>
-          ) : (
-            <>
-              <span>试试：</span>
-              {hints.map((h) => (
-                <button key={h} type="button" onClick={() => setQ(h)} className="min-h-7 border border-ink/15 bg-[#fffffc] px-2 font-bold text-ink hover:border-ink">{h}</button>
-              ))}
-            </>
-          )}
-        </div>
+        <p className="mt-2 min-h-5 px-3 text-xs text-muted" aria-live="polite">
+          {active && <>找到 {only !== "posts" && <><b className="text-ink">{nRef}</b> 张邀请卡</>}{!only && " · "}{only !== "referrals" && <><b className="text-ink">{nPost}</b> 篇内容</>}</>}
+        </p>
       </div>
 
       {none ? (
-        <div className="mb-16 border-2 border-dashed border-ink/25 px-6 py-14 text-center">
+        <div className="mb-12 rounded-3xl bg-white px-6 py-12 text-center shadow-[var(--shadow-raised)]">
           <p className="text-xl font-extrabold">没找到相关内容</p>
           <p className="mt-2 text-sm text-muted">换个关键词试试，比如「U卡」「Wise」「ITIN」</p>
-          <button type="button" onClick={() => setQ("")} className="mt-5 inline-flex min-h-11 items-center bg-ink px-5 text-sm font-bold text-paper">清除搜索</button>
+          <button type="button" onClick={() => setQ("")} className="mt-5 inline-flex min-h-11 items-center rounded-full bg-ink px-5 text-sm font-bold text-white">清除搜索</button>
         </div>
       ) : (
         <>
-          {only !== "referrals" && (!active || nPost > 0) && <Writing q={q} />}
+          {only !== "referrals" && (!active || nPost > 0) && <Writing q={q} embedded={embedded} />}
           {only !== "posts" && (!active || nRef > 0) && <Referrals q={q} />}
         </>
       )}

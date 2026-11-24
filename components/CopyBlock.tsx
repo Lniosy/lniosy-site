@@ -1,25 +1,19 @@
 import type { Referral } from "@/lib/content";
 import CopyCode from "./CopyCode";
 
-const Rebate = () => <span className="mb-1.5 inline-block rounded-full bg-rebate px-2.5 py-1 text-xs font-bold text-ink">我有返利</span>;
-
 /**
- * 邀请链接 + 邀请码一键复制。邀请卡和教程页共用。
- * badgeOnLink：「我有返利」挂在邀请链接上（信用卡 / 银行账户统一式样）；否则挂在邀请码上。
+ * 邀请链接 + 邀请码。链接和邀请码都是 48px 单行药丸，复制的是原始字符串。
  */
-export default function CopyBlock({ r, badgeOnLink = false, className = "mt-5" }: { r: Referral; badgeOnLink?: boolean; className?: string }) {
+export default function CopyBlock({ r, className = "" }: { r: Referral; badgeOnLink?: boolean; className?: string }) {
   return (
-    <div className={`${className} space-y-3`}>
-      <div>
-        {badgeOnLink && !r.notMine && <Rebate />}
-        <CopyCode label="邀请链接" value={r.href} variant="link" />
-      </div>
-      {r.code && (
-        <div>
-          {!badgeOnLink && !r.notMine && <Rebate />}
-          <CopyCode label={r.code.label} value={r.code.value} hint={r.code.hint} />
-        </div>
+    <div className={`${className} min-w-0 space-y-2`}>
+      {r.notMine ? (
+        <span className="inline-flex rounded-md bg-[#eeeafd] px-2 py-0.5 text-[11px] font-extrabold text-muted">网友分享 · 非本人</span>
+      ) : (
+        <span className="inline-flex rounded-md bg-rebate px-2 py-0.5 text-[11px] font-extrabold text-rebate-ink">我有返利</span>
       )}
+      <CopyCode label="邀请链接" value={r.href} variant="link" />
+      {r.code && <CopyCode label={r.code.label} value={r.code.value} hint={r.code.hint} />}
     </div>
   );
 }

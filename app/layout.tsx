@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import { SITE_URL, X_URL } from "@/lib/content";
+import { SITE_URL, X_FOLLOWERS_AS_OF, X_FOLLOWERS_LABEL, X_URL } from "@/lib/content";
 
 const title = "李天才 @Lniosytest｜美卡 ITIN · AI · 独立开发";
 const description =
-  "李天才（天才毛球）的个人主页：分享我用 ITIN 办美卡的经验、AI 工具实战与独立开发。";
+  `李天才（天才毛球）的个人主页：分享我用 ITIN 办美卡的经验、AI 工具实战与独立开发。X 关注者 ${X_FOLLOWERS_LABEL}（${X_FOLLOWERS_AS_OF} 更新，静态标注，非实时）。`;
 
 // Google Search Console「HTML 标记」验证：把 content 值填到环境变量 NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION 或下面常量；空则不输出。
 const GOOGLE_SITE_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "";
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = { themeColor: "#111111" };
+export const viewport: Viewport = { themeColor: "#ede9ff" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

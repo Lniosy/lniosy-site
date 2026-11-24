@@ -6,10 +6,10 @@ export const X_URL = "https://x.com/Lniosytest";
 // TODO: 上线后替换为正式域名（用于 OG / canonical）
 export const SITE_URL = "https://litiancai.vercel.app";
 
-// 关注者数：2026-11-08 约 15:16（Asia/Taipei）从 X get_posts_by_id(2118672301868696026)
-// 的 author expansion 读取 @Lniosytest public_metrics.followers_count=9074。
-// 静态快照，页面不接实时接口。
-export const X_FOLLOWERS_LABEL = "9,074";
+// X 关注者：2026-11-24 起全站统一显示静态标注「10K+」。
+// 不是实时接口。首页、文案、meta / JSON-LD、llms.txt 都用这两个常量。
+export const X_FOLLOWERS_LABEL = "10K+";
+export const X_FOLLOWERS_AS_OF = "2026-11-24";
 
 export const profile = {
   name: "李天才",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { X_URL, freebies } from "@/lib/content";
-import { SiteHeader, SiteFooter, PageBg } from "@/components/SiteChrome";
+import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { Arrow, XLogo } from "@/components/Icons";
 
 export const metadata: Metadata = {
@@ -12,14 +12,13 @@ export const metadata: Metadata = {
 
 export default function FreePage() {
   return (
-    <main id="main" className="relative min-h-dvh overflow-hidden">
-      <PageBg />
+    <main id="main" className="relative min-h-dvh">
       <SiteHeader current="/free/" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 pb-16 pt-8 sm:px-8 sm:pt-12">
         <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">免费领</p>
         <h1 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">免费领</h1>
         {freebies.length === 0 ? (
-          <p className="mt-6 max-w-xl border-2 border-dashed border-ink/40 bg-white p-6 text-sm leading-6">目前没有进行中的免费活动。</p>
+          <p className="mt-6 max-w-xl rounded-3xl bg-white p-6 text-sm leading-6 shadow-[var(--shadow-raised)]">目前没有进行中的免费活动。</p>
         ) : (
           <>
             <p className="mt-3 max-w-xl text-sm leading-6 text-muted">整理一些可以免费领的第三方活动，点按钮直达领取页。</p>

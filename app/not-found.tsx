@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { SiteHeader, SiteFooter, PageBg } from "@/components/SiteChrome";
+import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 
 export default function NotFound() {
   return (
-    <main id="main" className="relative min-h-dvh overflow-hidden">
-      <PageBg />
+    <main id="main" className="relative min-h-dvh">
       <SiteHeader />
       <div className="relative z-10 mx-auto max-w-xl px-5 py-20 sm:px-8">
         <p className="text-sm font-semibold text-muted">404</p>

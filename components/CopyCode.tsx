@@ -2,16 +2,30 @@
 
 import { useState } from "react";
 
-export default function CopyCode({ label, value, hint, variant = "code" }: { label: string; value: string; hint?: string; variant?: "code" | "link" }) {
+export default function CopyCode({
+  label,
+  value,
+  hint,
+  variant = "code",
+  action,
+}: {
+  label: string;
+  value: string;
+  hint?: string;
+  variant?: "code" | "link";
+  action?: string;
+}) {
   const [copied, setCopied] = useState(false);
+  const actionText = action ?? (variant === "link" ? "复制完整链接" : "复制邀请码");
 
   async function copy() {
+    const exact = value;
     try {
       if (!navigator.clipboard || !window.isSecureContext) throw new Error("no clipboard");
-      await navigator.clipboard.writeText(value);
+      await navigator.clipboard.writeText(exact);
     } catch {
       const t = document.createElement("textarea");
-      t.value = value;
+      t.value = exact;
       t.setAttribute("readonly", "");
       t.style.position = "fixed";
       t.style.opacity = "0";
@@ -21,7 +35,7 @@ export default function CopyCode({ label, value, hint, variant = "code" }: { lab
       document.body.appendChild(t);
       t.focus();
       t.select();
-      t.setSelectionRange(0, value.length);
+      t.setSelectionRange(0, exact.length);
       document.execCommand("copy");
       document.body.removeChild(t);
     }
@@ -30,39 +44,20 @@ export default function CopyCode({ label, value, hint, variant = "code" }: { lab
   }
 
   return (
-    <div>
-    <div className="flex items-stretch overflow-hidden border border-ink/80 bg-white">
-      <div className="min-w-0 flex-1 px-3.5 py-2">
-        <div className="font-mono text-[10px] font-bold tracking-[0.14em] text-muted">{label}</div>
-        {variant === "link" ? (
-          <div className="select-all font-mono text-[13px] font-semibold leading-5 text-ink [overflow-wrap:anywhere]">{value}</div>
-        ) : (
-          <div className="select-all font-mono text-xl font-bold tracking-[0.12em] text-ink [overflow-wrap:anywhere]">{value}</div>
-        )}
+    <div className="min-w-0">
+      <div className="flex h-12 min-w-0 items-center gap-2 rounded-full border border-line bg-copy py-0.5 pl-3 pr-0.5">
+        <code title={value} className="min-w-0 flex-1 truncate font-mono text-[11px] leading-none text-muted">{value}</code>
+        <button
+          type="button"
+          onClick={copy}
+          aria-label={copied ? `已复制${label}` : `${actionText}：${value}`}
+          className={`inline-flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full px-3 text-[11px] font-bold ${copied ? "bg-rebate text-rebate-ink" : "bg-ink text-white"}`}
+        >
+          {copied ? "已复制" : actionText}
+        </button>
       </div>
-      <button
-        type="button"
-        onClick={copy}
-        aria-label={`复制${label} ${value}`}
-        className={`flex min-h-12 min-w-[92px] shrink-0 items-center justify-center gap-1.5 px-4 text-sm font-bold transition ${
-          copied ? "bg-[#3ad6ff] text-ink" : "bg-ink text-paper hover:bg-[#1d2a6b]"
-        }`}
-      >
-        {copied ? (
-          <>
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><path d="M5 12.5 10 17 19 7" /></svg>
-            已复制
-          </>
-        ) : (
-          <>
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="1.5" /><path d="M5 15V5a1 1 0 0 1 1-1h10" /></svg>
-            复制
-          </>
-        )}
-      </button>
       <span className="sr-only" aria-live="polite">{copied ? `已复制${label}` : ""}</span>
-    </div>
-    {hint && <p className="mt-1.5 font-mono text-[11px] text-muted">{hint}</p>}
+      {hint && <p className="mt-1.5 px-3 text-xs leading-5 text-muted">{hint}</p>}
     </div>
   );
 }
