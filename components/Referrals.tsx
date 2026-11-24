@@ -177,6 +177,23 @@ function IPEqualVisual() {
   );
 }
 
+function CmbVisaVisual({ r }: { r?: Referral }) {
+  const art = r?.art?.[0];
+  return (
+    <div className="relative flex h-full items-center justify-center overflow-hidden bg-[radial-gradient(120%_120%_at_0%_0%,#3c2a22_0%,#171412_52%,#0c0b0a_100%)]">
+      <div aria-hidden className="absolute inset-0 opacity-25 [background-image:radial-gradient(#ffffff22_1px,transparent_1px)] [background-size:16px_16px]" />
+      <div aria-hidden className="absolute -right-8 -top-10 h-40 w-40 rounded-full bg-[#c4a574] opacity-20 blur-3xl" />
+      {art && (
+        <img
+          src={art.src}
+          alt={art.alt}
+          className="relative h-[82%] w-auto max-w-[88%] object-contain drop-shadow-[0_16px_22px_rgba(0,0,0,0.5)] transition duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+        />
+      )}
+    </div>
+  );
+}
+
 function IfastVisual() {
   // 文字卡面示意，不用官方 logo 文件
   return (
@@ -296,8 +313,9 @@ function AirnovaVisual() {
   );
 }
 
-const visuals: Record<string, () => React.JSX.Element> = {
+const visuals: Record<string, (props: { r?: Referral }) => React.JSX.Element> = {
   wise: WiseVisual,
+  "cmb-visa": CmbVisaVisual,
   starryblu: StarryBluVisual,
   bit: BitVisual,
   bybit: BybitVisual,
@@ -387,7 +405,7 @@ function ReferralCard({ r, index, permalink = true }: { r: Referral; index: numb
   return (
     <article id={`referral-${r.id}`} className="scroll-mt-24 card-accent group relative flex flex-col overflow-hidden border border-line bg-[#fffffce6] transition hover:-translate-y-1 hover:border-ink/40 hover:bg-white hover:shadow-[0_16px_34px_-10px_#11121433]" style={{ ["--accent" as string]: r.accent }}>
       <a href={goHref(r.id)} {...sponsored} aria-label={`${r.title}（邀请链接）`} className="block h-44 sm:h-48">
-        {(() => { const V = visuals[r.visual]; return V ? <V /> : null; })()}
+        {(() => { const V = visuals[r.visual]; return V ? <V r={r} /> : null; })()}
       </a>
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <div className="flex items-center justify-between font-mono text-[11px] tracking-[0.1em] text-muted">

@@ -144,7 +144,8 @@ export const posts: Post[] = [
 export type CardArt = { src: string; alt: string };
 
 export const referralGroups = [
-  { id: "bank", label: "美卡 · 银行账户" },
+  // 组里同时有信用卡（含招行）和银行账户，锚点 id 仍是 bank / #ref-bank
+  { id: "bank", label: "信用卡 · 银行账户" },
   { id: "securities", label: "证券" },
   { id: "crypto", label: "加密 U 卡" },
   { id: "tools", label: "出海工具（AI / IP / 手机号）" },
@@ -164,7 +165,7 @@ export type Referral = {
   cta: string;
   accent: string;
   group: ReferralGroup;
-  visual: "capital-one" | "wise" | "starryblu" | "bit" | "bybit" | "savo" | "mexc" | "plasma" | "muse" | "cliproxy" | "ipequal" | "antbank" | "ifast" | "redpocket" | "ronvip" | "airnova";
+  visual: "capital-one" | "wise" | "starryblu" | "bit" | "bybit" | "savo" | "mexc" | "plasma" | "muse" | "cliproxy" | "ipequal" | "antbank" | "ifast" | "redpocket" | "ronvip" | "airnova" | "cmb-visa";
   badge?: string;
   art?: CardArt[];
   code?: { label: string; value: string; hint?: string };
@@ -290,6 +291,30 @@ const allReferrals: Referral[] = [
     visual: "ifast",
     code: { label: "推荐码", value: "34LOPZN7WK" },
     footnote: "活动与资格以 iFAST 官网为准。",
+  },
+  {
+    id: "cmb-visa",
+    slug: "cmb-visa",
+    issuer: "招商银行",
+    category: "信用卡 · 招行",
+    title: "招商银行信用卡（全币种 Visa）",
+    tagline: "出海常用的支付工具，推荐申请全币种 Visa",
+    points: [
+      "招行信用卡，定位是出海常用、出海必备的支付工具",
+      "推荐申请全币种 Visa",
+      "可绑定 Apple Pay、Google Play，用来支付 Claude、GPT 等海外订阅",
+      "可申请电子账单，作为地址证明的参考，用于申请部分海外银行账户",
+    ],
+    // 推荐办卡入口。hash 路由和全部查询参数（含空的 dsid、dscontr）必须原样保留。
+    href: "https://res.cc.cmbimg.com/itafront/TrafficFront/index.html#/mgmpageinit/xbdmgmcs1?webAddress=9XYK_TJYL1_138&where=zs9_jd2&pageName=MRecContract&activityTitle=MGMXSDS202509JD2&appChn=05&dsid=&dscontr=&pretrackno=22f7ba0d1e0243cc975067fe2addc5d8&pretrack=10403788&mgmSm2Flag=1&mgmSource=share&m1TraceId=22f7ba0d1e0243cc975067fe2addc5d8",
+    cta: "通过推荐链接申请招行信用卡",
+    accent: "#b71c22",
+    group: "bank",
+    visual: "cmb-visa",
+    // 卡面裁自官网 https://market.cmbchina.com/ccard/quanbika1/images/card.png （去掉下方倒影，卡面像素未改）
+    art: [{ src: "/cards/cmb-visa.png", alt: "招商银行全币种国际信用卡（Visa）卡面" }],
+    footnote:
+      "卡面来自招商银行官网，仅作示意。链接为招行推荐办卡入口，申请时可按需选择全币种 Visa；具体卡种权益、年费、商户支付及海外银行对电子账单地址证明的认可标准，以招商银行及相关机构实际规则为准。",
   },
   {
     id: "bit",
