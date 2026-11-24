@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="七情六欲">
+  <defs>
+    <linearGradient id="qg-bg" x1="24" y1="8" x2="232" y2="248" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8d78f0"/>
+      <stop offset="0.52" stop-color="#5640b8"/>
+      <stop offset="1" stop-color="#2a2154"/>
+    </linearGradient>
+    <radialGradient id="qg-gloss" cx="30%" cy="18%" r="72%">
+      <stop stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="256" height="256" rx="58" fill="url(#qg-bg)"/>
+  <rect width="256" height="256" rx="58" fill="url(#qg-gloss)"/>
+  <circle cx="128" cy="128" r="78" fill="none" stroke="#f7f4ea" stroke-opacity="0.2" stroke-width="2"/>
+  <circle cx="128" cy="62" r="11" fill="#ff9d86"/>
+  <circle cx="179.6" cy="86.8" r="9" fill="#f7f4ea"/>
+  <circle cx="192.3" cy="142.7" r="9" fill="#9ed9da"/>
+  <circle cx="156.6" cy="187.5" r="9" fill="#f7f4ea"/>
+  <circle cx="99.4" cy="187.5" r="9" fill="#f9f177"/>
+  <circle cx="63.7" cy="142.7" r="9" fill="#f7f4ea"/>
+  <circle cx="76.4" cy="86.8" r="9" fill="#f7f4ea"/>
+  <circle cx="128" cy="128" r="26" fill="#f7f4ea"/>
+  <circle cx="128" cy="128" r="13" fill="#f9f177"/>
+</svg>
