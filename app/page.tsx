@@ -4,6 +4,7 @@ import { X_FOLLOWERS_AS_OF, X_FOLLOWERS_LABEL, X_URL, profile, referrals, referr
 import { guides } from "@/lib/guides";
 import { homeJsonLd } from "@/lib/jsonld";
 import { SiteHeader, SiteFooter, Disclaimer } from "@/components/SiteChrome";
+import GuideCard from "@/components/GuideCard";
 import LegacyHash from "@/components/LegacyHash";
 import { HomeReferrals } from "@/components/Referrals";
 import { HomeProjects } from "@/components/Projects";
@@ -21,16 +22,7 @@ const categoryHint: Record<string, string> = {
   tools: "AI / IP / 手机号",
 };
 
-function guideKind(source: string) {
-  if (source === "站内") return "新手入口";
-  if (source === "X 帖子") return "精选 X 帖";
-  return "精选 X 长文";
-}
-
 export default function Home() {
-  const newbie = guides.filter((g) => g.source === "站内");
-  const essays = guides.filter((g) => g.source !== "站内");
-
   return (
     <main id="main" className="relative min-h-dvh">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd).replace(/</g, "\\u003c") }} />
@@ -116,21 +108,11 @@ export default function Home() {
             <h2 id="guide-title" className="text-2xl font-black tracking-tight">实战教程</h2>
             <Link href="/guides/" className="inline-flex min-h-11 shrink-0 items-center text-sm font-bold underline underline-offset-4">全部教程</Link>
           </div>
-          <ul className="grid gap-3 md:grid-cols-2">
-            {newbie.map((g) => (
-              <li key={g.href} className="md:col-span-2">
-                <a href={g.href} className="flex h-full flex-col rounded-3xl bg-lavender p-5">
-                  <span className="text-[11px] font-bold text-[#4c406d]">{guideKind(g.source)}{g.card ? ` · ${g.card}` : ""}</span>
-                  <span className="mt-2 text-lg font-extrabold leading-snug">{g.title}</span>
-                </a>
-              </li>
-            ))}
-            {essays.map((g) => (
-              <li key={g.href}>
-                <a href={g.href} {...ext} className="flex h-full flex-col rounded-3xl bg-white p-5 shadow-[var(--shadow-raised)]">
-                  <span className="text-[11px] font-bold text-muted">{guideKind(g.source)}{g.card ? ` · ${g.card}` : ""}</span>
-                  <span className="mt-2 text-lg font-extrabold leading-snug">{g.title}</span>
-                </a>
+          <p className="mb-4 max-w-xl text-sm leading-6 text-muted">正文都在 X。点「去 X 阅读」会在新标签打开原文，不经过站内正文。</p>
+          <ul className="grid gap-4 md:grid-cols-2">
+            {guides.map((g) => (
+              <li key={g.id} className="min-w-0">
+                <GuideCard guide={g} showCover={false} />
               </li>
             ))}
           </ul>

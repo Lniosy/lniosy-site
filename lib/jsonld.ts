@@ -1,5 +1,8 @@
 import { SITE_URL, X_FOLLOWERS_AS_OF, X_FOLLOWERS_LABEL, X_URL, profile, referrals } from "@/lib/content";
+import { guideCategories, guides } from "@/lib/guides";
 import { GITHUB_URL, PROJECT_SNAPSHOT, projectStats, projects } from "@/lib/projects";
+
+const guideCategoryLabel = Object.fromEntries(guideCategories.map((c) => [c.id, c.label]));
 
 export const homeJsonLd = {
   "@context": "https://schema.org",
@@ -48,6 +51,35 @@ export const homeJsonLd = {
         position: index + 1,
         name: `${project.name} (${project.repo})`,
         url: project.url,
+      })),
+    },
+  ],
+};
+
+export const guidesJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${SITE_URL}/guides/#page`,
+      url: `${SITE_URL}/guides/`,
+      name: "实战教程目录",
+      description: "教程目录与导读。正文在 X 原文，站内不提供全文。",
+      inLanguage: "zh-CN",
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      mainEntity: { "@id": `${SITE_URL}/guides/#list` },
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${SITE_URL}/guides/#list`,
+      name: "教程目录",
+      numberOfItems: guides.length,
+      itemListElement: guides.map((g, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: g.title,
+        description: [`${guideCategoryLabel[g.category]}。${g.summary}`, g.notice].filter(Boolean).join(" "),
+        url: g.href,
       })),
     },
   ],

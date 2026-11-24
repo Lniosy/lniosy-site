@@ -1,4 +1,4 @@
-import { guides } from "@/lib/guides";
+import { guideCategories, guides } from "@/lib/guides";
 import { SITE_URL, X_FOLLOWERS_AS_OF, X_FOLLOWERS_LABEL, X_URL, profile, referrals, referralGroups } from "@/lib/content";
 import { GITHUB_HANDLE, GITHUB_URL, projectStats, projects } from "@/lib/projects";
 
@@ -34,7 +34,13 @@ export function GET() {
 ${projects.map((project) => `- [${project.name}（${project.repo}）](${project.url})：${project.summary} ${project.stars} Stars / ${project.forks} Forks，${project.language}，${project.license}，仓库更新 ${project.updated}。`).join("\n")}
 
 ## 教程
-${guides.map((g) => `- [${g.title}](${g.href.startsWith("/") ? SITE_URL + g.href : g.href})（${g.source}）`).join("\n")}
+${SITE_URL}/guides/ 只是目录和导读，站内没有教程全文，也不提供阅读时长。下面每条都是 X 原文（status 链接）。旧地址 ${SITE_URL}/guides/muse/ 只跳到 Muse 原文，不是另一篇文章。
+
+${guides.map((g) => {
+  const cat = guideCategories.find((c) => c.id === g.category)?.label ?? "";
+  const updates = g.updates?.map((u) => `后续更新：${u.label} ${u.href}`).join("；");
+  return `- [${g.title}](${g.href})（${cat}，${g.date}）。${g.summary}${g.notice ? ` ${g.notice}` : ""}${updates ? ` ${updates}` : ""}`;
+}).join("\n")}
 
 ## 邀请推荐条目
 ${groups}
