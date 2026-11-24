@@ -10,11 +10,14 @@ import { Arrow } from "@/components/Icons";
 
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 const tones = ["#ffffff", "#d9e9ff", "#ffcfdf", "#daf3b9"];
+const categoryTitle: Record<string, string> = {
+  tools: "出海工具",
+};
 const categoryHint: Record<string, string> = {
   bank: "招行 · Wise · Capital One",
   securities: "BIT 证券",
   crypto: "Bybit · Savo · MEXC · Plasma",
-  tools: "Muse · IP · 手机号",
+  tools: "AI / IP / 手机号",
 };
 
 function guideKind(source: string) {
@@ -90,7 +93,7 @@ export default function Home() {
               <Link key={g.id} href={`/referrals/#ref-${g.id}`} className="flex min-h-[84px] items-center gap-3 rounded-[22px] px-4 py-3" style={{ background: tones[i] }}>
                 <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/75 font-mono text-xs font-bold">{String(i + 1).padStart(2, "0")}</span>
                 <span className="min-w-0">
-                  <span className="block text-[15px] font-extrabold leading-tight">{g.label}</span>
+                  <span className="block text-[15px] font-extrabold leading-tight">{categoryTitle[g.id] ?? g.label}</span>
                   <span className="mt-0.5 block text-[11px] leading-4 text-muted">{categoryHint[g.id]}</span>
                 </span>
               </Link>

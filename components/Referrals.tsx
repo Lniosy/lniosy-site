@@ -122,7 +122,7 @@ function ReferralCard({ r }: { r: Referral }) {
           <a href={goHref(r.id)} {...sponsored} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-4 text-sm font-bold text-white">
             {r.cta} <Arrow className="h-4 w-4" />
           </a>
-          <p className="line-clamp-3 min-h-[3.75rem] text-[11px] leading-5 text-muted">{r.footnote}</p>
+          {r.footnote ? <p className="text-xs leading-6 text-muted">{r.footnote}</p> : null}
         </div>
       </div>
     </article>
