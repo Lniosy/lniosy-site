@@ -14,19 +14,34 @@ const stageBg: Record<Referral["visual"], string> = {
   wise: "#cdeb91",
   "cmb-visa": "#bca7fa",
   starryblu: "#d9e4ff",
-  bit: "#daf3b9",
-  bybit: "#ffe3a3",
-  savo: "#c9f0d8",
-  mexc: "#c9dcff",
-  plasma: "#e5f6b4",
+  bit: "#dcf59c",
+  bybit: "#ffe19c",
+  savo: "#c8f0df",
+  mexc: "#d5e4ff",
+  plasma: "#e1f5b8",
   muse: "#d9ccff",
-  cliproxy: "#e4d8ff",
+  cliproxy: "#e4dcff",
   ipequal: "#cfeedd",
   antbank: "#9ed9da",
-  ifast: "#d5e6fb",
-  redpocket: "#ffd0da",
+  ifast: "#d8e8ff",
+  redpocket: "#ffd5de",
   ronvip: "#d9e9ff",
-  airnova: "#c9e8ff",
+  airnova: "#cde8ff",
+};
+
+/** 中心已经是官方 Logo 时，底部只留一行定位，左上角不再重复品牌名。 */
+const stageCaption: Partial<Record<Referral["visual"], string>> = {
+  antbank: "银行 · 澳门",
+  ifast: "英国 · 银行账户",
+  bit: "证券 · 港股 · 美股",
+  bybit: "加密 U 卡 · Bybit Card",
+  savo: "全球加密 U 卡",
+  mexc: "交易所 · 加密 U 卡",
+  plasma: "稳定币 Visa 卡",
+  muse: "个人 AI 智能体",
+  cliproxy: "跨境网络 · 住宅 IP",
+  redpocket: "美国手机号 · 实体 / eSIM",
+  airnova: "全球旅行 eSIM",
 };
 
 const pillTones = ["bg-white", "bg-[#d9e9ff]", "bg-[#ffcfdf]", "bg-[#daf3b9]"];
@@ -76,12 +91,123 @@ function StageArt({ r, tall = false }: { r: Referral; tall?: boolean }) {
   );
 }
 
-function Stage({ r, tall = false }: { r: Referral; tall?: boolean }) {
+function LogoImg({ src, alt, className, ratio }: { src: string; alt: string; className: string; ratio: string }) {
+  return <img src={src} alt={alt} draggable={false} style={{ aspectRatio: ratio }} className={`block max-w-full object-contain ${className}`} />;
+}
+
+function CornerMark({ r }: { r: Referral }) {
+  if (r.visual === "capital-one") {
+    return (
+      <span className="absolute left-3 top-2.5 z-[2] inline-flex max-w-[52%] items-center rounded-full bg-white/90 px-2.5 py-1 shadow-sm">
+        <LogoImg src="/logos/capital-one.svg" alt="Capital One" ratio="418 / 150" className="h-5 w-auto" />
+      </span>
+    );
+  }
+  if (r.visual === "wise") {
+    return <LogoImg src="/logos/wise.svg" alt="Wise" ratio="106 / 24" className="absolute left-3.5 top-3 z-[2] h-4 w-auto" />;
+  }
+  if (r.visual === "cmb-visa") {
+    return <span className="absolute left-4 top-3 z-[2] text-xs font-bold text-[#302b43]">招商银行</span>;
+  }
+  return null;
+}
+
+function CenterMark({ r }: { r: Referral }) {
+  const word = "text-[32px] font-black leading-none tracking-tight text-ink";
+  if (r.visual === "antbank") {
+    return (
+      <div className="relative z-[1] flex max-w-[92%] items-center justify-center rounded-2xl bg-white/95 px-5 py-3.5 shadow-sm">
+        <LogoImg src="/logos/antbank.svg" alt="蚂蚁银行（澳门）" ratio="290 / 26" className="h-auto max-h-7 w-auto" />
+      </div>
+    );
+  }
+  if (r.visual === "ifast") {
+    return <LogoImg src="/logos/ifast.svg" alt="iFAST Global Bank" ratio="91.135 / 44" className="relative z-[1] h-14 w-auto max-w-[88%]" />;
+  }
+  if (r.visual === "bit") {
+    return <LogoImg src="/logos/bit.svg" alt="BIT" ratio="48 / 24" className="relative z-[1] h-11 w-auto" />;
+  }
+  if (r.visual === "bybit") {
+    return (
+      <div className="relative z-[1] flex max-w-[92%] items-center justify-center rounded-2xl bg-[#1b182e] px-6 py-3.5 shadow-sm">
+        <LogoImg src="/logos/bybit-light.svg" alt="Bybit" ratio="362 / 146" className="h-9 w-auto" />
+      </div>
+    );
+  }
+  if (r.visual === "savo") {
+    return (
+      <div className="relative z-[1] flex max-w-[92%] items-center gap-3">
+        <LogoImg src="/logos/savo.svg" alt="" ratio="1 / 1" className="h-12 w-12 shrink-0" />
+        <span className={word}>Savo</span>
+      </div>
+    );
+  }
+  if (r.visual === "mexc") {
+    return <LogoImg src="/logos/mexc.svg" alt="MEXC" ratio="355 / 64" className="relative z-[1] h-10 w-auto max-w-[88%]" />;
+  }
+  if (r.visual === "plasma") {
+    return <LogoImg src="/logos/plasma.svg" alt="Plasma" ratio="120 / 28" className="relative z-[1] h-10 w-auto max-w-[88%]" />;
+  }
+  if (r.visual === "muse") {
+    return (
+      <div className="relative z-[1] flex max-w-[92%] items-center gap-3">
+        <span className="grid h-[68px] w-[68px] shrink-0 place-items-center rounded-2xl bg-white shadow-sm">
+          <LogoImg src="/logos/muse.svg" alt="" ratio="1 / 1" className="h-11 w-11" />
+        </span>
+        <span className={word}>Muse</span>
+      </div>
+    );
+  }
+  if (r.visual === "cliproxy") {
+    return (
+      <div className="relative z-[1] flex max-w-[92%] items-center justify-center rounded-2xl bg-[#1b182e] px-5 py-3 shadow-sm">
+        <LogoImg src="/logos/cliproxy-light.svg" alt="CliProxy" ratio="173 / 41" className="h-8 w-auto" />
+      </div>
+    );
+  }
+  if (r.visual === "redpocket") {
+    return (
+      <div className="relative z-[1] flex max-w-[92%] items-center justify-center rounded-2xl bg-white px-5 py-3 shadow-sm">
+        <LogoImg src="/logos/redpocket.png" alt="RedPocket" ratio="350 / 106" className="h-11 w-auto" />
+      </div>
+    );
+  }
+  if (r.visual === "airnova") {
+    return (
+      <div className="relative z-[1] flex max-w-[92%] items-center gap-3">
+        <LogoImg src="/logos/airnova.png" alt="" ratio="561 / 570" className="h-11 w-auto shrink-0" />
+        <span className={word}>Airnova</span>
+      </div>
+    );
+  }
+  if (r.visual === "ipequal") {
+    return (
+      <div className="relative z-[1] flex max-w-[90%] flex-col items-center text-center">
+        <p className="text-[34px] font-black leading-none tracking-tight text-ink">IPEqual</p>
+        <p className="mt-2.5 text-xs font-semibold text-ink">EqualDCDN · 住宅 IP</p>
+      </div>
+    );
+  }
   return (
-    <div className={`relative flex items-center justify-center overflow-hidden ${tall ? "h-full min-h-[240px]" : "h-[168px] shrink-0"}`} style={{ background: stageBg[r.visual] }}>
-      <span className="absolute left-4 top-3 z-[2] font-mono text-[10px] font-bold tracking-[0.14em] text-[#302b43]">{r.issuer.toUpperCase()}</span>
+    <div className="relative z-[1] px-6 text-center">
+      <p className="text-[30px] font-black leading-tight tracking-tight text-ink">{r.issuer}</p>
+      <p className="mt-2 text-xs font-semibold text-ink/80">{r.category}</p>
+    </div>
+  );
+}
+
+function CardVisual({ r, tall = false }: { r: Referral; tall?: boolean }) {
+  const photo = r.visual === "capital-one" || r.visual === "wise" || r.visual === "cmb-visa";
+  const caption = stageCaption[r.visual];
+  return (
+    <div
+      className={`relative flex items-center justify-center overflow-hidden ${caption ? "pb-8" : ""} ${tall ? "h-full min-h-[240px]" : "h-[168px] shrink-0"}`}
+      style={{ background: stageBg[r.visual] }}
+    >
       <span aria-hidden className="pointer-events-none absolute -right-8 -top-10 h-36 w-36 rounded-full border-[22px] border-white/45" />
-      <StageArt r={r} tall={tall} />
+      <CornerMark r={r} />
+      {photo ? <StageArt r={r} tall={tall} /> : <CenterMark r={r} />}
+      {caption ? <p className="absolute inset-x-3 bottom-3 z-[2] text-center text-xs font-semibold text-ink">{caption}</p> : null}
     </div>
   );
 }
@@ -103,7 +229,7 @@ function ReferralCard({ r }: { r: Referral }) {
   return (
     <article id={`referral-${r.id}`} className="flex h-full scroll-mt-28 flex-col overflow-hidden rounded-3xl bg-white shadow-[var(--shadow-raised)]">
       <a href={goHref(r.id)} {...sponsored} aria-label={`${r.title}（邀请链接）`} className="block">
-        <Stage r={r} />
+        <CardVisual r={r} />
       </a>
       <div className="flex min-w-0 flex-1 flex-col gap-3 p-5">
         <div className="flex items-center justify-between gap-2">
@@ -147,7 +273,7 @@ export function SingleReferral({ r }: { r: Referral }) {
     <div>
       <article className="grid items-stretch gap-4 lg:grid-cols-2">
         <div className="overflow-hidden rounded-[28px] lg:h-full">
-          <Stage r={r} tall />
+          <CardVisual r={r} tall />
         </div>
         <div className="flex min-w-0 flex-col gap-4 rounded-[28px] bg-white p-5 shadow-[var(--shadow-raised)] sm:p-7">
           <p className="text-xs font-bold text-muted">{r.category}</p>
