@@ -4,6 +4,7 @@ import Link from "next/link";
 import { SITE_URL, X_URL, goHref, profile, referrals } from "@/lib/content";
 import CopyBlock from "@/components/CopyBlock";
 import CopyCode from "@/components/CopyCode";
+import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { Arrow, Check, XLogo } from "@/components/Icons";
 
 // 内容来源：我在 X 发的长文（2026-10-10 16:34 UTC+8 发布），正文按原文整理，未新增事实。
@@ -174,22 +175,9 @@ export default function MuseGuide() {
   const muse = referrals.find((r) => r.id === "muse");
 
   return (
-    <main className="relative min-h-screen overflow-hidden">
+    <main id="main" className="relative min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
-      <div aria-hidden className="grid-texture pointer-events-none absolute inset-0" />
-
-      <header className="sticky top-0 z-30 border-b border-line bg-paper/85 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
-          <Link href="/" className="flex min-h-10 items-center gap-3 font-mono text-xs font-bold tracking-[0.08em]">
-            <Image src="/avatar.jpg" alt="" width={28} height={28} className="h-7 w-7 -rotate-6 rounded-full ring-2 ring-ink" />
-            <span>李天才 <em className="hidden not-italic text-muted sm:inline">/ TianCai</em></span>
-          </Link>
-          <nav className="flex items-center gap-3 sm:gap-6">
-            <Link href="/referrals/" className="inline-flex min-h-10 items-center font-mono text-xs font-bold tracking-wide text-ink hover:underline sm:text-muted sm:hover:text-ink sm:hover:no-underline">邀请专区</Link>
-            <a href="#invite" className="inline-flex min-h-10 items-center bg-ink px-3.5 py-2 text-[13px] font-semibold text-paper transition hover:-translate-y-0.5">Muse 邀请码</a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader current="/guides/" />
 
       <article className="relative z-10 mx-auto max-w-3xl px-5 pb-16 pt-8 sm:px-8 sm:pt-12">
         <nav aria-label="面包屑" className="font-mono text-[11px] tracking-wide text-muted">
@@ -227,19 +215,19 @@ export default function MuseGuide() {
         <P>我手上正好有 Google AI Pro，Spark 入口就在 Gemini 左上角，这篇照着它走。</P>
 
         {/* 步骤速览 */}
-        <nav aria-label="步骤速览" className="mt-8 border border-ink bg-[#fffffc] p-5 sm:p-6">
+        <nav aria-label="步骤速览" className="mt-8 rounded-3xl bg-white p-5 shadow-[var(--shadow-raised)] sm:p-6">
           <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">步骤速览</p>
           <ol className="mt-3 grid gap-2 sm:grid-cols-2">
             {steps.map((s, i) => (
               <li key={s.id}>
-                <a href={`#${s.id}`} className="flex min-h-11 items-center gap-3 border border-ink/15 bg-white px-3 text-[15px] font-bold transition hover:border-ink">
+                <a href={`#${s.id}`} className="flex min-h-11 items-center gap-3 rounded-2xl bg-copy px-3 text-[15px] font-bold">
                   <span className="grid h-6 w-6 shrink-0 place-items-center bg-ink font-mono text-xs text-paper">{i + 1}</span>
                   <span className="leading-snug">{s.name.split("：")[0]}</span>
                 </a>
               </li>
             ))}
             <li>
-              <a href="#risks" className="flex min-h-11 items-center gap-3 border border-[#e11d48]/40 bg-white px-3 text-[15px] font-bold transition hover:border-[#e11d48]">
+              <a href="#risks" className="flex min-h-11 items-center gap-3 rounded-2xl bg-[#fff1f2] px-3 text-[15px] font-bold">
                 <span className="grid h-6 w-6 shrink-0 place-items-center bg-[#e11d48] font-mono text-xs text-white">!</span>
                 动手前想清楚三件事
               </a>
@@ -275,7 +263,7 @@ export default function MuseGuide() {
         <H2 id="spark" n={2}>在 Gemini 里调出远程浏览器</H2>
         <P>打开 Gemini，点左上角的 Spark，在输入框发一句：</P>
         <div className="mt-4">
-          <CopyCode label="发给 Spark 的指令" value="帮我在远端浏览器打开 Google" variant="link" />
+          <CopyCode label="发给 Spark 的指令" value="帮我在远端浏览器打开 Google" action="复制这段话" />
         </div>
         <P>
           Spark 会先弹一个确认：「允许 Gemini Spark 使用远程浏览器替你与网站互动吗」，点允许。等一会儿，右边出来一个远程浏览器窗口，自动打开 Google 首页。
@@ -329,7 +317,7 @@ export default function MuseGuide() {
         <Figure name="muse-06-redeem-invite-code" alt="兑换邀请码：设置、通用、兑换邀请码（Redeem invite code），填 6 位码点确认。奖励数量以页面为准" caption="设置 → 通用 → 兑换邀请码" />
 
         {muse && (
-          <section id="invite" aria-labelledby="invite-title" className="card-accent relative mt-8 scroll-mt-24 border border-ink bg-[#fffffc] p-5 sm:p-7" style={{ ["--accent" as string]: muse.accent }}>
+          <section id="invite" aria-labelledby="invite-title" className="relative mt-8 scroll-mt-28 rounded-3xl bg-white p-5 shadow-[var(--shadow-raised)] sm:p-7">
             <p className="font-mono text-xs font-bold tracking-[0.14em] text-muted">我的 Muse 邀请码</p>
             <h3 id="invite-title" className="mt-2 text-xl font-extrabold tracking-tight sm:text-2xl">注册完记得在 48 小时内兑换</h3>
             <p className="mt-2 text-sm leading-6 text-muted">
@@ -337,7 +325,7 @@ export default function MuseGuide() {
             </p>
             <CopyBlock r={muse} />
             <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a href={goHref(muse.id)} target="_blank" rel="noopener sponsored" className="inline-flex min-h-12 items-center justify-center gap-2 bg-ink px-6 text-base font-extrabold text-paper transition hover:-translate-y-0.5 hover:bg-[#1d2a6b]">
+              <a href={goHref(muse.id)} target="_blank" rel="noopener sponsored" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-6 text-base font-extrabold text-white">
                 {muse.cta} <Arrow />
               </a>
               <span className="font-mono text-[11px] tracking-wide text-muted">新标签页打开 · 含我的邀请链接</span>
@@ -367,18 +355,19 @@ export default function MuseGuide() {
         {/* 页底：原文 + 返回 */}
         <footer className="mt-14 border-t border-line pt-8">
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 bg-ink px-5 text-sm font-bold text-paper transition hover:-translate-y-0.5">
+            <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-5 text-sm font-bold text-white">
               <XLogo className="h-4 w-4" /> 在 X 上看原文 <Arrow className="h-3.5 w-3.5" />
             </a>
-            <Link href="/referrals/#ref-tools" className="inline-flex min-h-12 items-center justify-center gap-2 border border-ink/25 bg-white px-5 text-sm font-bold transition hover:border-ink">
+            <Link href="/referrals/#ref-tools" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-5 text-sm font-bold shadow-[var(--shadow-raised)]">
               ← 回到邀请专区
             </Link>
           </div>
-          <p className="mt-6 border border-dashed border-line p-4 text-xs leading-5 text-muted">
+          <p className="mt-6 rounded-3xl bg-white p-4 text-xs leading-5 text-muted shadow-[var(--shadow-raised)]">
             说明：本文是我的个人整理，规则、价格和开放地区以 Muse、Google 官方页面为准，请遵守各平台规则与当地法律法规。页面里的 Muse 邀请链接和邀请码是我的邀请入口，通过它注册我可能获得奖励。
           </p>
         </footer>
       </article>
+      <SiteFooter />
     </main>
   );
 }

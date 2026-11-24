@@ -26,12 +26,15 @@ export default async function Go({ params }: { params: Promise<{ slug: string }>
   if (!r) notFound();
   const url = r.href;
   return (
-    <main className="mx-auto flex min-h-screen max-w-md flex-col items-center justify-center gap-4 p-6 text-center">
+    <main id="main" className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center p-6 text-center">
       <noscript>
         <meta httpEquiv="refresh" content={`0;url=${url}`} />
       </noscript>
-      <p className="text-sm text-muted">正在前往 {r.title}…</p>
-      <a href={url} rel="noopener sponsored" className="font-bold underline">如果没有自动跳转，请点这里</a>
+      <div className="w-full rounded-[28px] bg-white px-6 py-8 shadow-[var(--shadow-raised)]">
+        <p className="font-mono text-xs text-muted">正在跳转</p>
+        <p className="mt-3 text-xl font-extrabold">正在前往 {r.title}</p>
+        <a href={url} rel="noopener sponsored" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-5 text-sm font-bold text-white">如果没有自动跳转，请点这里</a>
+      </div>
       <script
         dangerouslySetInnerHTML={{
           __html: `setTimeout(function(){location.replace(${JSON.stringify(url)})},700);`,

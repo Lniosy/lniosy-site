@@ -1,5 +1,5 @@
 import { guides } from "@/lib/guides";
-import { SITE_URL, X_URL, profile, referrals, referralGroups } from "@/lib/content";
+import { SITE_URL, X_FOLLOWERS_AS_OF, X_FOLLOWERS_LABEL, X_URL, profile, referrals, referralGroups } from "@/lib/content";
 
 export const dynamic = "force-static";
 
@@ -18,6 +18,7 @@ export function GET() {
 
 - 主页：${SITE_URL}/
 - X：${X_URL}
+- X 关注者：${X_FOLLOWERS_LABEL}（${X_FOLLOWERS_AS_OF} 更新，静态标注，非实时）
 - 语言：简体中文
 
 ## 页面

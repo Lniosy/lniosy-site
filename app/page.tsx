@@ -1,98 +1,133 @@
 import Image from "next/image";
 import Link from "next/link";
-import { X_URL, X_FOLLOWERS_LABEL, profile, topics, referrals, referralGroups } from "@/lib/content";
+import { X_FOLLOWERS_AS_OF, X_FOLLOWERS_LABEL, X_URL, profile, referrals, referralGroups } from "@/lib/content";
 import { guides } from "@/lib/guides";
 import { homeJsonLd } from "@/lib/jsonld";
-import { SiteHeader, SiteFooter, Disclaimer, PageBg } from "@/components/SiteChrome";
+import { SiteHeader, SiteFooter, Disclaimer } from "@/components/SiteChrome";
 import LegacyHash from "@/components/LegacyHash";
-import { Arrow, XLogo } from "@/components/Icons";
+import { HomeReferrals } from "@/components/Referrals";
+import { Arrow } from "@/components/Icons";
 
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
+const tones = ["#ffffff", "#d9e9ff", "#ffcfdf", "#daf3b9"];
+const categoryHint: Record<string, string> = {
+  bank: "招行 · Wise · Capital One",
+  securities: "BIT 证券",
+  crypto: "Bybit · Savo · MEXC · Plasma",
+  tools: "Muse · IP · 手机号",
+};
+
+function guideKind(source: string) {
+  if (source === "站内") return "新手入口";
+  if (source === "X 帖子") return "精选 X 帖";
+  return "精选 X 长文";
+}
 
 export default function Home() {
+  const newbie = guides.filter((g) => g.source === "站内");
+  const essays = guides.filter((g) => g.source !== "站内");
+
   return (
-    <main id="main" className="relative min-h-dvh overflow-hidden">
+    <main id="main" className="relative min-h-dvh">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd).replace(/</g, "\\u003c") }} />
       <LegacyHash />
-      <PageBg />
       <SiteHeader current="/" />
 
-      <div id="top" className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
-        {/* 首屏：我是谁 */}
-        <section className="grid items-center gap-6 pb-8 pt-8 sm:pt-14 md:grid-cols-[minmax(0,1fr)_220px] md:gap-12">
-          <div>
-            <p className="mb-4 inline-flex items-center gap-2 font-mono text-xs font-bold tracking-[0.12em] text-muted">
-              <span className="h-1.5 w-1.5 rounded-full bg-ink shadow-[0_0_0_4px_#11121418]" />
-              {profile.mascot} · {profile.handle}
-            </p>
-            <h1 className="text-[32px] font-extrabold leading-[1.2] tracking-[-0.03em] sm:text-[48px] lg:text-[56px]">
-              我是<span className="bg-ink px-2 text-paper">李天才</span>
+      <div id="top" className="relative z-10 mx-auto max-w-[75rem] px-4 sm:px-8">
+        <section className="grid items-stretch gap-4 pb-2 pt-4 lg:grid-cols-[1.55fr_1fr] lg:pt-6">
+          <div className="relative flex flex-col overflow-hidden rounded-[28px] bg-lavender px-6 py-7 sm:px-9 sm:py-9 lg:min-h-[420px] lg:pr-[210px]">
+            <p className="font-mono text-xs text-[#4c406d]">{profile.handle} / {profile.bio}</p>
+            <h1 className="relative z-10 mt-3 text-[34px] font-black leading-[1.25] tracking-tight sm:text-[48px]">
+              我是李天才。
               <br />
-              {profile.bio}
+              <span className="text-[#49317f]">折腾，也分享。</span>
             </h1>
-            <p className="mt-4 max-w-xl text-[16px] leading-7 text-muted sm:text-[17px]">{profile.bio2}。</p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a href={X_URL} {...ext} className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full bg-ink px-5 text-base font-semibold text-paper">
-                <XLogo className="h-4 w-4" /> 在 X 关注我 <Arrow className="h-4 w-4" />
+            <p className="relative z-10 mt-3 max-w-md text-base leading-7 text-[#4c406d]">
+              美卡 / ITIN、AI 工具和独立开发。
+              <br />
+              把实战经历写出来，把邀请入口放清楚。
+            </p>
+            <div className="relative z-10 mt-5 flex flex-col gap-3 sm:flex-row">
+              <a href={X_URL} {...ext} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-5 text-sm font-bold text-white">
+                在 X 关注我 <Arrow className="h-4 w-4" />
               </a>
-              <Link href="/referrals/" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-ink bg-surface px-5 text-base font-semibold">
-                看邀请推荐 <Arrow className="h-4 w-4" />
+              <Link href="/guides/" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#24203d33] bg-white/50 px-5 text-sm font-bold">
+                看实战教程
               </Link>
             </div>
-            {/* 关注者数来源见 lib/content.ts 注释 */}
-            <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-muted">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />{X_FOLLOWERS_LABEL} 位 X 关注者 · 2026-11-08 核对 · 静态快照，不是实时
-            </p>
-          </div>
-          <a href={X_URL} {...ext} aria-label="天才毛球 — 在 X 上关注 @Lniosytest" className="order-first mx-auto block w-28 md:order-none md:w-full">
-            <Image src="/avatar.jpg" alt="天才毛球头像：一只黑色毛球" width={400} height={400} priority className="aspect-square w-full rotate-3 rounded-full border-4 border-ink object-cover grayscale" />
-          </a>
-        </section>
-
-        {/* 我能帮你什么 */}
-        <section aria-labelledby="guide-title" className="pb-12">
-          <div className="mb-4 flex items-end justify-between border-t border-line pt-8">
-            <h2 id="guide-title" className="text-2xl font-bold tracking-tight sm:text-3xl">教程</h2>
-            <Link href="/guides/" className="inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4">全部教程</Link>
-          </div>
-          <div className="grid gap-3 md:grid-cols-2">
-            {guides.map((g) => (
-              <a key={g.href} href={g.href} {...(g.href.startsWith("http") ? ext : {})} className="panel block p-5">
-                <p className="text-xs font-semibold text-muted">{g.source}{g.card ? ` · ${g.card}` : ""}</p>
-                <p className="mt-2 text-base font-semibold leading-7">{g.title}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section aria-labelledby="help-title" className="pb-12">
-          <h2 id="help-title" className="mb-3 text-xs font-semibold tracking-[0.08em] text-muted">我在写的三条线</h2>
-          <div className="grid gap-3 sm:grid-cols-3">
-            {topics.map((t) => (
-              <div key={t.id} className="panel p-4">
-                <div className="mb-2 text-[15px] font-semibold">{t.label}</div>
-                <p className="text-sm leading-6 text-muted">{t.line}</p>
+            <div className="relative z-0 mt-6 self-end lg:absolute lg:bottom-5 lg:right-5 lg:mt-0">
+              <div className="w-[148px] -rotate-6 rounded-[28px] border-[6px] border-white/80 bg-white p-1.5 shadow-[10px_14px_0_#8c70d24d] sm:w-[168px]">
+                <Image src="/avatar.jpg" alt="天才毛球" width={400} height={400} priority className="h-auto w-full object-contain" />
               </div>
-            ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="col-span-2 grid grid-cols-1 items-start gap-3 rounded-[28px] bg-sun px-6 py-6 sm:grid-cols-[1.15fr_0.85fr] sm:items-center sm:px-7">
+              <div>
+                <p className="text-[56px] font-extrabold leading-none tracking-[-0.05em] text-[#36302b] sm:text-[68px]">{X_FOLLOWERS_LABEL}</p>
+                <p className="mt-1 text-lg font-bold text-[#36302b]">位 X 关注者</p>
+              </div>
+              <p className="text-xs leading-5 text-[#5c542e]">
+                {X_FOLLOWERS_AS_OF} 更新
+                <br />
+                静态快照 · 非实时
+              </p>
+            </div>
+            <a href={X_URL} {...ext} className="flex min-h-[132px] flex-col justify-between rounded-[26px] bg-coral p-5">
+              <span className="font-mono text-[11px]">FOLLOW THE JOURNEY</span>
+              <span className="text-xl font-extrabold leading-tight">去 X 找我 <Arrow className="inline h-4 w-4" /></span>
+            </a>
+            <div className="flex min-h-[132px] flex-col justify-between rounded-[26px] bg-mint p-5">
+              <span className="font-mono text-[11px]">THE LITTLE BLACK FUZZ</span>
+              <span className="text-xl font-extrabold leading-tight">天才毛球<br />不是普通名片。</span>
+            </div>
           </div>
         </section>
 
-        <section aria-labelledby="cat-title" className="pb-12">
-          <div className="mb-4 flex items-end justify-between border-t border-line pt-8">
-            <h2 id="cat-title" className="text-2xl font-bold tracking-tight sm:text-3xl">邀请推荐</h2>
-            <Link href="/referrals/" className="inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4">全部 {referrals.length} 张</Link>
+        <nav aria-label="邀请分类" className="grid grid-cols-2 gap-3 py-6 lg:grid-cols-4">
+          {referralGroups.map((g, i) => (
+              <Link key={g.id} href={`/referrals/#ref-${g.id}`} className="flex min-h-[84px] items-center gap-3 rounded-[22px] px-4 py-3" style={{ background: tones[i] }}>
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/75 font-mono text-xs font-bold">{String(i + 1).padStart(2, "0")}</span>
+                <span className="min-w-0">
+                  <span className="block text-[15px] font-extrabold leading-tight">{g.label}</span>
+                  <span className="mt-0.5 block text-[11px] leading-4 text-muted">{categoryHint[g.id]}</span>
+                </span>
+              </Link>
+          ))}
+        </nav>
+
+        <section aria-labelledby="pick-title" className="pb-10">
+          <div className="mb-4 flex items-end justify-between gap-3">
+            <h2 id="pick-title" className="text-2xl font-black tracking-tight">邀请入口，按需选择。</h2>
+            <Link href="/referrals/" className="inline-flex min-h-11 shrink-0 items-center text-sm font-bold underline underline-offset-4">全部 {referrals.length} 张</Link>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {referralGroups.map((g) => {
-              const items = referrals.filter((r) => r.group === g.id);
-              return (
-                <Link key={g.id} href={`/referrals/#ref-${g.id}`} className="panel block p-5">
-                  <div className="flex items-center justify-between text-lg font-semibold">{g.label}<span className="font-mono text-xs text-muted">{items.length}</span></div>
-                  <p className="mt-2 text-sm leading-6 text-muted">{items.map((r) => r.issuer).join(" · ")}</p>
-                </Link>
-              );
-            })}
+          <HomeReferrals />
+        </section>
+
+        <section aria-labelledby="guide-title" className="pb-10">
+          <div className="mb-4 flex items-end justify-between gap-3">
+            <h2 id="guide-title" className="text-2xl font-black tracking-tight">实战教程</h2>
+            <Link href="/guides/" className="inline-flex min-h-11 shrink-0 items-center text-sm font-bold underline underline-offset-4">全部教程</Link>
           </div>
+          <ul className="grid gap-3 md:grid-cols-2">
+            {newbie.map((g) => (
+              <li key={g.href} className="md:col-span-2">
+                <a href={g.href} className="flex h-full flex-col rounded-3xl bg-lavender p-5">
+                  <span className="text-[11px] font-bold text-[#4c406d]">{guideKind(g.source)}{g.card ? ` · ${g.card}` : ""}</span>
+                  <span className="mt-2 text-lg font-extrabold leading-snug">{g.title}</span>
+                </a>
+              </li>
+            ))}
+            {essays.map((g) => (
+              <li key={g.href}>
+                <a href={g.href} {...ext} className="flex h-full flex-col rounded-3xl bg-white p-5 shadow-[var(--shadow-raised)]">
+                  <span className="text-[11px] font-bold text-muted">{guideKind(g.source)}{g.card ? ` · ${g.card}` : ""}</span>
+                  <span className="mt-2 text-lg font-extrabold leading-snug">{g.title}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <Disclaimer />
