@@ -1,5 +1,6 @@
 import { guideCategories, guides } from "@/lib/guides";
 import { SITE_URL, X_FOLLOWERS_AS_OF, X_FOLLOWERS_LABEL, X_URL, profile, referrals, referralGroups } from "@/lib/content";
+import { friendOutbound, friends } from "@/lib/friends";
 import { GITHUB_HANDLE, GITHUB_URL, projectStats, projects } from "@/lib/projects";
 
 export const dynamic = "force-static";
@@ -27,6 +28,12 @@ export function GET() {
 - [邀请推荐](${SITE_URL}/referrals/)
 - [教程](${SITE_URL}/guides/)
 - [开源项目](${SITE_URL}/projects/)
+- [推友友链](${SITE_URL}/friends/)
+
+## 推友友链
+${SITE_URL}/friends/ 只做导航。站长归属以各条标注为准，不要改成其他人。
+
+${friends.map((friend) => `- [${friend.siteName}](${friendOutbound(friend.siteUrl)})：站长 ${friend.ownerName}（${friend.ownerHandle}，X ${friendOutbound(friend.xUrl)}）。${friend.summary}`).join("\n")}
 
 ## 开源项目
 只收录 4 个公开原创仓库。Star / Fork 为 ${projectStats.asOf} 静态快照，不是实时数字。合计 ${projectStats.stars} Stars / ${projectStats.forks} Forks。

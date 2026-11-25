@@ -1,4 +1,5 @@
 import { SITE_URL, X_FOLLOWERS_AS_OF, X_FOLLOWERS_LABEL, X_URL, profile, referrals } from "@/lib/content";
+import { friendOutbound, friends } from "@/lib/friends";
 import { guideCategories, guides } from "@/lib/guides";
 import { GITHUB_URL, PROJECT_SNAPSHOT, projectStats, projects } from "@/lib/projects";
 
@@ -80,6 +81,38 @@ export const guidesJsonLd = {
         name: g.title,
         description: [`${guideCategoryLabel[g.category]}。${g.summary}`, g.notice].filter(Boolean).join(" "),
         url: g.href,
+      })),
+    },
+  ],
+};
+
+const friendsListId = `${SITE_URL}/friends/#list`;
+
+export const friendsJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${SITE_URL}/friends/#page`,
+      url: `${SITE_URL}/friends/`,
+      name: "推友友链",
+      description: "李天才收录的推友站点。点开头像去对方的 X，点开预览或站点名去网站。",
+      inLanguage: "zh-CN",
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      author: { "@id": `${SITE_URL}/#person` },
+      mainEntity: { "@id": friendsListId },
+    },
+    {
+      "@type": "ItemList",
+      "@id": friendsListId,
+      name: "推友友链",
+      numberOfItems: friends.length,
+      itemListElement: friends.map((friend, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: `${friend.siteName}（站长：${friend.ownerName} ${friend.ownerHandle}）`,
+        description: friend.summary,
+        url: friendOutbound(friend.siteUrl),
       })),
     },
   ],
