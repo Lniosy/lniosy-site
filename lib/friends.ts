@@ -16,19 +16,29 @@ export function friendOutbound(href: string): string {
   return url.toString();
 }
 
-export type Friend = {
-  id: string;
+export type FriendSite = {
   siteName: string;
   siteUrl: string;
   summary: string;
   preview: string;
   previewWidth: number;
   previewHeight: number;
+};
+
+type FriendIdentity = {
+  id: string;
   ownerName: string;
   ownerHandle: string;
   xUrl: string;
   avatar: string;
+  verified?: boolean;
 };
+
+export type Friend = (FriendIdentity & FriendSite) | (FriendIdentity & { sites: FriendSite[] });
+
+export function friendSites(friend: Friend): FriendSite[] {
+  return "sites" in friend ? friend.sites : [friend];
+}
 
 export const friends: Friend[] = [
   {
@@ -51,5 +61,48 @@ export const friends: Friend[] = [
     xUrl: "https://x.com/lengs4189",
     // X 公开头像，2026-11-25，profile_images/2063992825923108864/wpJkVlo2。
     avatar: "/friends/lengs4189.webp",
+  },
+  {
+    id: "wu138di",
+    ownerName: "wu138di",
+    ownerHandle: "@wudihao138hack",
+    xUrl: "https://x.com/wudihao138hack",
+    verified: true,
+    // X 公开头像，2026-11-25，profile_images/2017602198495236097/W78G1PzW.jpg。
+    avatar: "/friends/wudihao138hack.webp",
+    // 2026-11-25 打开三个公开首页。描述不写金额。
+    sites: [
+      {
+        siteName: "WU138DI小站",
+        siteUrl: "https://www.wu138di.com",
+        // title「WU138DI小站」。首页可见 Developer | Python | C/C++ | Full Stack Engineer，
+        // 以及博客、课表查询系统（试运营）、分享资源站（dev）、无名小将计算器。
+        summary:
+          "公开标题是「WU138DI小站」。首页写着 Developer、Python、C/C++、Full Stack Engineer，并列出博客、课表查询、资源站和计算器。",
+        preview: "/friends/wu138di-home.webp",
+        previewWidth: 1280,
+        previewHeight: 800,
+      },
+      {
+        siteName: "B站视频总结器",
+        siteUrl: "https://bilibili.wu138di.com",
+        // title「Wu138di AI · B站视频总结器」。首页可见「发送BV号获取」，以及 Google 一键登录、邮箱登录。
+        summary:
+          "公开标题是「Wu138di AI · B站视频总结器」。首页写着发送 BV 号获取总结，并提供 Google 一键登录和邮箱登录。",
+        preview: "/friends/wu138di-bilibili.webp",
+        previewWidth: 1280,
+        previewHeight: 800,
+      },
+      {
+        siteName: "FANBOX 小站",
+        siteUrl: "https://fakafanbox.wu138di.com",
+        // title「FANBOX 小站 · …订阅方案」。首页可见 FANBOX 订阅、号上直冲、文件发送，以及不索取账号密码。金额不写入描述。
+        summary:
+          "公开标题是「FANBOX 小站」。首页写着 FANBOX 订阅、号上直冲和文件发送，并写明不索取账号密码。",
+        preview: "/friends/wu138di-fakafanbox.webp",
+        previewWidth: 1280,
+        previewHeight: 800,
+      },
+    ],
   },
 ];

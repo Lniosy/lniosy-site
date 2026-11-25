@@ -5,7 +5,7 @@ import { friendsJsonLd } from "@/lib/jsonld";
 
 const title = "推友友链｜李天才";
 const description =
-  "李天才收录的推友站点。目前是布丁（@lengs4189）的 XBuding：公开首页为「VPS 精选与黑五特惠聚合」，导航含 VPS、机场 / VPN 与选机测 IP。";
+  "李天才收录的推友站点。布丁（@lengs4189）的 XBuding，以及 wu138di（@wudihao138hack）的 WU138DI小站、B站视频总结器和 FANBOX 小站。";
 
 export const metadata: Metadata = {
   title,
