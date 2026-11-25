@@ -1,5 +1,5 @@
 import { SITE_URL, X_FOLLOWERS_AS_OF, X_FOLLOWERS_LABEL, X_URL, profile, referrals } from "@/lib/content";
-import { friendOutbound, friends } from "@/lib/friends";
+import { friendOutbound, friendSites, friends } from "@/lib/friends";
 import { guideCategories, guides } from "@/lib/guides";
 import { GITHUB_URL, PROJECT_SNAPSHOT, projectStats, projects } from "@/lib/projects";
 
@@ -106,13 +106,13 @@ export const friendsJsonLd = {
       "@type": "ItemList",
       "@id": friendsListId,
       name: "推友友链",
-      numberOfItems: friends.length,
-      itemListElement: friends.map((friend, index) => ({
+      numberOfItems: friends.flatMap((friend) => friendSites(friend)).length,
+      itemListElement: friends.flatMap((friend) => friendSites(friend).map((site) => ({ friend, site }))).map(({ friend, site }, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        name: `${friend.siteName}（站长：${friend.ownerName} ${friend.ownerHandle}）`,
-        description: friend.summary,
-        url: friendOutbound(friend.siteUrl),
+        name: `${site.siteName}（站长：${friend.ownerName} ${friend.ownerHandle}）`,
+        description: site.summary,
+        url: friendOutbound(site.siteUrl),
       })),
     },
   ],
