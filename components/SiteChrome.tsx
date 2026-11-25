@@ -9,6 +9,7 @@ const nav = [
   { href: "/referrals/", label: "邀请推荐" },
   { href: "/guides/", label: "精选教程" },
   { href: "/projects/", label: "开源项目" },
+  { href: "/friends/", label: "推友友链" },
 ];
 
 function FollowX({ className }: { className: string }) {
