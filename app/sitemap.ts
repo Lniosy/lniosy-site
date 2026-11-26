@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/referrals/`, lastModified: new Date().toISOString().slice(0, 10), changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/guides/`, lastModified: new Date().toISOString().slice(0, 10), changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE_URL}/projects/`, lastModified: "2026-11-24", changeFrequency: "monthly", priority: 0.8 },
-    { url: `${SITE_URL}/friends/`, lastModified: "2026-11-25", changeFrequency: "monthly", priority: 0.6 },
+    { url: `${SITE_URL}/friends/`, lastModified: "2026-11-26", changeFrequency: "monthly", priority: 0.6 },
     ...referrals.map((r) => ({ url: `${SITE_URL}${referralPath(r)}`, lastModified: new Date().toISOString().slice(0, 10), changeFrequency: "weekly" as const, priority: 0.7 })),
   ];
 }

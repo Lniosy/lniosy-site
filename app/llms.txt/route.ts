@@ -33,7 +33,11 @@ export function GET() {
 ## 推友友链
 ${SITE_URL}/friends/ 只做导航。站长归属以各条标注为准，不要改成其他人。
 
-${friends.flatMap((friend) => friendSites(friend).map((site) => `- [${site.siteName}](${friendOutbound(site.siteUrl)})：站长 ${friend.ownerName}（${friend.ownerHandle}，X ${friendOutbound(friend.xUrl)}）。${site.summary}`)).join("\n")}
+${friends.flatMap((friend) => {
+  const lines = friendSites(friend).map((site) => `- [${site.siteName}](${friendOutbound(site.siteUrl)})：站长 ${friend.ownerName}（${friend.ownerHandle}，X ${friendOutbound(friend.xUrl)}）。${site.summary}`);
+  if (friend.extra) lines.push(`- [${friend.extra.label}](${friendOutbound(friend.extra.href)})：站长 ${friend.ownerName}（${friend.ownerHandle}）。公开博客地址。`);
+  return lines;
+}).join("\n")}
 
 ## 开源项目
 只收录 4 个公开原创仓库。Star / Fork 为 ${projectStats.asOf} 静态快照，不是实时数字。合计 ${projectStats.stars} Stars / ${projectStats.forks} Forks。
