@@ -5,7 +5,7 @@ import { friendsJsonLd } from "@/lib/jsonld";
 
 const title = "推友友链｜李天才";
 const description =
-  "李天才收录的推友站点。布丁（@lengs4189）的 XBuding，wu138di（@wudihao138hack）的三个小站，以及苏码玩家（@suversal）的文章站。";
+  "李天才收录的推友站点。布丁（@lengs4189）的 XBuding，wu138di（@wudihao138hack）的三个小站，苏码玩家（@suversal）的文章站，以及 Su（@Sukiea1008）的 AI 工作流工作室。";
 
 export const metadata: Metadata = {
   title,
