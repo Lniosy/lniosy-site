@@ -9,11 +9,15 @@ function FriendCard({ friend, priority }: { friend: Extract<Friend, FriendSite>;
   const xHref = friendOutbound(friend.xUrl);
   const attribution = `站长：${friend.ownerName} ${friend.ownerHandle}`;
   return (
-    <article className="flex h-full max-w-3xl flex-col overflow-hidden rounded-3xl bg-white p-5 shadow-[var(--shadow-raised)] sm:p-6">
+    <article className="flex h-full flex-col overflow-hidden rounded-3xl bg-white p-5 shadow-[var(--shadow-raised)] sm:p-6">
       <a href={xHref} {...ext} className="flex min-h-14 items-center gap-3">
         <Image src={friend.avatar} alt="" width={56} height={56} priority={priority} className="h-14 w-14 shrink-0 rounded-full object-cover" />
         <span className="min-w-0">
-          <span className="block text-lg font-extrabold tracking-tight">{friend.ownerName}</span>
+          <span className="block text-lg font-extrabold tracking-tight">
+            {friend.ownerName}
+            {friend.verified ? <BlueMark /> : null}
+            {friend.verified ? <span className="sr-only">蓝标</span> : null}
+          </span>
           <span className="mt-0.5 block text-sm font-bold leading-5 text-muted">{attribution}</span>
         </span>
       </a>
@@ -28,9 +32,16 @@ function FriendCard({ friend, priority }: { friend: Extract<Friend, FriendSite>;
         />
       </a>
       <p className="mt-4 text-sm leading-6 text-muted">{friend.summary}</p>
-      <a href={siteHref} {...ext} className="mt-4 inline-flex min-h-12 items-center justify-center gap-2 self-start rounded-full bg-ink px-5 text-sm font-bold text-white">
-        {friend.siteName} <Arrow className="h-4 w-4" />
-      </a>
+      <div className="mt-4 flex flex-wrap items-center gap-3">
+        <a href={siteHref} {...ext} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-5 text-sm font-bold text-white">
+          {friend.siteName} <Arrow className="h-4 w-4 shrink-0" />
+        </a>
+        {friend.extra ? (
+          <a href={friendOutbound(friend.extra.href)} {...ext} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-line bg-white px-5 text-sm font-bold">
+            {friend.extra.label} <Arrow className="h-4 w-4 shrink-0" />
+          </a>
+        ) : null}
+      </div>
     </article>
   );
 }

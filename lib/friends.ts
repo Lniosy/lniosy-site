@@ -32,6 +32,7 @@ type FriendIdentity = {
   xUrl: string;
   avatar: string;
   verified?: boolean;
+  extra?: { label: string; href: string };
 };
 
 export type Friend = (FriendIdentity & FriendSite) | (FriendIdentity & { sites: FriendSite[] });
@@ -104,5 +105,26 @@ export const friends: Friend[] = [
         previewHeight: 800,
       },
     ],
+  },
+  {
+    id: "suversal",
+    siteName: "苏码玩家",
+    siteUrl: "https://suversal.com",
+    // 2026-11-26 打开 https://suversal.com ，公开页跳到 /blog。
+    // title「苏码玩家 · 文章」。
+    // 首页原文：「一个程序员的折腾记录：VPS、家庭网络、Apple生态、开源分享、出海基建、还有AI」。
+    // 分类可见：网络与代理、AI、Apple、出海基建、工具、服务器、日常。页面没有写 Vibe Coding。
+    summary:
+      "公开标题是「苏码玩家 · 文章」。首页写着「一个程序员的折腾记录：VPS、家庭网络、Apple生态、开源分享、出海基建、还有AI」。",
+    preview: "/friends/suversal-home.webp",
+    previewWidth: 1280,
+    previewHeight: 800,
+    ownerName: "苏码玩家",
+    ownerHandle: "@suversal",
+    xUrl: "https://x.com/suversal",
+    verified: true,
+    // X 公开头像，2026-11-26，profile_images/2089337449344630785/lTeuNtW9.jpg。
+    avatar: "/friends/suversal.webp",
+    extra: { label: "博客", href: "https://suversal.com/blog" },
   },
 ];
