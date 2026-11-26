@@ -127,4 +127,27 @@ export const friends: Friend[] = [
     avatar: "/friends/suversal.webp",
     extra: { label: "博客", href: "https://suversal.com/blog" },
   },
+  {
+    id: "su-uni",
+    siteName: "Su",
+    siteUrl: "https://su-uni.com",
+    // 2026-11-26 打开 https://su-uni.com/
+    // title「Su · AI Structure & Workflow Studio」
+    // 首屏：Structure online. Automate offline. / 让视觉建立信任，让信息推动成交。
+    // 服务：定制 AI 工作流、架构优化、网页与小程序原型、视觉方案。
+    // 作品：BuzzTrans、TextOrbit / 词环、野有风。页内署名「Su ／ 芋泥 Yunii」。
+    // 开源区标题是 OPEN SOURCE · GITHUB，页脚是 SU / DOUBLESQ97。
+    summary:
+      "公开标题是「Su · AI Structure & Workflow Studio」。首页写着定制 AI 工作流、架构优化、原型和视觉方案，作品里能看到 BuzzTrans、TextOrbit 和野有风。页面也称 Su 为芋泥 Yunii。",
+    preview: "/friends/su-uni-home.webp",
+    previewWidth: 1280,
+    previewHeight: 800,
+    ownerName: "Su",
+    ownerHandle: "@Sukiea1008",
+    xUrl: "https://x.com/Sukiea1008",
+    verified: true,
+    // X 公开头像，2026-11-26，profile_images/2070191168848269312/gQ6X5dcH.jpg。
+    avatar: "/friends/sukiea1008.webp",
+    extra: { label: "GitHub", href: "https://github.com/doublesq97-ui" },
+  },
 ];
